@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Race_TimerApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(coreDM: DataController())
         }
     }
 }

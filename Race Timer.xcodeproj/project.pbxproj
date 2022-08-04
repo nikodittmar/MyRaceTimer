@@ -13,6 +13,11 @@
 		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
 		17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */; };
 		17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D41288DC62E0022124F /* ActivityViewController.swift */; };
+		17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */; };
+		17A78A92289AF735000AA754 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A91289AF735000AA754 /* DataController.swift */; };
+		17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */; };
+		17A78A96289B0875000AA754 /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */; };
+		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +28,11 @@
 		17662D38288DC5EA0022124F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportRecordingsSheet.swift; sourceTree = "<group>"; };
 		17662D41288DC62E0022124F /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		17A78A8F289AF3BF000AA754 /* Race_Timer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Race_Timer.xcdatamodel; sourceTree = "<group>"; };
+		17A78A91289AF735000AA754 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = "<group>"; };
+		17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +65,14 @@
 		17662D30288DC5E80022124F /* Race Timer */ = {
 			isa = PBXGroup;
 			children = (
+				17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */,
+				17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */,
+				17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */,
 				17662D31288DC5E80022124F /* Race_TimerApp.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
+				17A78A9B289B5D76000AA754 /* Extensions.swift */,
 				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
+				17A78A91289AF735000AA754 /* DataController.swift */,
 				17662D41288DC62E0022124F /* ActivityViewController.swift */,
 				17662D35288DC5EA0022124F /* Assets.xcassets */,
 				17662D37288DC5EA0022124F /* Preview Content */,
@@ -144,9 +159,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */,
+				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
+				17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */,
+				17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */,
+				17A78A96289B0875000AA754 /* Result+CoreDataProperties.swift in Sources */,
 				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
 				17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */,
 				17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */,
+				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +369,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				17A78A8F289AF3BF000AA754 /* Race_Timer.xcdatamodel */,
+			);
+			currentVersion = 17A78A8F289AF3BF000AA754 /* Race_Timer.xcdatamodel */;
+			path = Race_Timer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 17662D26288DC5E80022124F /* Project object */;
 }

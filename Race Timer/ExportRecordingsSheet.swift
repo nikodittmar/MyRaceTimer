@@ -26,17 +26,15 @@ extension URL: Identifiable {
 
 struct ExportRecordingsSheet: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: ViewModel
+    @ObservedObject var viewModel: ViewModel = ViewModel()
     
-    init(recordings: [Recording]) {
-        self.viewModel = ViewModel(recordings: recordings)
-    }
+    let coreDM: DataController = DataController()
     
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    Text("Exporting \(viewModel.recordings.count) Recording(s).")
+                    Text("Exporting \(coreDM.getAllResults().count) Recording(s).")
                     Section(header: Text("Stage")) {
                         Picker("Stage", selection: $viewModel.stage) {
                             Text("Cinderella")
@@ -67,7 +65,7 @@ struct ExportRecordingsSheet: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.createCsv()
+                        viewModel.createCsv(results: coreDM.getAllResults())
                     } label: {
                         Text("Export")
                             .fontWeight(.bold)
@@ -89,10 +87,9 @@ extension ExportRecordingsSheet {
         @Published var stage: stage = .Cinderella
         @Published var sheetFile: URL? = nil
         
-        var recordings: [Recording]
         
-        init(recordings: [Recording]) {
-            self.recordings = recordings
+        init() {
+
         }
         
         func getDocumentsDirectory() -> URL {
@@ -100,7 +97,7 @@ extension ExportRecordingsSheet {
             return paths[0]
         }
         
-        func createCsv() {
+        func createCsv(results: [Result]) {
             var stageName: String = ""
             var timingPosition: String = ""
             
@@ -120,15 +117,20 @@ extension ExportRecordingsSheet {
                 stageName = "Castle_Park"
             }
             
-            let fileName = "\(stageName)-\(timingPosition)"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH-mm"
+            
+            let currentTime = Date()
+            
+            let currentTimeString = dateFormatter.string(from: currentTime)
+            
+            let fileName = "\(stageName)_\(timingPosition)_\(currentTimeString)"
             
             var csvString: String = ""
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "H:mm:ss.SSS"
             
-            for recording in recordings {
-                csvString.append("\(recording.plate),\(dateFormatter.string(from: recording.time))\n")
+            for result in results {
+                csvString.append("\(result.unwrappedPlate),\(result.timeString)\n")
             }
             
             let fileURL = getDocumentsDirectory().appendingPathComponent("\(fileName).csv")
@@ -139,16 +141,13 @@ extension ExportRecordingsSheet {
                 print("no file to delete")
             }
             
-            
             do {
-                
                 try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
                 sheetFile = fileURL
-                
+
             } catch {
                 print(error.localizedDescription)
             }
-            
             
         }
     }
@@ -156,7 +155,7 @@ extension ExportRecordingsSheet {
 
 struct ExportRecordingsSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ExportRecordingsSheet(recordings: [])
+        ExportRecordingsSheet()
     }
 }
 

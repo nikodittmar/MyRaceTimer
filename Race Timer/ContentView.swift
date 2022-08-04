@@ -7,13 +7,9 @@
 
 import SwiftUI
 
-struct Recording: Identifiable {
-    var id = UUID()
-    var plate: String
-    var time: Date
-}
-
 struct ContentView: View {
+    
+    let coreDM: DataController
     
     @ObservedObject var viewModel: ViewModel = ViewModel()
     
@@ -21,10 +17,10 @@ struct ContentView: View {
         NavigationView {
             VStack(spacing: 0) {
                 Button {
-                    let recording = Recording(plate: "", time: Date())
-                    viewModel.recordings.insert(recording, at: 0)
-                    viewModel.selectedRecording = recording.id
-                    viewModel.recordings = viewModel.recordings.sorted(by: {(recording0: Recording, recording1: Recording) -> Bool in return recording0.time > recording1.time})
+                    coreDM.saveResult()
+                    viewModel.results = coreDM.getAllResults()
+                    viewModel.plateList = coreDM.getAllPlates()
+                    viewModel.selectedResult = viewModel.results[0]
                 } label: {
                     Text("Record Time")
                         .frame(maxWidth: .infinity)
@@ -32,107 +28,85 @@ struct ContentView: View {
                         .font(.title3)
                         .foregroundColor(.white)
                         .background(.blue)
-                        .cornerRadius(8)
+                        .border(Color(UIColor.systemGray5))
                 }
-                .padding(.horizontal)
                 .padding(.top, 8)
+                .padding(.bottom, -1)
                 
-                Text("\(viewModel.recordings.count) Recording(s)")
-                    .font(.footnote)
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
+                if viewModel.results.count == 1 {
+                    Text("\(viewModel.results.count) Recording")
+                        .frame(maxWidth: .infinity)
+                        .font(.footnote)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .border(Color(UIColor.systemGray4))
+                        .background(Color(UIColor.systemGray6))
+                        
+                } else {
+                    Text("\(viewModel.results.count) Recordings")
+                        .frame(maxWidth: .infinity)
+                        .font(.footnote)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .border(Color(UIColor.systemGray4))
+                        .background(Color(UIColor.systemGray6))
+                        
+                }
                 
-                List(viewModel.recordings) { recording in
+                
+                List(viewModel.results, id: \.unwrappedId) { result in
                     Button {
-                        viewModel.selectedRecording = recording.id
-                    } label: {
-                        if recording.plate == "" {
-                            HStack {
-                                Text("\(String(viewModel.recordings.firstIndex(where: {$0.id == recording.id}) ?? 0)).")
-                                Text("-    -")
-                                Spacer()
-                                Text(viewModel.dateFormatter.string(from: recording.time))
-                            }
+                        if viewModel.selectedResult == result {
+                            viewModel.selectedResult = nil
                         } else {
-                            HStack {
-                                Text("\(String(viewModel.recordings.firstIndex(where: {$0.id == recording.id}) ?? 0)).")
-                                Text(recording.plate)
-                                Spacer()
-                                Text(viewModel.dateFormatter.string(from: recording.time))
-                            }
+                            viewModel.selectedResult = result
                         }
                         
+                    } label: {
+                        HStack {
+                            Text("\(String(viewModel.results.firstIndex(where: {$0.id == result.id}) ?? 0)).")
+                                .frame(width: 40, height: 20, alignment: .leading)
+                                .padding(6)
+                                
+                            if result.unwrappedPlate == "" {
+                                Text("-       -")
+                                    .frame(width: 80, height: 20)
+                                    .padding(6)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
+                                    )
+                                    .background(Color(UIColor.systemGray6))
+                                    .cornerRadius(8)
+                            } else {
+                                Text("\(result.unwrappedPlate)")
+                                    .frame(width: 80, height: 20)
+                                    .padding(6)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
+                                    )
+                                    .background(Color(UIColor.systemGray6))
+                                    .cornerRadius(8)
+                            }
+                            if result.unwrappedPlate.occurrencesIn(viewModel.plateList) > 1 {
+                                Image(systemName: "square.on.square")
+                                    .foregroundColor(.yellow)
+                            }
+                            Spacer()
+                            Text("\(result.timeString)")
+                        }
                     }
-                    .listRowBackground(recording.id == viewModel.selectedRecording ? Color.accentColor.opacity(0.3) : Color(UIColor.systemGray5))
-                    
+                    .listRowBackground(viewModel.selectedResult == result ? Color.accentColor.opacity(0.2) : .clear)
                 }
                 .listStyle(.inset)
-                
                 VStack(spacing: -1) {
                     HStack(spacing: -1) {
                         Button {
-                            if viewModel.selectedRecording != nil {
-                                viewModel.presentingDeleteWarning = true
-                            }
-                        } label: {
-                            Text("Delete")
-                                .font(.title3)
-                                .foregroundColor(.red)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 40)
-                                .border(Color(UIColor.systemGray5))
-                        }
-                        
-                        Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].time.addTimeInterval(-1)
-                                        viewModel.recordings = viewModel.recordings.sorted(by: {(recording0: Recording, recording1: Recording) -> Bool in return recording0.time > recording1.time})
-                                        break
-                                    }
-                                }
-                            }
-                        } label: {
-                            Text("-1s")
-                                .font(.title3)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 40)
-                                .border(Color(UIColor.systemGray5))
-                        }
-                        
-                        Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].time.addTimeInterval(1)
-                                        viewModel.recordings = viewModel.recordings.sorted(by: {(recording0: Recording, recording1: Recording) -> Bool in return recording0.time > recording1.time})
-                                        break
-                                    }
-                                }
-                            }
-                        } label: {
-                            Text("+1s")
-                                .font(.title3)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 40)
-                                .border(Color(UIColor.systemGray5))
-                        }
-                        
-                    }
-                    
-                    
-                    
-                    HStack(spacing: -1) {
-                        Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("1")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 1)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("1")
@@ -140,16 +114,15 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("2")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 2)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("2")
@@ -157,16 +130,15 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("3")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 3)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("3")
@@ -174,19 +146,18 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                     }
-                    
+
                     HStack(spacing: -1) {
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("4")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 4)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("4")
@@ -194,16 +165,15 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("5")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 5)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("5")
@@ -211,16 +181,15 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("6")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 6)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("6")
@@ -228,19 +197,18 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                     }
-                    
+
                     HStack(spacing: -1) {
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("7")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 7)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("7")
@@ -248,16 +216,15 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("8")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 8)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("8")
@@ -265,16 +232,15 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("9")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 9)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("9")
@@ -282,38 +248,32 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                     }
-                    
+
                     HStack(spacing: -1) {
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        if !viewModel.recordings[i].plate.isEmpty {
-                                            viewModel.recordings[i].plate.removeLast()
-                                        }
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                viewModel.presentingDeleteWarning = true
                             }
                         } label: {
-                            Image(systemName: "delete.left")
+                            Image(systemName: "trash")
                                 .font(.title)
-                                .foregroundColor(Color(UIColor.label))
+                                .foregroundColor(.red)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
+
                         Button {
-                            if let selectedRecordingId = viewModel.selectedRecording {
-                                for i in 0..<viewModel.recordings.count {
-                                    if viewModel.recordings[i].id == selectedRecordingId {
-                                        viewModel.recordings[i].plate.append("0")
-                                    }
-                                }
+                            if viewModel.selectedResult != nil {
+                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 0)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
                             }
                         } label: {
                             Text("0")
@@ -321,20 +281,25 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
                         
                         Button {
-                            viewModel.selectedRecording = nil
+                            if viewModel.selectedResult != nil {
+                                coreDM.removePlateDigit(result: viewModel.selectedResult!)
+                                viewModel.results = coreDM.getAllResults()
+                                viewModel.plateList = coreDM.getAllPlates()
+                            }
                         } label: {
-                            Image(systemName: "arrow.turn.down.left")
+                            Image(systemName: "delete.left")
                                 .font(.title)
                                 .foregroundColor(Color(UIColor.label))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 60)
-                                .border(Color(UIColor.systemGray5))
+                                .border(Color(UIColor.systemGray4))
+                                .background(Color(UIColor.systemGray6))
                         }
-                        
                     }
                 }
             }
@@ -350,29 +315,31 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        var missingPlateNumbers = false
-                        for recording in viewModel.recordings {
-                            if recording.plate == "" {
-                                missingPlateNumbers = true
-                                viewModel.presentingMissingPlateWarning = true
-                                break
-                            }
-                        }
-                        if missingPlateNumbers == false {
+                        if viewModel.plateList.count < viewModel.results.count && viewModel.plateList.hasDuplicates() {
+                            viewModel.presentingDuplicateAndMissingPlateWarning = true
+                        } else if viewModel.plateList.hasDuplicates() {
+                            viewModel.presentingDuplicatePlateWarning = true
+                        } else if viewModel.plateList.count < viewModel.results.count {
+                            viewModel.presentingMissingPlateWarning = true
+                        } else {
                             viewModel.presentingExportSheet = true
                         }
                     } label: {
                         Text("Finish")
                             .fontWeight(.bold)
                     }
-                    .disabled(viewModel.recordings.isEmpty)
+                    .disabled(viewModel.results.isEmpty)
                 }
             }
             .alert("Are you sure you want to delete the selected recording?", isPresented: $viewModel.presentingDeleteWarning, actions: {
                 Button("No", role: .cancel, action: {})
                 Button("Yes", role: .destructive, action: {
-                    viewModel.recordings = viewModel.recordings.filter {$0.id != viewModel.selectedRecording}
-                    viewModel.selectedRecording = nil
+                    if viewModel.selectedResult != nil {
+                        coreDM.delete(viewModel.selectedResult!)
+                        viewModel.results = coreDM.getAllResults()
+                        viewModel.plateList = coreDM.getAllPlates()
+                        viewModel.selectedResult = nil
+                    }
                 })
             }, message: {
                 Text("This cannot be undone.")
@@ -380,7 +347,10 @@ struct ContentView: View {
             .alert("Are you sure you want to delete all recordings?", isPresented: $viewModel.presentingResetWarning, actions: {
                 Button("No", role: .cancel, action: {})
                 Button("Yes", role: .destructive, action: {
-                    viewModel.recordings = []
+                    coreDM.deleteAll()
+                    viewModel.results = coreDM.getAllResults()
+                    viewModel.plateList = coreDM.getAllPlates()
+                    viewModel.selectedResult = nil
                 })
             }, message: {
                 Text("This cannot be undone.")
@@ -393,39 +363,57 @@ struct ContentView: View {
             }, message: {
                 Text("Would you like to continue?")
             })
+            .alert("Some recordings have duplicate plate numbers.", isPresented: $viewModel.presentingDuplicatePlateWarning, actions: {
+                Button("Cancel", action: {})
+                Button("Continue", action: {
+                    viewModel.presentingExportSheet = true
+                })
+            }, message: {
+                Text("Would you like to continue?")
+            })
+            .alert("Some recordings have duplicate or missing plate numbers.", isPresented: $viewModel.presentingDuplicateAndMissingPlateWarning, actions: {
+                Button("Cancel", action: {})
+                Button("Continue", action: {
+                    viewModel.presentingExportSheet = true
+                })
+            }, message: {
+                Text("Would you like to continue?")
+            })
             .sheet(isPresented: $viewModel.presentingExportSheet) {
-                ExportRecordingsSheet(recordings: viewModel.recordings)
+                ExportRecordingsSheet()
             }
-
         }
     }
 }
 
 extension ContentView {
     @MainActor class ViewModel: ObservableObject {
-        @Published var recordings: [Recording]
+        let coreDM: DataController = DataController()
         
-        @Published var selectedRecording: UUID?
+        @Published var results: [Result]
+        @Published var plateList: [String]
+        
+        @Published var selectedResult: Result?
         
         @Published var presentingDeleteWarning: Bool = false
         @Published var presentingResetWarning: Bool = false
         @Published var presentingMissingPlateWarning: Bool = false
+        @Published var presentingDuplicatePlateWarning: Bool = false
+        @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
+
         
         @Published var presentingExportSheet: Bool = false
         
-        let dateFormatter: DateFormatter
-        
         
         init() {
-            self.recordings = []
-            self.dateFormatter = DateFormatter()
-            self.dateFormatter.dateFormat = "H:mm:ss.SSSS"
+            self.results = coreDM.getAllResults()
+            self.plateList = coreDM.getAllPlates()
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(coreDM: DataController())
     }
 }
