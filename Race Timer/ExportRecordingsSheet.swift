@@ -18,12 +18,6 @@ enum stage {
     case CastlePark
 }
 
-extension URL: Identifiable {
-    public var id: UUID {
-        return UUID()
-    }
-}
-
 struct ExportRecordingsSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel = ViewModel()
@@ -34,7 +28,11 @@ struct ExportRecordingsSheet: View {
         NavigationView {
             VStack {
                 Form {
-                    Text("Exporting \(coreDM.getAllResults().count) Recording(s).")
+                    if coreDM.getAllResults().count == 1 {
+                        Text("Exporting \(coreDM.getAllResults().count) Recording.")
+                    } else {
+                        Text("Exporting \(coreDM.getAllResults().count) Recordings.")
+                    }
                     Section(header: Text("Stage")) {
                         Picker("Stage", selection: $viewModel.stage) {
                             Text("Cinderella")

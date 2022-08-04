@@ -23,6 +23,7 @@ struct ContentView: View {
                     viewModel.selectedResult = viewModel.results[0]
                 } label: {
                     Text("Record Time")
+                        .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
                         .frame(height: 60)
                         .font(.title3)
@@ -53,53 +54,62 @@ struct ContentView: View {
                         
                 }
                 
-                
-                List(viewModel.results, id: \.unwrappedId) { result in
-                    Button {
-                        if viewModel.selectedResult == result {
-                            viewModel.selectedResult = nil
-                        } else {
-                            viewModel.selectedResult = result
-                        }
-                        
-                    } label: {
-                        HStack {
-                            Text("\(String(viewModel.results.firstIndex(where: {$0.id == result.id}) ?? 0)).")
-                                .frame(width: 40, height: 20, alignment: .leading)
-                                .padding(6)
-                                
-                            if result.unwrappedPlate == "" {
-                                Text("-       -")
-                                    .frame(width: 80, height: 20)
-                                    .padding(6)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
-                                    )
-                                    .background(Color(UIColor.systemGray6))
-                                    .cornerRadius(8)
+                ZStack {
+                    
+                    
+                    List(viewModel.results, id: \.unwrappedId) { result in
+                        Button {
+                            if viewModel.selectedResult == result {
+                                viewModel.selectedResult = nil
                             } else {
-                                Text("\(result.unwrappedPlate)")
-                                    .frame(width: 80, height: 20)
+                                viewModel.selectedResult = result
+                            }
+                            
+                        } label: {
+                            HStack {
+                                Text("\(String(viewModel.results.firstIndex(where: {$0.id == result.id}) ?? 0)).")
+                                    .frame(width: 40, height: 20, alignment: .leading)
                                     .padding(6)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
-                                    )
-                                    .background(Color(UIColor.systemGray6))
-                                    .cornerRadius(8)
+                                    
+                                if result.unwrappedPlate == "" {
+                                    Text("-       -")
+                                        .frame(width: 80, height: 20)
+                                        .padding(6)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
+                                        )
+                                        .background(Color(UIColor.systemGray6))
+                                        .cornerRadius(8)
+                                } else {
+                                    Text("\(result.unwrappedPlate)")
+                                        .frame(width: 80, height: 20)
+                                        .padding(6)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
+                                        )
+                                        .background(Color(UIColor.systemGray6))
+                                        .cornerRadius(8)
+                                }
+                                if result.unwrappedPlate.occurrencesIn(viewModel.plateList) > 1 {
+                                    Image(systemName: "square.on.square")
+                                        .foregroundColor(.yellow)
+                                }
+                                Spacer()
+                                Text("\(result.timeString)")
                             }
-                            if result.unwrappedPlate.occurrencesIn(viewModel.plateList) > 1 {
-                                Image(systemName: "square.on.square")
-                                    .foregroundColor(.yellow)
-                            }
-                            Spacer()
-                            Text("\(result.timeString)")
                         }
+                        .listRowBackground(viewModel.selectedResult?.id == result.unwrappedId ? Color.accentColor.opacity(0.2) : .clear)
                     }
-                    .listRowBackground(viewModel.selectedResult == result ? Color.accentColor.opacity(0.2) : .clear)
+                    .listStyle(.inset)
+                    
+                    if viewModel.results.isEmpty {
+                        Text("No recordings to display\nTap \"Record Time\" to create a recording")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color(UIColor.systemGray2))
+                    }
                 }
-                .listStyle(.inset)
                 VStack(spacing: -1) {
                     HStack(spacing: -1) {
                         Button {
@@ -308,10 +318,11 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.presentingResetWarning = true
+                        viewModel.presentingResetSheet = true
                     } label: {
                         Text("Reset")
                     }
+                    .disabled(viewModel.results.isEmpty)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -344,17 +355,6 @@ struct ContentView: View {
             }, message: {
                 Text("This cannot be undone.")
             })
-            .alert("Are you sure you want to delete all recordings?", isPresented: $viewModel.presentingResetWarning, actions: {
-                Button("No", role: .cancel, action: {})
-                Button("Yes", role: .destructive, action: {
-                    coreDM.deleteAll()
-                    viewModel.results = coreDM.getAllResults()
-                    viewModel.plateList = coreDM.getAllPlates()
-                    viewModel.selectedResult = nil
-                })
-            }, message: {
-                Text("This cannot be undone.")
-            })
             .alert("Some recordings are missing plate numbers.", isPresented: $viewModel.presentingMissingPlateWarning, actions: {
                 Button("Cancel", action: {})
                 Button("Continue", action: {
@@ -382,6 +382,15 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.presentingExportSheet) {
                 ExportRecordingsSheet()
             }
+            .sheet(isPresented: $viewModel.presentingResetSheet) {
+                ResetSheet(resetAction: {
+                    coreDM.deleteAll()
+                    viewModel.results = coreDM.getAllResults()
+                    viewModel.plateList = coreDM.getAllPlates()
+                    viewModel.selectedResult = nil
+                })
+            }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }
@@ -396,12 +405,11 @@ extension ContentView {
         @Published var selectedResult: Result?
         
         @Published var presentingDeleteWarning: Bool = false
-        @Published var presentingResetWarning: Bool = false
         @Published var presentingMissingPlateWarning: Bool = false
         @Published var presentingDuplicatePlateWarning: Bool = false
         @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
 
-        
+        @Published var presentingResetSheet: Bool = false
         @Published var presentingExportSheet: Bool = false
         
         

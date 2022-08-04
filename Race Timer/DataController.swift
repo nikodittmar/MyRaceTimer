@@ -20,11 +20,28 @@ class DataController: ObservableObject {
     }
     
     func removePlateDigit(result: Result) {
-        var plate = result.unwrappedPlate
+        let objectToEdit = container.viewContext.object(with: result.objectID)
+        
+        let plateKey = objectToEdit.value(forKey: "plate")
+        
+        var plate: String = ""
+        
+        if let plateString = plateKey as? String {
+            plate = plateString
+        }
+        
         if plate != "" {
             plate.removeLast()
         }
-        result.plate = plate
+        
+        objectToEdit.setValue(plate, forKey: "plate")
+        
+        
+//        var plate = result.unwrappedPlate
+//        if plate != "" {
+//            plate.removeLast()
+//        }
+//        result.plate = plate
         do {
             try container.viewContext.save()
         } catch {
@@ -35,12 +52,31 @@ class DataController: ObservableObject {
     
     
     func appendPlateDigit(result: Result, digit: Int) {
-
-        var plate = result.unwrappedPlate
+        let objectToEdit = container.viewContext.object(with: result.objectID)
+        
+        let plateKey = objectToEdit.value(forKey: "plate")
+        
+        var plate: String = ""
+        
+        if let plateString = plateKey as? String {
+            plate = plateString
+        }
+        
         if plate.count < 3 {
             plate.append(String(digit))
         }
-        result.plate = plate
+        
+        objectToEdit.setValue(plate, forKey: "plate")
+            
+
+//        var plate = result.unwrappedPlate
+//        if plate.count < 3 {
+//            plate.append(String(digit))
+//        }
+//
+//
+//
+//        result.plate = plate
         do {
             try container.viewContext.save()
         } catch {

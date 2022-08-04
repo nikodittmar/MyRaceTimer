@@ -28,3 +28,9 @@ extension Array where Element == String {
         }
     }
 }
+
+extension URL: Identifiable {
+    public var id: UUID {
+        return UUID()
+    }
+}
