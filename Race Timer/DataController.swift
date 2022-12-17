@@ -62,7 +62,7 @@ class DataController: ObservableObject {
             plate = plateString
         }
         
-        if plate.count < 3 {
+        if plate.count < 6 {
             plate.append(String(digit))
         }
         
@@ -131,10 +131,10 @@ class DataController: ObservableObject {
         return plates
     }
     
-    func saveResult() {
+    func saveResult(_ plate: String) {
         let result = Result(context: container.viewContext)
         result.id = UUID()
-        result.plate = ""
+        result.plate = plate
         result.timestamp = Double(Date().timeIntervalSince1970)
         
         do {

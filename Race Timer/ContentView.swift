@@ -7,20 +7,29 @@
 
 import SwiftUI
 
+enum DefaultSettings {
+    static let nextPlateEntryScreen = false
+}
+
 struct ContentView: View {
     
     let coreDM: DataController
     
     @ObservedObject var viewModel: ViewModel = ViewModel()
     
+    @AppStorage("showNextPlateEntry") var nextPlateEntry: Bool = DefaultSettings.nextPlateEntryScreen
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 Button {
-                    coreDM.saveResult()
+                    coreDM.saveResult(viewModel.nextRecordingPlate ?? "")
+                    viewModel.nextRecordingPlate = nil
+                    viewModel.plateFieldSelected = false
                     viewModel.results = coreDM.getAllResults()
                     viewModel.plateList = coreDM.getAllPlates()
                     viewModel.selectedResult = viewModel.results[0]
+                    viewModel.startTimer()
                 } label: {
                     Text("Record Time")
                         .fontWeight(.bold)
@@ -33,38 +42,33 @@ struct ContentView: View {
                 }
                 .padding(.top, 8)
                 .padding(.bottom, -1)
-                
-                if viewModel.results.count == 1 {
-                    Text("\(viewModel.results.count) Recording")
-                        .frame(maxWidth: .infinity)
-                        .font(.footnote)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .border(Color(UIColor.systemGray4))
-                        .background(Color(UIColor.systemGray6))
-                        
-                } else {
-                    Text("\(viewModel.results.count) Recordings")
-                        .frame(maxWidth: .infinity)
-                        .font(.footnote)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .border(Color(UIColor.systemGray4))
-                        .background(Color(UIColor.systemGray6))
-                        
+                HStack {
+                    //Text("Since Last: \(String(viewModel.timeSinceLastRecording))s")
+                    Text("Since Last: 15s")
+                    
+                    Spacer()
+                    if viewModel.results.count == 1 {
+                        Text("\(viewModel.results.count) Recording")
+                    } else {
+                        Text("\(viewModel.results.count) Recordings")
+                    }
                 }
+                .frame(maxWidth: .infinity)
+                .font(.footnote)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .border(Color(UIColor.systemGray4))
+                .background(Color(UIColor.systemGray6))
                 
                 ZStack {
-                    
-                    
                     List(viewModel.results, id: \.unwrappedId) { result in
                         Button {
                             if viewModel.selectedResult == result {
                                 viewModel.selectedResult = nil
                             } else {
                                 viewModel.selectedResult = result
+                                viewModel.plateFieldSelected = false
                             }
-                            
                         } label: {
                             HStack {
                                 Text("\(String(viewModel.results.firstIndex(where: {$0.id == result.id}) ?? 0)).")
@@ -111,12 +115,75 @@ struct ContentView: View {
                     }
                 }
                 VStack(spacing: -1) {
+                    if nextPlateEntry == true {
+                        Button {
+                            if viewModel.plateFieldSelected == true {
+                                viewModel.plateFieldSelected = false
+                            } else {
+                                viewModel.selectedResult = nil
+                                viewModel.plateFieldSelected = true
+                            }
+                            
+                        } label: {
+                            ZStack {
+                                HStack {
+                                    Text("Next:")
+                                        .padding(.leading)
+                                        .foregroundColor(Color(UIColor.label))
+                                        .font(.title3)
+                                    
+                                    Spacer()
+
+
+                                    if (viewModel.nextRecordingPlate ?? "").occurrencesIn(viewModel.plateList) > 1 {
+                                        Image(systemName: "square.on.square")
+                                            .foregroundColor(.yellow)
+                                            .padding(.trailing)
+                                            
+                                    }
+
+                                }
+                                Text(viewModel.nextRecordingPlate ?? "-       -")
+                                    .frame(width: 160, height: 30)
+                                    .padding(6)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
+                                    )
+                                    .background(Color(UIColor.systemBackground))
+                                    .cornerRadius(8)
+                                    .foregroundColor(Color(UIColor.label))
+                                    .font(.title3)
+
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .border(Color(UIColor.systemGray4))
+                            .background(viewModel.plateFieldSelected ? Color.accentColor.opacity(0.2) : Color(UIColor.systemGray6))
+
+
+                        }
+                            
+                    }
+                    
                     HStack(spacing: -1) {
                         Button {
                             if viewModel.selectedResult != nil {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 1)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("1")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("1")
@@ -133,6 +200,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 2)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("2")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("2")
@@ -149,6 +227,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 3)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("3")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("3")
@@ -168,6 +257,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 4)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("4")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("4")
@@ -184,6 +284,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 5)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("5")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("5")
@@ -200,6 +311,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 6)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("6")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("6")
@@ -219,6 +341,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 7)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("7")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("7")
@@ -235,6 +368,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 8)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("8")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("8")
@@ -251,6 +395,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 9)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("9")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("9")
@@ -284,6 +439,17 @@ struct ContentView: View {
                                 coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 0)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate.count < 6 {
+                                    plate.append("0")
+                                }
+                                viewModel.nextRecordingPlate = plate
+                                viewModel.plateList = coreDM.getAllPlates()
+                                viewModel.plateList.append(plate)
                             }
                         } label: {
                             Text("0")
@@ -300,6 +466,23 @@ struct ContentView: View {
                                 coreDM.removePlateDigit(result: viewModel.selectedResult!)
                                 viewModel.results = coreDM.getAllResults()
                                 viewModel.plateList = coreDM.getAllPlates()
+                                if viewModel.nextRecordingPlate != nil {
+                                    viewModel.plateList.append(viewModel.nextRecordingPlate!)
+                                }
+                            } else if viewModel.plateFieldSelected == true {
+                                var plate = viewModel.nextRecordingPlate ?? ""
+                                if plate != "" {
+                                    plate.removeLast()
+                                }
+                                if plate == "" {
+                                    viewModel.nextRecordingPlate = nil
+                                    viewModel.plateList = coreDM.getAllPlates()
+                                } else {
+                                    viewModel.nextRecordingPlate = plate
+                                    viewModel.plateList = coreDM.getAllPlates()
+                                    viewModel.plateList.append(plate)
+                                }
+                                
                             }
                         } label: {
                             Image(systemName: "delete.left")
@@ -313,30 +496,33 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("JMP Enduro Timer")
+            .navigationTitle("MyRaceTimer")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.presentingResetSheet = true
+                        viewModel.presentingSettingsSheet = true
                     } label: {
-                        Text("Reset")
+                        Text("Settings")
                     }
-                    .disabled(viewModel.results.isEmpty)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         if viewModel.plateList.count < viewModel.results.count && viewModel.plateList.hasDuplicates() {
                             viewModel.presentingDuplicateAndMissingPlateWarning = true
+                            viewModel.exportWarning = .both
                         } else if viewModel.plateList.hasDuplicates() {
                             viewModel.presentingDuplicatePlateWarning = true
+                            viewModel.exportWarning = .duplicatePlates
                         } else if viewModel.plateList.count < viewModel.results.count {
                             viewModel.presentingMissingPlateWarning = true
+                            viewModel.exportWarning = .missingPlates
                         } else {
                             viewModel.presentingExportSheet = true
+                            viewModel.exportWarning = .none
                         }
                     } label: {
-                        Text("Finish")
+                        Text("Export")
                             .fontWeight(.bold)
                     }
                     .disabled(viewModel.results.isEmpty)
@@ -380,15 +566,16 @@ struct ContentView: View {
                 Text("Would you like to continue?")
             })
             .sheet(isPresented: $viewModel.presentingExportSheet) {
-                ExportRecordingsSheet()
+                ExportRecordingsSheet(warnings: viewModel.exportWarning)
             }
-            .sheet(isPresented: $viewModel.presentingResetSheet) {
-                ResetSheet(resetAction: {
+            .sheet(isPresented: $viewModel.presentingSettingsSheet) {
+                SettingsSheet(resetAction: {
                     coreDM.deleteAll()
                     viewModel.results = coreDM.getAllResults()
                     viewModel.plateList = coreDM.getAllPlates()
                     viewModel.selectedResult = nil
-                })
+                }, nextPlate: $viewModel.nextRecordingPlate,
+                              plateList: $viewModel.plateList)
             }
             .ignoresSafeArea(.keyboard)
         }
@@ -409,13 +596,28 @@ extension ContentView {
         @Published var presentingDuplicatePlateWarning: Bool = false
         @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
 
-        @Published var presentingResetSheet: Bool = false
+        @Published var presentingSettingsSheet: Bool = false
         @Published var presentingExportSheet: Bool = false
         
+        @Published var nextRecordingPlate: String?
+        @Published var plateFieldSelected: Bool = false
+        
+        @Published var timeSinceLastRecording: Int = 0
+        
+        @Published var exportWarning: exportWarnings = .none
+        
+        var timer = Timer()
         
         init() {
             self.results = coreDM.getAllResults()
             self.plateList = coreDM.getAllPlates()
+        }
+        
+        func startTimer() {
+            self.timeSinceLastRecording = 0 
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                
+            }
         }
     }
 }

@@ -12,15 +12,18 @@ enum recordingsType {
     case finish
 }
 
-enum stage {
-    case Cinderella
-    case Chaparral
-    case CastlePark
+enum exportWarnings {
+    case none
+    case duplicatePlates
+    case missingPlates
+    case both
 }
 
 struct ExportRecordingsSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel = ViewModel()
+    
+    var warnings: exportWarnings
     
     let coreDM: DataController = DataController()
     
@@ -28,22 +31,33 @@ struct ExportRecordingsSheet: View {
         NavigationView {
             VStack {
                 Form {
-                    if coreDM.getAllResults().count == 1 {
-                        Text("Exporting \(coreDM.getAllResults().count) Recording.")
-                    } else {
-                        Text("Exporting \(coreDM.getAllResults().count) Recordings.")
+                    
+                    Section {
+                        VStack(alignment: .leading, spacing: 10) {
+                            if coreDM.getAllResults().count == 1 {
+                                Text("Exporting \(coreDM.getAllResults().count) Recording.")
+                            } else {
+                                Text("Exporting \(coreDM.getAllResults().count) Recordings.")
+                            }
+                            if warnings == .both {
+                                Label("Duplicate Plate Numbers", systemImage: "exclamationmark.circle")
+                                    .foregroundColor(Color.yellow)
+                                Label("Missing Plate Numbers", systemImage: "exclamationmark.circle")
+                                    .foregroundColor(Color.yellow)
+                            } else if warnings == .duplicatePlates {
+                                Label("Duplicate Plate Numbers", systemImage: "exclamationmark.circle")
+                                    .foregroundColor(Color.yellow)
+                            } else if warnings == .missingPlates {
+                                Label("Missing Plate Numbers", systemImage: "exclamationmark.circle")
+                                    .foregroundColor(Color.yellow)
+                            }
+                        }
+                    }
+                    Section(header: Text("Race")) {
+                        TextField("Stage Name", text: $viewModel.raceName)
                     }
                     Section(header: Text("Stage")) {
-                        Picker("Stage", selection: $viewModel.stage) {
-                            Text("Cinderella")
-                                .tag(stage.Cinderella)
-                            Text("Chaparral")
-                                .tag(stage.Chaparral)
-                            Text("Castle Park")
-                                .tag(stage.CastlePark)
-                        }
-                        .pickerStyle(.inline)
-                        .labelsHidden()
+                        TextField("Stage Name", text: $viewModel.stageName)
                     }
                     Section(header: Text("Timing Position")) {
                         Picker("Timing Position", selection: $viewModel.recordingsType) {
@@ -54,6 +68,18 @@ struct ExportRecordingsSheet: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     }
+                    Section {
+                        Button {
+                            
+                        } label: {
+                            Label("Send Results to Other Device", systemImage: "square.and.arrow.up")
+                        }
+                        Button {
+                            
+                        } label: {
+                            Label("Save Results on Device", systemImage: "arrow.down.to.line")
+                        }
+                    }
                 }
             }
             .navigationBarTitle(Text("Export Recordings"), displayMode: .inline)
@@ -61,14 +87,14 @@ struct ExportRecordingsSheet: View {
                 ActivityViewController(itemsToShare: [file])
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.createCsv(results: coreDM.getAllResults())
-                    } label: {
-                        Text("Export")
-                            .fontWeight(.bold)
-                    }
-                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        viewModel.createCsv(results: coreDM.getAllResults())
+//                    } label: {
+//                        Text("Export")
+//                            .fontWeight(.bold)
+//                    }
+//                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
@@ -82,8 +108,10 @@ struct ExportRecordingsSheet: View {
 extension ExportRecordingsSheet {
     @MainActor class ViewModel: ObservableObject {
         @Published var recordingsType: recordingsType = .start
-        @Published var stage: stage = .Cinderella
         @Published var sheetFile: URL? = nil
+        
+        @Published var raceName: String = ""
+        @Published var stageName: String = ""
         
         
         init() {
@@ -96,23 +124,23 @@ extension ExportRecordingsSheet {
         }
         
         func createCsv(results: [Result]) {
-            var stageName: String = ""
+            var raceName: String = raceName.replacingOccurrences(of: " ", with: "_")
+            var stageName: String = stageName.replacingOccurrences(of: " ", with: "_")
             var timingPosition: String = ""
+            
+            if raceName == "" {
+                raceName = "Untitled_Race"
+            }
+            
+            if stageName == "" {
+                stageName = "Untitled_Stage"
+            }
             
             switch recordingsType {
             case .start:
                 timingPosition = "Start"
             case .finish:
                 timingPosition = "Finish"
-            }
-            
-            switch stage {
-            case .Cinderella:
-                stageName = "Cinderella"
-            case .Chaparral:
-                stageName = "Chaparral"
-            case .CastlePark:
-                stageName = "Castle_Park"
             }
             
             let dateFormatter = DateFormatter()
@@ -122,7 +150,7 @@ extension ExportRecordingsSheet {
             
             let currentTimeString = dateFormatter.string(from: currentTime)
             
-            let fileName = "\(stageName)_\(timingPosition)_\(currentTimeString)"
+            let fileName = "\(raceName)-\(stageName)-\(timingPosition)-\(currentTimeString)"
             
             var csvString: String = ""
             
@@ -151,9 +179,4 @@ extension ExportRecordingsSheet {
     }
 }
 
-struct ExportRecordingsSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ExportRecordingsSheet()
-    }
-}
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1707250A289C531700F39B89 /* ResetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* ResetSheet.swift */; };
+		1707250A289C531700F39B89 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* SettingsSheet.swift */; };
 		17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* Race_TimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		17072509289C531700F39B89 /* ResetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSheet.swift; sourceTree = "<group>"; };
+		17072509289C531700F39B89 /* SettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheet.swift; sourceTree = "<group>"; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +35,7 @@
 		17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = "<group>"; };
 		17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		17ED1F06294D57E20094D692 /* Race-Timer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Race-Timer-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +68,10 @@
 		17662D30288DC5E80022124F /* Race Timer */ = {
 			isa = PBXGroup;
 			children = (
+				17ED1F06294D57E20094D692 /* Race-Timer-Info.plist */,
 				17662D31288DC5E80022124F /* Race_TimerApp.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
-				17072509289C531700F39B89 /* ResetSheet.swift */,
+				17072509289C531700F39B89 /* SettingsSheet.swift */,
 				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
 				17662D41288DC62E0022124F /* ActivityViewController.swift */,
@@ -162,7 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */,
-				1707250A289C531700F39B89 /* ResetSheet.swift in Sources */,
+				1707250A289C531700F39B89 /* SettingsSheet.swift in Sources */,
 				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
 				17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */,
 				17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */,
@@ -302,12 +304,11 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Race-Timer-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,6 +316,9 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.JMPEnduroRaceTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -332,12 +336,11 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Race-Timer-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -345,6 +348,9 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.JMPEnduroRaceTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

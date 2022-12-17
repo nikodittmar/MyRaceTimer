@@ -1,5 +1,5 @@
 //
-//  ResetSheet.swift
+//  SettingsSheet.swift
 //  Race Timer
 //
 //  Created by niko dittmar on 8/4/22.
@@ -7,30 +7,51 @@
 
 import SwiftUI
 
-struct ResetSheet: View {
+struct SettingsSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel = ViewModel()
+    
+    @AppStorage("showNextPlateEntry") var nextPlateEntry: Bool = DefaultSettings.nextPlateEntryScreen
     
     let coreDM: DataController = DataController()
     
     var resetAction: () -> ()
     
+    @Binding var nextPlate: String?
+    @Binding var plateList: [String]
+    
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Password"), footer: Text("Ask the race host for the password.")) {
-                        SecureField("Password", text: $viewModel.password)
+                    Section {
+                        Toggle("Next Plate Entry", isOn: $nextPlateEntry)
+                            .onChange(of: nextPlateEntry) { plateOn in
+                                nextPlate = nil
+                                plateList = coreDM.getAllPlates()
+                            }
                     }
-                    Button("RESET RECORDINGS", role: .destructive) {
-                        viewModel.verifyPassword()
+                    Section {
+                        Button("CLEAR RECORDINGS", role: .destructive) {
+                            viewModel.presentingResetWarning = true
+                        }
+                    }
+                    Section {
+                        Button("Calculate Results") {
+                            
+                        }
+                    }
+                    Section {
+                        Button("Load Results") {
+                            
+                        }
                     }
                 }
             }
-            .navigationBarTitle(Text("Reset Recordings"), displayMode: .inline)
+            .navigationBarTitle(Text("Settings"), displayMode: .inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done", role:.cancel) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
@@ -44,34 +65,16 @@ struct ResetSheet: View {
             }, message: {
                 Text("This cannot be undone.")
             })
-            .alert("Incorrect Password", isPresented: $viewModel.incorrectPasswordWarning, actions: {
-                Button("Ok", role: .cancel, action: {})
-            })
         }
     }
 }
 
-extension ResetSheet {
+extension SettingsSheet {
     @MainActor class ViewModel: ObservableObject {
         @Published var password: String = ""
         @Published var presentingResetWarning: Bool = false
         @Published var incorrectPasswordWarning: Bool = false
         
-        func verifyPassword() {
-            if password == "2022Enduro" {
-                presentingResetWarning = true
-            } else {
-                incorrectPasswordWarning = true
-            }
-        }
-        
     }
 }
 
-struct ResetSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ResetSheet(resetAction: {
-            
-        })
-    }
-}
