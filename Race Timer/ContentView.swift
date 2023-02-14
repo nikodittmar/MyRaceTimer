@@ -120,6 +120,7 @@ struct ContentView: View {
         }
     }
 }
+// ts
 
 class ContentViewViewModel: ObservableObject {
     let coreDM: DataController = DataController()
