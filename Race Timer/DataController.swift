@@ -36,12 +36,6 @@ class DataController: ObservableObject {
         
         objectToEdit.setValue(plate, forKey: "plate")
         
-        
-//        var plate = result.unwrappedPlate
-//        if plate != "" {
-//            plate.removeLast()
-//        }
-//        result.plate = plate
         do {
             try container.viewContext.save()
         } catch {
@@ -68,15 +62,6 @@ class DataController: ObservableObject {
         
         objectToEdit.setValue(plate, forKey: "plate")
             
-
-//        var plate = result.unwrappedPlate
-//        if plate.count < 3 {
-//            plate.append(String(digit))
-//        }
-//
-//
-//
-//        result.plate = plate
         do {
             try container.viewContext.save()
         } catch {

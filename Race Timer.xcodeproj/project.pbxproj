@@ -19,6 +19,8 @@
 		17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */; };
 		17A78A96289B0875000AA754 /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */; };
 		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
+		17FC6645299AB7F000990518 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6644299AB7F000990518 /* NumberPad.swift */; };
+		17FC6647299B11CE00990518 /* ResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6646299B11CE00990518 /* ResultsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = "<group>"; };
 		17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		17FC6644299AB7F000990518 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		17FC6646299B11CE00990518 /* ResultsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 			children = (
 				17662D31288DC5E80022124F /* Race_TimerApp.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
+				17FC6644299AB7F000990518 /* NumberPad.swift */,
+				17FC6646299B11CE00990518 /* ResultsList.swift */,
 				17072509289C531700F39B89 /* ResetSheet.swift */,
 				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
@@ -163,11 +169,13 @@
 			files = (
 				17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */,
 				1707250A289C531700F39B89 /* ResetSheet.swift in Sources */,
+				17FC6647299B11CE00990518 /* ResultsList.swift in Sources */,
 				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
 				17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */,
 				17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */,
 				17A78A96289B0875000AA754 /* Result+CoreDataProperties.swift in Sources */,
 				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
+				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */,
 				17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
@@ -313,7 +321,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.JMPEnduroRaceTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.JMPEnduroTiming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -343,7 +351,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.JMPEnduroRaceTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.JMPEnduroTiming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

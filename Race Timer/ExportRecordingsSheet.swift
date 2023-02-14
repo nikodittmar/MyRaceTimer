@@ -35,11 +35,11 @@ struct ExportRecordingsSheet: View {
                     }
                     Section(header: Text("Stage")) {
                         Picker("Stage", selection: $viewModel.stage) {
-                            Text("Cinderella")
+                            Text("STAGE 1")
                                 .tag(stage.Cinderella)
-                            Text("Chaparral")
+                            Text("STAGE 2")
                                 .tag(stage.Chaparral)
-                            Text("Castle Park")
+                            Text("STAGE 3")
                                 .tag(stage.CastlePark)
                         }
                         .pickerStyle(.inline)

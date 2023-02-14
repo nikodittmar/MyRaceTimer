@@ -11,16 +11,13 @@ struct ContentView: View {
     
     let coreDM: DataController
     
-    @ObservedObject var viewModel: ViewModel = ViewModel()
+    @StateObject var viewModel: ContentViewViewModel = ContentViewViewModel()
     
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 Button {
-                    coreDM.saveResult()
-                    viewModel.results = coreDM.getAllResults()
-                    viewModel.plateList = coreDM.getAllPlates()
-                    viewModel.selectedResult = viewModel.results[0]
+                    viewModel.recordTime()
                 } label: {
                     Text("Record Time")
                         .fontWeight(.bold)
@@ -51,269 +48,11 @@ struct ContentView: View {
                         .padding(.vertical, 8)
                         .border(Color(UIColor.systemGray4))
                         .background(Color(UIColor.systemGray6))
-                        
                 }
-                
-                ZStack {
-                    
-                    
-                    List(viewModel.results, id: \.unwrappedId) { result in
-                        Button {
-                            if viewModel.selectedResult == result {
-                                viewModel.selectedResult = nil
-                            } else {
-                                viewModel.selectedResult = result
-                            }
-                            
-                        } label: {
-                            HStack {
-                                Text("\(String(viewModel.results.firstIndex(where: {$0.id == result.id}) ?? 0)).")
-                                    .frame(width: 40, height: 20, alignment: .leading)
-                                    .padding(6)
-                                    
-                                if result.unwrappedPlate == "" {
-                                    Text("-       -")
-                                        .frame(width: 80, height: 20)
-                                        .padding(6)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
-                                        )
-                                        .background(Color(UIColor.systemGray6))
-                                        .cornerRadius(8)
-                                } else {
-                                    Text("\(result.unwrappedPlate)")
-                                        .frame(width: 80, height: 20)
-                                        .padding(6)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .stroke(Color(UIColor.systemGray2), lineWidth: 0.5)
-                                        )
-                                        .background(Color(UIColor.systemGray6))
-                                        .cornerRadius(8)
-                                }
-                                if result.unwrappedPlate.occurrencesIn(viewModel.plateList) > 1 {
-                                    Image(systemName: "square.on.square")
-                                        .foregroundColor(.yellow)
-                                }
-                                Spacer()
-                                Text("\(result.timeString)")
-                            }
-                        }
-                        .listRowBackground(viewModel.selectedResult?.id == result.unwrappedId ? Color.accentColor.opacity(0.2) : .clear)
-                    }
-                    .listStyle(.inset)
-                    
-                    if viewModel.results.isEmpty {
-                        Text("No recordings to display\nTap \"Record Time\" to create a recording")
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(UIColor.systemGray2))
-                    }
-                }
-                VStack(spacing: -1) {
-                    HStack(spacing: -1) {
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 1)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("1")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 2)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("2")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 3)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("3")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                    }
-
-                    HStack(spacing: -1) {
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 4)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("4")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 5)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("5")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 6)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("6")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                    }
-
-                    HStack(spacing: -1) {
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 7)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("7")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 8)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("8")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 9)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("9")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                    }
-
-                    HStack(spacing: -1) {
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                viewModel.presentingDeleteWarning = true
-                            }
-                        } label: {
-                            Image(systemName: "trash")
-                                .font(.title)
-                                .foregroundColor(.red)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.appendPlateDigit(result: viewModel.selectedResult!, digit: 0)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Text("0")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-                        
-                        Button {
-                            if viewModel.selectedResult != nil {
-                                coreDM.removePlateDigit(result: viewModel.selectedResult!)
-                                viewModel.results = coreDM.getAllResults()
-                                viewModel.plateList = coreDM.getAllPlates()
-                            }
-                        } label: {
-                            Image(systemName: "delete.left")
-                                .font(.title)
-                                .foregroundColor(Color(UIColor.label))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .border(Color(UIColor.systemGray4))
-                                .background(Color(UIColor.systemGray6))
-                        }
-                    }
-                }
+                ResultsList(viewModel: viewModel)
+                NumberPad(viewModel: viewModel)
             }
-            .navigationTitle("JMP Enduro Timer")
+            .navigationTitle("MyRaceTimer")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -342,19 +81,6 @@ struct ContentView: View {
                     .disabled(viewModel.results.isEmpty)
                 }
             }
-            .alert("Are you sure you want to delete the selected recording?", isPresented: $viewModel.presentingDeleteWarning, actions: {
-                Button("No", role: .cancel, action: {})
-                Button("Yes", role: .destructive, action: {
-                    if viewModel.selectedResult != nil {
-                        coreDM.delete(viewModel.selectedResult!)
-                        viewModel.results = coreDM.getAllResults()
-                        viewModel.plateList = coreDM.getAllPlates()
-                        viewModel.selectedResult = nil
-                    }
-                })
-            }, message: {
-                Text("This cannot be undone.")
-            })
             .alert("Some recordings are missing plate numbers.", isPresented: $viewModel.presentingMissingPlateWarning, actions: {
                 Button("Cancel", action: {})
                 Button("Continue", action: {
@@ -395,28 +121,94 @@ struct ContentView: View {
     }
 }
 
-extension ContentView {
-    @MainActor class ViewModel: ObservableObject {
-        let coreDM: DataController = DataController()
-        
-        @Published var results: [Result]
-        @Published var plateList: [String]
-        
-        @Published var selectedResult: Result?
-        
-        @Published var presentingDeleteWarning: Bool = false
-        @Published var presentingMissingPlateWarning: Bool = false
-        @Published var presentingDuplicatePlateWarning: Bool = false
-        @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
+class ContentViewViewModel: ObservableObject {
+    let coreDM: DataController = DataController()
+    
+    @Published var results: [Result]
+    @Published var plateList: [String]
+    
+    @Published var selectedResult: Result?
+    
+    @Published var presentingDeleteWarning: Bool = false
+    @Published var presentingMissingPlateWarning: Bool = false
+    @Published var presentingDuplicatePlateWarning: Bool = false
+    @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
 
-        @Published var presentingResetSheet: Bool = false
-        @Published var presentingExportSheet: Bool = false
-        
-        
-        init() {
-            self.results = coreDM.getAllResults()
-            self.plateList = coreDM.getAllPlates()
+    @Published var presentingResetSheet: Bool = false
+    @Published var presentingExportSheet: Bool = false
+    
+    
+    init() {
+        self.results = coreDM.getAllResults()
+        self.plateList = coreDM.getAllPlates()
+    }
+    
+    func syncResults() {
+        results = coreDM.getAllResults()
+        plateList = coreDM.getAllPlates()
+    }
+    
+    func recordTime() {
+        coreDM.saveResult()
+        syncResults()
+        selectedResult = results[0]
+    }
+    
+    //Functions for Number Pad
+    
+    func appendDigit(_ digit: Int) {
+        if selectedResult != nil {
+            coreDM.appendPlateDigit(result: selectedResult!, digit: digit)
+            syncResults()
         }
+    }
+    func backspace() {
+        if selectedResult != nil {
+            coreDM.removePlateDigit(result: selectedResult!)
+            syncResults()
+        }
+    }
+    func presentDeleteWarning() {
+        if selectedResult != nil {
+            presentingDeleteWarning = true
+        }
+    }
+    func deleteResult() {
+        if selectedResult != nil {
+            coreDM.delete(selectedResult!)
+            selectedResult = nil
+            syncResults()
+        }
+    }
+    
+    //Functions for Results List
+    
+    func resultListItemNumber(_ result: Result) -> String {
+        return String(results.firstIndex(where: {$0.id == result.id}) ?? 0)
+    }
+    
+    func resultsListItemLabel(_ result: Result) -> String {
+        var label = result.unwrappedPlate
+        if label == "" {
+            label = "-       -"
+        }
+        return label
+    }
+    
+    func hasDuplicatePlate(_ result: Result) -> Bool {
+        return result.unwrappedPlate.occurrencesIn(plateList) > 1
+    }
+    
+    func toggleSelectedResult(_ result: Result) {
+        if selectedResult == result {
+            selectedResult = nil
+        } else {
+            selectedResult = result
+        }
+    }
+    
+    func resultIsSelected(_ result: Result) -> Bool {
+        return selectedResult?.id == result.unwrappedId
     }
 }
 
