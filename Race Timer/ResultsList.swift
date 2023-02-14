@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct ResultsList: View {
+    @ObservedObject var viewModel: ContentViewViewModel
+    
+    var body: some View {
+        ZStack {
+            List(viewModel.results, id: \.unwrappedId) { result in
+                ResultsListItem(action: {
+                    viewModel.toggleSelectedResult(result)
+                }, number: viewModel.resultListItemNumber(result), plate: viewModel.resultsListItemLabel(result), isDuplicate: viewModel.hasDuplicatePlate(result), timestamp: result.timeString)
+                .listRowBackground(viewModel.resultIsSelected(result) ? Color.accentColor.opacity(0.2) : .clear)
+            }
+            .listStyle(.inset)
+            
+            if viewModel.results.isEmpty {
+                Text("No recordings to display\nTap \"Record Time\" to create a recording")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(UIColor.systemGray2))
+            }
+        }
+    }
+}
+
 struct ResultsListItem: View {
     var action: () -> Void
     var number: String
@@ -38,27 +60,3 @@ struct ResultsListItem: View {
         }
     }
 }
-
-
-struct ResultsList: View {
-    @ObservedObject var viewModel: ContentViewViewModel
-    
-    var body: some View {
-        ZStack {
-            List(viewModel.results, id: \.unwrappedId) { result in
-                ResultsListItem(action: {
-                    viewModel.toggleSelectedResult(result)
-                }, number: viewModel.resultListItemNumber(result), plate: viewModel.resultsListItemLabel(result), isDuplicate: viewModel.hasDuplicatePlate(result), timestamp: result.timeString)
-                .listRowBackground(viewModel.resultIsSelected(result) ? Color.accentColor.opacity(0.2) : .clear)
-            }
-            .listStyle(.inset)
-            
-            if viewModel.results.isEmpty {
-                Text("No recordings to display\nTap \"Record Time\" to create a recording")
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color(UIColor.systemGray2))
-            }
-        }
-    }
-}
-

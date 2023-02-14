@@ -31,25 +31,20 @@ struct ContentView: View {
                 .padding(.top, 8)
                 .padding(.bottom, -1)
                 
-                if viewModel.results.count == 1 {
-                    Text("\(viewModel.results.count) Recording")
-                        .frame(maxWidth: .infinity)
-                        .font(.footnote)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .border(Color(UIColor.systemGray4))
-                        .background(Color(UIColor.systemGray6))
-                        
-                } else {
-                    Text("\(viewModel.results.count) Recordings")
-                        .frame(maxWidth: .infinity)
-                        .font(.footnote)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .border(Color(UIColor.systemGray4))
-                        .background(Color(UIColor.systemGray6))
-                }
+                Text(viewModel.results.count == 1 ? "\(viewModel.results.count) Recording" : "\(viewModel.results.count) Recordings")
+                    .frame(maxWidth: .infinity)
+                    .font(.footnote)
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .border(Color(UIColor.systemGray4))
+                    .background(Color(UIColor.systemGray6))
+                
                 ResultsList(viewModel: viewModel)
+                
+                if viewModel.timingMode == .start {
+                    UpcomingPlateEntry(viewModel: viewModel)
+                }
+                
                 NumberPad(viewModel: viewModel)
             }
             .navigationTitle("MyRaceTimer")
@@ -57,11 +52,10 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.presentingResetSheet = true
+                        viewModel.presentingMenuSheet = true
                     } label: {
-                        Text("Reset")
+                        Text("Menu")
                     }
-                    .disabled(viewModel.results.isEmpty)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -108,19 +102,18 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.presentingExportSheet) {
                 ExportRecordingsSheet()
             }
-            .sheet(isPresented: $viewModel.presentingResetSheet) {
-                MenuSheet(resetAction: {
-                    coreDM.deleteAll()
-                    viewModel.results = coreDM.getAllResults()
-                    viewModel.plateList = coreDM.getAllPlates()
-                    viewModel.selectedResult = nil
-                })
+            .sheet(isPresented: $viewModel.presentingMenuSheet) {
+                MenuSheet(viewModel: viewModel)
             }
             .ignoresSafeArea(.keyboard)
         }
     }
 }
-// ts
+
+enum TimingMode {
+    case start
+    case finish
+}
 
 class ContentViewViewModel: ObservableObject {
     let coreDM: DataController = DataController()
@@ -135,8 +128,14 @@ class ContentViewViewModel: ObservableObject {
     @Published var presentingDuplicatePlateWarning: Bool = false
     @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
 
-    @Published var presentingResetSheet: Bool = false
+    @Published var presentingMenuSheet: Bool = false
     @Published var presentingExportSheet: Bool = false
+    
+    @Published var presentingResetWarning: Bool = false
+    @Published var timingMode: TimingMode = .finish
+    
+    @Published var upcomingPlateEntrySelected: Bool = false
+    @Published var upcomingPlate: String = ""
     
     
     init() {
@@ -150,8 +149,10 @@ class ContentViewViewModel: ObservableObject {
     }
     
     func recordTime() {
-        coreDM.saveResult()
+        coreDM.saveResult(plate: upcomingPlate)
         syncResults()
+        upcomingPlateEntrySelected = false
+        upcomingPlate = ""
         selectedResult = results[0]
     }
     
@@ -161,12 +162,20 @@ class ContentViewViewModel: ObservableObject {
         if selectedResult != nil {
             coreDM.appendPlateDigit(result: selectedResult!, digit: digit)
             syncResults()
+        } else if upcomingPlateEntrySelected == true {
+            if upcomingPlate.count < 3 {
+                upcomingPlate.append(String(digit))
+            }
         }
     }
     func backspace() {
         if selectedResult != nil {
             coreDM.removePlateDigit(result: selectedResult!)
             syncResults()
+        } else if upcomingPlateEntrySelected == true {
+            if upcomingPlate.count > 0 {
+                upcomingPlate.removeLast()
+            }
         }
     }
     func presentDeleteWarning() {
@@ -197,19 +206,57 @@ class ContentViewViewModel: ObservableObject {
     }
     
     func hasDuplicatePlate(_ result: Result) -> Bool {
-        return result.unwrappedPlate.occurrencesIn(plateList) > 1
+        if result.unwrappedPlate.occurrencesIn(plateList) > 1 {
+            return true
+        } else if upcomingPlate != "" && result.unwrappedPlate == upcomingPlate  {
+            return true
+        } else {
+            return false
+        }
     }
     
     func toggleSelectedResult(_ result: Result) {
         if selectedResult == result {
             selectedResult = nil
         } else {
+            upcomingPlateEntrySelected = false
             selectedResult = result
         }
     }
     
     func resultIsSelected(_ result: Result) -> Bool {
         return selectedResult?.id == result.unwrappedId
+    }
+    
+    func deleteAll() {
+        coreDM.deleteAll()
+        syncResults()
+        selectedResult = nil
+    }
+    
+    func selectUpcomingPlateEntry() {
+        if upcomingPlateEntrySelected == true {
+            upcomingPlateEntrySelected = false
+        } else {
+            selectedResult = nil
+            upcomingPlateEntrySelected = true
+        }
+    }
+    
+    func upcomingPlateIsDuplicate() -> Bool {
+        if upcomingPlate.occurrencesIn(plateList) >= 1 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func upcomingPlateLabel() -> String {
+        var label: String = upcomingPlate
+        if label == "" {
+            label = "-               -"
+        }
+        return label
     }
 }
 

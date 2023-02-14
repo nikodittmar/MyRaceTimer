@@ -9,28 +9,30 @@ import SwiftUI
 
 struct MenuSheet: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: ViewModel = ViewModel()
-    
-    let coreDM: DataController = DataController()
-    
-    var resetAction: () -> ()
+    @ObservedObject var viewModel: ContentViewViewModel
     
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Password"), footer: Text("Ask the race host for the password.")) {
-                        SecureField("Password", text: $viewModel.password)
-                    }
-                    Button("RESET RECORDINGS", role: .destructive) {
-                        viewModel.verifyPassword()
+                    Section(header: Text("Settings")) {
+                        Picker("Interface", selection: $viewModel.timingMode) {
+                            Text("Start")
+                                .tag(TimingMode.start)
+                            Text("Finish")
+                                .tag(TimingMode.finish)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        Button("Clear Recordings", role: .destructive) {
+                            viewModel.presentingResetWarning = true
+                        }
                     }
                 }
             }
-            .navigationBarTitle(Text("Reset Recordings"), displayMode: .inline)
+            .navigationBarTitle(Text("Menu"), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button("Close") {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
@@ -38,32 +40,12 @@ struct MenuSheet: View {
             .alert("Are you sure you want to delete all recordings?", isPresented: $viewModel.presentingResetWarning, actions: {
                 Button("No", role: .cancel, action: {})
                 Button("Yes", role: .destructive, action: {
-                    self.resetAction()
+                    viewModel.deleteAll()
                     presentationMode.wrappedValue.dismiss()
                 })
             }, message: {
                 Text("This cannot be undone.")
             })
-            .alert("Incorrect Password", isPresented: $viewModel.incorrectPasswordWarning, actions: {
-                Button("Ok", role: .cancel, action: {})
-            })
         }
-    }
-}
-
-extension MenuSheet {
-    @MainActor class ViewModel: ObservableObject {
-        @Published var password: String = ""
-        @Published var presentingResetWarning: Bool = false
-        @Published var incorrectPasswordWarning: Bool = false
-        
-        func verifyPassword() {
-            if password == "2022Enduro" {
-                presentingResetWarning = true
-            } else {
-                incorrectPasswordWarning = true
-            }
-        }
-        
     }
 }

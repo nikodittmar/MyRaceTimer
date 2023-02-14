@@ -116,10 +116,10 @@ class DataController: ObservableObject {
         return plates
     }
     
-    func saveResult() {
+    func saveResult(plate: String) {
         let result = Result(context: container.viewContext)
         result.id = UUID()
-        result.plate = ""
+        result.plate = plate
         result.timestamp = Double(Date().timeIntervalSince1970)
         
         do {
