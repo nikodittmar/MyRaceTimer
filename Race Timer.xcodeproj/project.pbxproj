@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1707250A289C531700F39B89 /* ResetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* ResetSheet.swift */; };
+		1707250A289C531700F39B89 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* MenuSheet.swift */; };
 		17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* Race_TimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		17072509289C531700F39B89 /* ResetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSheet.swift; sourceTree = "<group>"; };
+		17072509289C531700F39B89 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 				17662D33288DC5E80022124F /* ContentView.swift */,
 				17FC6644299AB7F000990518 /* NumberPad.swift */,
 				17FC6646299B11CE00990518 /* ResultsList.swift */,
-				17072509289C531700F39B89 /* ResetSheet.swift */,
+				17072509289C531700F39B89 /* MenuSheet.swift */,
 				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
 				17662D41288DC62E0022124F /* ActivityViewController.swift */,
@@ -168,7 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */,
-				1707250A289C531700F39B89 /* ResetSheet.swift in Sources */,
+				1707250A289C531700F39B89 /* MenuSheet.swift in Sources */,
 				17FC6647299B11CE00990518 /* ResultsList.swift in Sources */,
 				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
 				17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */,

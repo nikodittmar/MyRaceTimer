@@ -1,5 +1,5 @@
 //
-//  ResetSheet.swift
+//  MenuSheet.swift
 //  Race Timer
 //
 //  Created by niko dittmar on 8/4/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResetSheet: View {
+struct MenuSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ViewModel = ViewModel()
     
@@ -51,7 +51,7 @@ struct ResetSheet: View {
     }
 }
 
-extension ResetSheet {
+extension MenuSheet {
     @MainActor class ViewModel: ObservableObject {
         @Published var password: String = ""
         @Published var presentingResetWarning: Bool = false
@@ -65,13 +65,5 @@ extension ResetSheet {
             }
         }
         
-    }
-}
-
-struct ResetSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ResetSheet(resetAction: {
-            
-        })
     }
 }

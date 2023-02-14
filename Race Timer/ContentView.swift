@@ -109,7 +109,7 @@ struct ContentView: View {
                 ExportRecordingsSheet()
             }
             .sheet(isPresented: $viewModel.presentingResetSheet) {
-                ResetSheet(resetAction: {
+                MenuSheet(resetAction: {
                     coreDM.deleteAll()
                     viewModel.results = coreDM.getAllResults()
                     viewModel.plateList = coreDM.getAllPlates()
