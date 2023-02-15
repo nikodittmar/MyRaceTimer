@@ -7,43 +7,6 @@
 
 import SwiftUI
 
-struct NumberPadButton: ViewModifier {
-    
-    var destructive: Bool = false
-    
-    func body(content: Content) -> some View {
-        if destructive {
-            content
-                .font(.title)
-                .foregroundColor(.red)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .border(Color(UIColor.systemGray4))
-                .background(Color(UIColor.systemGray6))
-        } else {
-            content
-                .font(.title)
-                .foregroundColor(Color(UIColor.label))
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .border(Color(UIColor.systemGray4))
-                .background(Color(UIColor.systemGray6))
-        }
-    }
-}
-
-extension Text {
-    func NumPadButtonStyle() -> some View {
-        modifier(NumberPadButton(destructive: false))
-    }
-}
-
-extension Image {
-    func NumPadButtonStyle(destructive: Bool) -> some View {
-        modifier(NumberPadButton(destructive: destructive))
-    }
-}
-
 struct NumberPad: View {
     @ObservedObject var viewModel: ContentViewViewModel
     
@@ -79,5 +42,42 @@ struct NumberPad: View {
                 },
                 message: { Text("This cannot be undone.") })
         }
+    }
+}
+
+struct NumberPadButton: ViewModifier {
+    
+    var destructive: Bool = false
+    
+    func body(content: Content) -> some View {
+        if destructive {
+            content
+                .font(.title)
+                .foregroundColor(.red)
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .border(Color(UIColor.systemGray4))
+                .background(Color(UIColor.systemGray6))
+        } else {
+            content
+                .font(.title)
+                .foregroundColor(Color(UIColor.label))
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .border(Color(UIColor.systemGray4))
+                .background(Color(UIColor.systemGray6))
+        }
+    }
+}
+
+extension Text {
+    func NumPadButtonStyle() -> some View {
+        modifier(NumberPadButton(destructive: false))
+    }
+}
+
+extension Image {
+    func NumPadButtonStyle(destructive: Bool) -> some View {
+        modifier(NumberPadButton(destructive: destructive))
     }
 }

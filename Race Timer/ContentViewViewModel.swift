@@ -8,6 +8,11 @@
 import SwiftUI
 import Foundation
 
+enum TimingMode {
+    case start
+    case finish
+}
+
 @MainActor class ContentViewViewModel: ObservableObject {
     let coreDM: DataController = DataController()
     
@@ -66,108 +71,11 @@ import Foundation
         upcomingPlate = ""
         selectedResult = results[0]
     }
-    
-    //Functions for Number Pad
-    
-    func appendDigit(_ digit: Int) {
-        if selectedResult != nil {
-            coreDM.appendPlateDigit(result: selectedResult!, digit: digit)
-            syncResults()
-        } else if upcomingPlateEntrySelected == true {
-            if upcomingPlate.count < 5 {
-                upcomingPlate.append(String(digit))
-            }
-        }
-    }
-    func backspace() {
-        if selectedResult != nil {
-            coreDM.removePlateDigit(result: selectedResult!)
-            syncResults()
-        } else if upcomingPlateEntrySelected == true {
-            if upcomingPlate.count > 0 {
-                upcomingPlate.removeLast()
-            }
-        }
-    }
-    func presentDeleteWarning() {
-        if selectedResult != nil {
-            presentingDeleteWarning = true
-        }
-    }
-    func deleteResult() {
-        if selectedResult != nil {
-            coreDM.delete(selectedResult!)
-            selectedResult = nil
-            syncResults()
-        }
-    }
-    
-    //Functions for Results List
-    
-    func resultListItemNumber(_ result: Result) -> String {
-        return String(results.firstIndex(where: {$0.id == result.id}) ?? 0)
-    }
-    
-    func resultsListItemLabel(_ result: Result) -> String {
-        var label = result.unwrappedPlate
-        if label == "" {
-            label = "-       -"
-        }
-        return label
-    }
-    
-    func hasDuplicatePlate(_ result: Result) -> Bool {
-        if result.unwrappedPlate.occurrencesIn(plateList) > 1 {
-            return true
-        } else if upcomingPlate != "" && result.unwrappedPlate == upcomingPlate  {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func toggleSelectedResult(_ result: Result) {
-        if selectedResult == result {
-            selectedResult = nil
-        } else {
-            upcomingPlateEntrySelected = false
-            selectedResult = result
-        }
-    }
-    
-    func resultIsSelected(_ result: Result) -> Bool {
-        return selectedResult?.id == result.unwrappedId
-    }
-    
+
     func deleteAll() {
         coreDM.deleteAll()
         syncResults()
         selectedResult = nil
-    }
-    
-    func selectUpcomingPlateEntry() {
-        if upcomingPlateEntrySelected == true {
-            upcomingPlateEntrySelected = false
-        } else {
-            selectedResult = nil
-            upcomingPlateEntrySelected = true
-        }
-    }
-    
-    func upcomingPlateIsDuplicate() -> Bool {
-        if upcomingPlate.occurrencesIn(plateList) >= 1 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func upcomingPlateLabel() -> String {
-        var label: String = upcomingPlate
-        if label == "" {
-            label = "-               -"
-        }
-        return label
     }
     
     func resetNextPlateEntryField() {

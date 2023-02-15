@@ -13,6 +13,9 @@
 		172F1445299D46E700A4513C /* TimingResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */; };
 		172F1446299D46E700A4513C /* TimingResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */; };
 		172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1447299D660100A4513C /* ContentViewViewModel.swift */; };
+		172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F144C299D66EB00A4513C /* NumberPadViewModel.swift */; };
+		172F1451299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1450299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift */; };
+		172F1454299D68A400A4513C /* ResultsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1453299D68A400A4513C /* ResultsListViewModel.swift */; };
 		17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* Race_TimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -34,6 +37,9 @@
 		172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimingResult+CoreDataClass.swift"; path = "Race Timer/CoreData/TimingResult+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimingResult+CoreDataProperties.swift"; path = "Race Timer/CoreData/TimingResult+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		172F1447299D660100A4513C /* ContentViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewViewModel.swift; sourceTree = "<group>"; };
+		172F144C299D66EB00A4513C /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
+		172F1450299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPlateEntryViewModel.swift; sourceTree = "<group>"; };
+		172F1453299D68A400A4513C /* ResultsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsListViewModel.swift; sourceTree = "<group>"; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,9 +69,9 @@
 		172F1449299D663600A4513C /* ContentViewComponents */ = {
 			isa = PBXGroup;
 			children = (
-				17FC6644299AB7F000990518 /* NumberPad.swift */,
-				17F1C070299BF58B00B6406A /* UpcomingPlateEntry.swift */,
-				17FC6646299B11CE00990518 /* ResultsList.swift */,
+				172F1452299D688500A4513C /* ResultsList */,
+				172F144E299D67B300A4513C /* NumberPad */,
+				172F144F299D67E200A4513C /* UpcomingPlateEntry */,
 			);
 			path = ContentViewComponents;
 			sourceTree = "<group>";
@@ -91,6 +97,33 @@
 				17A78A91289AF735000AA754 /* DataController.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		172F144E299D67B300A4513C /* NumberPad */ = {
+			isa = PBXGroup;
+			children = (
+				17FC6644299AB7F000990518 /* NumberPad.swift */,
+				172F144C299D66EB00A4513C /* NumberPadViewModel.swift */,
+			);
+			path = NumberPad;
+			sourceTree = "<group>";
+		};
+		172F144F299D67E200A4513C /* UpcomingPlateEntry */ = {
+			isa = PBXGroup;
+			children = (
+				17F1C070299BF58B00B6406A /* UpcomingPlateEntry.swift */,
+				172F1450299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift */,
+			);
+			path = UpcomingPlateEntry;
+			sourceTree = "<group>";
+		};
+		172F1452299D688500A4513C /* ResultsList */ = {
+			isa = PBXGroup;
+			children = (
+				17FC6646299B11CE00990518 /* ResultsList.swift */,
+				172F1453299D68A400A4513C /* ResultsListViewModel.swift */,
+			);
+			path = ResultsList;
 			sourceTree = "<group>";
 		};
 		17662D25288DC5E80022124F = {
@@ -204,9 +237,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */,
+				172F1454299D68A400A4513C /* ResultsListViewModel.swift in Sources */,
 				1707250A289C531700F39B89 /* MenuSheet.swift in Sources */,
 				172F1446299D46E700A4513C /* TimingResult+CoreDataProperties.swift in Sources */,
 				17FC6647299B11CE00990518 /* ResultsList.swift in Sources */,
+				172F1451299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift in Sources */,
 				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
 				17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */,
 				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
@@ -219,6 +254,7 @@
 				17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				17F1C071299BF58B00B6406A /* UpcomingPlateEntry.swift in Sources */,
+				172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,12 +386,13 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Race Timer";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,12 +417,13 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Race Timer";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
