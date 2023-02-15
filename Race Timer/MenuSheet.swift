@@ -27,8 +27,15 @@ struct MenuSheet: View {
                             viewModel.resetNextPlateEntryField()
                         })
                     }
-                    Button("Clear Recordings", role: .destructive) {
-                        viewModel.presentingResetWarning = true
+                    Button("New Recordings Set", role: .destructive) {
+                        viewModel.newRecordingSet()
+                    }
+                    List(viewModel.allTimingResults(), id: \.unwrappedId) { timingResult in
+                        Button {
+                            viewModel.switchTimingResultTo(timingResult)
+                        } label: {
+                            Text("\(timingResult.unwrappedName), \(timingResult.updatedTimeString), \(timingResult.resultArray.count)")
+                        }
                     }
                 }
             }

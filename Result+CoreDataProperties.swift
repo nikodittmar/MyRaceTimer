@@ -2,7 +2,7 @@
 //  Result+CoreDataProperties.swift
 //  Race Timer
 //
-//  Created by niko dittmar on 8/3/22.
+//  Created by niko dittmar on 2/15/23.
 //
 //
 
@@ -19,7 +19,8 @@ extension Result {
     @NSManaged public var id: UUID?
     @NSManaged public var plate: String?
     @NSManaged public var timestamp: Double
-    
+    @NSManaged public var timingResult: TimingResult?
+
     public var unwrappedPlate: String {
         plate ?? ""
     }
@@ -38,7 +39,6 @@ extension Result {
         
         return dateFormatter.string(from: unwrappedTimestamp)
     }
-
 }
 
 extension Result : Identifiable {

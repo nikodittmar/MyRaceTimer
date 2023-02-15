@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Result" representedClassName="Result" syncable="YES">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="plate" attributeType="String"/>
         <attribute name="timestamp" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="timingResult" maxCount="1" deletionRule="Nullify" destinationEntity="TimingResult" inverseName="result" inverseEntity="TimingResult"/>
     </entity>
-    <elements>
-        <element name="Result" positionX="-63" positionY="-18" width="128" height="74"/>
-    </elements>
+    <entity name="TimingResult" representedClassName="TimingResult" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastUpdated" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="loaded" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="start" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="result" toMany="YES" deletionRule="Cascade" destinationEntity="Result" inverseName="timingResult" inverseEntity="Result"/>
+    </entity>
 </model>

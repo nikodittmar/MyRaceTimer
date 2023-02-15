@@ -2,7 +2,7 @@
 //  Result+CoreDataClass.swift
 //  Race Timer
 //
-//  Created by niko dittmar on 8/3/22.
+//  Created by niko dittmar on 2/15/23.
 //
 //
 

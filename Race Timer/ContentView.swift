@@ -100,7 +100,7 @@ struct ContentView: View {
                 Text("Would you like to continue?")
             })
             .sheet(isPresented: $viewModel.presentingExportSheet) {
-                ExportRecordingsSheet()
+                ExportRecordingsSheet(viewModel: viewModel)
             }
             .sheet(isPresented: $viewModel.presentingMenuSheet) {
                 MenuSheet(viewModel: viewModel)
@@ -115,8 +115,10 @@ enum TimingMode {
     case finish
 }
 
-class ContentViewViewModel: ObservableObject {
+@MainActor class ContentViewViewModel: ObservableObject {
     let coreDM: DataController = DataController()
+    
+    @Published var timingResultSet: TimingResult
     
     @Published var results: [Result]
     @Published var plateList: [String]
@@ -132,24 +134,40 @@ class ContentViewViewModel: ObservableObject {
     @Published var presentingExportSheet: Bool = false
     
     @Published var presentingResetWarning: Bool = false
-    @Published var timingMode: TimingMode = .finish
+    @Published var timingMode: TimingMode = .start
     
     @Published var upcomingPlateEntrySelected: Bool = false
     @Published var upcomingPlate: String = ""
     
+    @Published var stageName: String = ""
+    @Published var recordingsType: TimingMode = .start
+    
     
     init() {
-        self.results = coreDM.getAllResults()
-        self.plateList = coreDM.getAllPlates()
+        
+        let activeTimingResult: TimingResult? = coreDM.getActiveTimingResult()
+        if activeTimingResult != nil {
+            print("Active Results Set Found.")
+            self.timingResultSet = activeTimingResult!
+            self.results = coreDM.getResultsFrom(activeTimingResult!)
+            self.plateList = coreDM.getAllPlatesFrom(activeTimingResult!)
+        } else {
+            print("No Active Results Set Found, Creating New Result Set!")
+            coreDM.createTimingResult(mode: .start)
+            let newActiveTimingResult: TimingResult? = coreDM.getActiveTimingResult()
+            self.timingResultSet = newActiveTimingResult!
+            self.results = []
+            self.plateList = []
+        }
     }
     
     func syncResults() {
-        results = coreDM.getAllResults()
-        plateList = coreDM.getAllPlates()
+        results = coreDM.getResultsFrom(timingResultSet)
+        plateList = coreDM.getAllPlatesFrom(timingResultSet)
     }
     
     func recordTime() {
-        coreDM.saveResult(plate: upcomingPlate)
+        coreDM.saveResultTo(timingResultSet, plate: upcomingPlate)
         syncResults()
         upcomingPlateEntrySelected = false
         upcomingPlate = ""
@@ -261,11 +279,27 @@ class ContentViewViewModel: ObservableObject {
     
     func resetNextPlateEntryField() {
         upcomingPlate = ""
+        recordingsType = timingMode
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(coreDM: DataController())
+    
+    func updateTimingResultDetails() {
+        coreDM.setTimingResultName(timingResultSet, name: stageName)
+        coreDM.setTimingResultType(timingResultSet, timingMode: recordingsType)
+    }
+    
+    func allTimingResults() -> [TimingResult] {
+        return coreDM.getAllTimingResults()
+    }
+    
+    func switchTimingResultTo(_ timingResult: TimingResult) {
+        coreDM.activateTimingResult(timingResult)
+        timingResultSet = timingResult
+        syncResults()
+    }
+    
+    func newRecordingSet() {
+        coreDM.createTimingResult(mode: timingMode)
+        recordingsType = timingMode
+        syncResults()
     }
 }

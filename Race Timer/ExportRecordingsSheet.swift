@@ -20,10 +20,8 @@ enum stage {
 
 struct ExportRecordingsSheet: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: ViewModel = ViewModel()
-    
-    let coreDM: DataController = DataController()
-    
+    @ObservedObject var viewModel: ContentViewViewModel
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -39,15 +37,15 @@ struct ExportRecordingsSheet: View {
                     Section(header: Text("Results Type")) {
                         Picker("Timing Position", selection: $viewModel.recordingsType) {
                             Text("Stage Start")
-                                .tag(recordingsType.start)
+                                .tag(TimingMode.start)
                             Text("Stage Finish")
-                                .tag(recordingsType.finish)
+                                .tag(TimingMode.finish)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     }
                     Section(header: Text("Actions")) {
                         Button("Save") {
-                            
+                            viewModel.updateTimingResultDetails()
                         }
                         Button("Export") {
                             
@@ -56,9 +54,6 @@ struct ExportRecordingsSheet: View {
                 }
             }
             .navigationBarTitle(Text("Save/Export Result"), displayMode: .inline)
-            .sheet(item: $viewModel.sheetFile) { file in
-                ActivityViewController(itemsToShare: [file])
-            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
@@ -72,10 +67,13 @@ struct ExportRecordingsSheet: View {
 
 extension ExportRecordingsSheet {
     @MainActor class ViewModel: ObservableObject {
+        let coreDM: DataController = DataController()
+        
         @Published var recordingsType: recordingsType = .start
         @Published var stage: stage = .Cinderella
         @Published var sheetFile: URL? = nil
         @Published var stageName: String = ""
+        
         
         
         init() {
@@ -140,12 +138,6 @@ extension ExportRecordingsSheet {
             }
             
         }
-    }
-}
-
-struct ExportRecordingsSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ExportRecordingsSheet()
     }
 }
 

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1707250A289C531700F39B89 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* MenuSheet.swift */; };
+		172F1443299D46E700A4513C /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F143F299D46E700A4513C /* Result+CoreDataClass.swift */; };
+		172F1444299D46E700A4513C /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */; };
+		172F1445299D46E700A4513C /* TimingResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */; };
+		172F1446299D46E700A4513C /* TimingResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */; };
 		17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* Race_TimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -16,8 +20,6 @@
 		17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D41288DC62E0022124F /* ActivityViewController.swift */; };
 		17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */; };
 		17A78A92289AF735000AA754 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A91289AF735000AA754 /* DataController.swift */; };
-		17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */; };
-		17A78A96289B0875000AA754 /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */; };
 		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
 		17F1C071299BF58B00B6406A /* UpcomingPlateEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1C070299BF58B00B6406A /* UpcomingPlateEntry.swift */; };
 		17FC6645299AB7F000990518 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6644299AB7F000990518 /* NumberPad.swift */; };
@@ -26,6 +28,10 @@
 
 /* Begin PBXFileReference section */
 		17072509289C531700F39B89 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
+		172F143F299D46E700A4513C /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimingResult+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimingResult+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,8 +41,6 @@
 		17662D41288DC62E0022124F /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		17A78A8F289AF3BF000AA754 /* Race_Timer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Race_Timer.xcdatamodel; sourceTree = "<group>"; };
 		17A78A91289AF735000AA754 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = "<group>"; };
-		17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17F1C070299BF58B00B6406A /* UpcomingPlateEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPlateEntry.swift; sourceTree = "<group>"; };
 		17FC6644299AB7F000990518 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
@@ -82,8 +86,10 @@
 				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
 				17662D41288DC62E0022124F /* ActivityViewController.swift */,
-				17A78A93289B0875000AA754 /* Result+CoreDataClass.swift */,
-				17A78A94289B0875000AA754 /* Result+CoreDataProperties.swift */,
+				172F143F299D46E700A4513C /* Result+CoreDataClass.swift */,
+				172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */,
+				172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */,
+				172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */,
 				17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */,
 				17A78A91289AF735000AA754 /* DataController.swift */,
 				17662D35288DC5EA0022124F /* Assets.xcassets */,
@@ -172,14 +178,16 @@
 			files = (
 				17662D40288DC6140022124F /* ExportRecordingsSheet.swift in Sources */,
 				1707250A289C531700F39B89 /* MenuSheet.swift in Sources */,
+				172F1446299D46E700A4513C /* TimingResult+CoreDataProperties.swift in Sources */,
 				17FC6647299B11CE00990518 /* ResultsList.swift in Sources */,
 				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
-				17A78A95289B0875000AA754 /* Result+CoreDataClass.swift in Sources */,
 				17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */,
-				17A78A96289B0875000AA754 /* Result+CoreDataProperties.swift in Sources */,
 				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
 				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */,
+				172F1443299D46E700A4513C /* Result+CoreDataClass.swift in Sources */,
+				172F1444299D46E700A4513C /* Result+CoreDataProperties.swift in Sources */,
+				172F1445299D46E700A4513C /* TimingResult+CoreDataClass.swift in Sources */,
 				17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				17F1C071299BF58B00B6406A /* UpcomingPlateEntry.swift in Sources */,
