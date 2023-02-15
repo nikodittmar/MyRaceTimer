@@ -56,7 +56,7 @@ class DataController: ObservableObject {
             plate = plateString
         }
         
-        if plate.count < 3 {
+        if plate.count < 5 {
             plate.append(String(digit))
         }
         

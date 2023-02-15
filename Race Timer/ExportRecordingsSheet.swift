@@ -28,47 +28,38 @@ struct ExportRecordingsSheet: View {
         NavigationView {
             VStack {
                 Form {
-                    if coreDM.getAllResults().count == 1 {
-                        Text("Exporting \(coreDM.getAllResults().count) Recording.")
-                    } else {
-                        Text("Exporting \(coreDM.getAllResults().count) Recordings.")
+//                    if coreDM.getAllResults().count == 1 {
+//                        Text("Exporting \(coreDM.getAllResults().count) Recording.")
+//                    } else {
+//                        Text("Exporting \(coreDM.getAllResults().count) Recordings.")
+//                    }
+                    Section(header: Text("Stage Name")) {
+                        TextField("Stage Name", text: $viewModel.stageName)
                     }
-                    Section(header: Text("Stage")) {
-                        Picker("Stage", selection: $viewModel.stage) {
-                            Text("STAGE 1")
-                                .tag(stage.Cinderella)
-                            Text("STAGE 2")
-                                .tag(stage.Chaparral)
-                            Text("STAGE 3")
-                                .tag(stage.CastlePark)
-                        }
-                        .pickerStyle(.inline)
-                        .labelsHidden()
-                    }
-                    Section(header: Text("Timing Position")) {
+                    Section(header: Text("Results Type")) {
                         Picker("Timing Position", selection: $viewModel.recordingsType) {
-                            Text("Start")
+                            Text("Stage Start")
                                 .tag(recordingsType.start)
-                            Text("Finish")
+                            Text("Stage Finish")
                                 .tag(recordingsType.finish)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     }
+                    Section(header: Text("Actions")) {
+                        Button("Save") {
+                            
+                        }
+                        Button("Export") {
+                            
+                        }
+                    }
                 }
             }
-            .navigationBarTitle(Text("Export Recordings"), displayMode: .inline)
+            .navigationBarTitle(Text("Save/Export Result"), displayMode: .inline)
             .sheet(item: $viewModel.sheetFile) { file in
                 ActivityViewController(itemsToShare: [file])
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.createCsv(results: coreDM.getAllResults())
-                    } label: {
-                        Text("Export")
-                            .fontWeight(.bold)
-                    }
-                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
@@ -84,6 +75,7 @@ extension ExportRecordingsSheet {
         @Published var recordingsType: recordingsType = .start
         @Published var stage: stage = .Cinderella
         @Published var sheetFile: URL? = nil
+        @Published var stageName: String = ""
         
         
         init() {

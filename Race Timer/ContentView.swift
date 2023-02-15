@@ -163,7 +163,7 @@ class ContentViewViewModel: ObservableObject {
             coreDM.appendPlateDigit(result: selectedResult!, digit: digit)
             syncResults()
         } else if upcomingPlateEntrySelected == true {
-            if upcomingPlate.count < 3 {
+            if upcomingPlate.count < 5 {
                 upcomingPlate.append(String(digit))
             }
         }
@@ -257,6 +257,10 @@ class ContentViewViewModel: ObservableObject {
             label = "-               -"
         }
         return label
+    }
+    
+    func resetNextPlateEntryField() {
+        upcomingPlate = ""
     }
 }
 

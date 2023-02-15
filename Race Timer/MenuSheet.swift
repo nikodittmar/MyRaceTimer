@@ -15,17 +15,20 @@ struct MenuSheet: View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Settings")) {
+                    Section(header: Text("Interface Setting")) {
                         Picker("Interface", selection: $viewModel.timingMode) {
-                            Text("Start")
+                            Text("Stage Start")
                                 .tag(TimingMode.start)
-                            Text("Finish")
+                            Text("Stage Finish")
                                 .tag(TimingMode.finish)
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        Button("Clear Recordings", role: .destructive) {
-                            viewModel.presentingResetWarning = true
-                        }
+                        .onChange(of: viewModel.timingMode, perform: { (value) in
+                            viewModel.resetNextPlateEntryField()
+                        })
+                    }
+                    Button("Clear Recordings", role: .destructive) {
+                        viewModel.presentingResetWarning = true
                     }
                 }
             }
