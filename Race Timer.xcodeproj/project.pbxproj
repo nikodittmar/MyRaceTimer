@@ -12,6 +12,7 @@
 		172F1444299D46E700A4513C /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */; };
 		172F1445299D46E700A4513C /* TimingResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */; };
 		172F1446299D46E700A4513C /* TimingResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */; };
+		172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1447299D660100A4513C /* ContentViewViewModel.swift */; };
 		17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* Race_TimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -28,10 +29,11 @@
 
 /* Begin PBXFileReference section */
 		17072509289C531700F39B89 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
-		172F143F299D46E700A4513C /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimingResult+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimingResult+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		172F143F299D46E700A4513C /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Result+CoreDataClass.swift"; path = "Race Timer/CoreData/Result+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Result+CoreDataProperties.swift"; path = "Race Timer/CoreData/Result+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimingResult+CoreDataClass.swift"; path = "Race Timer/CoreData/TimingResult+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimingResult+CoreDataProperties.swift"; path = "Race Timer/CoreData/TimingResult+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		172F1447299D660100A4513C /* ContentViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewViewModel.swift; sourceTree = "<group>"; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		172F1449299D663600A4513C /* ContentViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				17FC6644299AB7F000990518 /* NumberPad.swift */,
+				17F1C070299BF58B00B6406A /* UpcomingPlateEntry.swift */,
+				17FC6646299B11CE00990518 /* ResultsList.swift */,
+			);
+			path = ContentViewComponents;
+			sourceTree = "<group>";
+		};
+		172F144A299D665F00A4513C /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				17662D41288DC62E0022124F /* ActivityViewController.swift */,
+				17072509289C531700F39B89 /* MenuSheet.swift */,
+				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		172F144B299D667300A4513C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */,
+				172F143F299D46E700A4513C /* Result+CoreDataClass.swift */,
+				172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */,
+				172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */,
+				172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */,
+				17A78A91289AF735000AA754 /* DataController.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		17662D25288DC5E80022124F = {
 			isa = PBXGroup;
 			children = (
@@ -79,19 +114,11 @@
 			children = (
 				17662D31288DC5E80022124F /* Race_TimerApp.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
-				17FC6644299AB7F000990518 /* NumberPad.swift */,
-				17FC6646299B11CE00990518 /* ResultsList.swift */,
-				17F1C070299BF58B00B6406A /* UpcomingPlateEntry.swift */,
-				17072509289C531700F39B89 /* MenuSheet.swift */,
-				17662D3F288DC6140022124F /* ExportRecordingsSheet.swift */,
+				172F1447299D660100A4513C /* ContentViewViewModel.swift */,
+				172F1449299D663600A4513C /* ContentViewComponents */,
+				172F144A299D665F00A4513C /* Sheets */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
-				17662D41288DC62E0022124F /* ActivityViewController.swift */,
-				172F143F299D46E700A4513C /* Result+CoreDataClass.swift */,
-				172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */,
-				172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */,
-				172F1442299D46E700A4513C /* TimingResult+CoreDataProperties.swift */,
-				17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */,
-				17A78A91289AF735000AA754 /* DataController.swift */,
+				172F144B299D667300A4513C /* CoreData */,
 				17662D35288DC5EA0022124F /* Assets.xcassets */,
 				17662D37288DC5EA0022124F /* Preview Content */,
 			);
@@ -183,6 +210,7 @@
 				17A78A92289AF735000AA754 /* DataController.swift in Sources */,
 				17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */,
 				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
+				172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */,
 				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */,
 				172F1443299D46E700A4513C /* Result+CoreDataClass.swift in Sources */,
