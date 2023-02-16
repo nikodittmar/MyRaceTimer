@@ -35,7 +35,7 @@ extension Result {
     
     public var timeString: String {
         let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "H:mm:ss.SSSS"
+        dateFormatter.dateFormat = "H:mm:ss.SS"
         
         return dateFormatter.string(from: unwrappedTimestamp)
     }

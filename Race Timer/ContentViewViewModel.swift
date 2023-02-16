@@ -14,6 +14,11 @@ public enum TimingMode {
 }
 
 @MainActor class ContentViewViewModel: ObservableObject {
+    let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
+    var secondsSinceLastRecording: Double = 0.0
+    
+    @Published var timeElapsedString: String = ""
+    
     let coreDM: DataController = DataController()
     
     @Published var timingResultSet: TimingResult
@@ -43,7 +48,6 @@ public enum TimingMode {
     
     
     init() {
-        
         let activeTimingResult: TimingResult? = coreDM.getActiveTimingResult()
         if activeTimingResult != nil {
             self.timingResultSet = activeTimingResult!
@@ -69,13 +73,16 @@ public enum TimingMode {
         upcomingPlateEntrySelected = false
         upcomingPlate = ""
         selectedResult = results[0]
+        secondsSinceLastRecording = 0.0
     }
+    
+    func updateTime() {
+        secondsSinceLastRecording += 1.0
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
 
-    func deleteAll() {
-        coreDM.deleteAll()
-        syncResults()
-        selectedResult = nil
+        let formattedString = formatter.string(from: TimeInterval(secondsSinceLastRecording)) ?? ""
+        timeElapsedString = "Since Last: \(formattedString)"
     }
-    
-    
 }

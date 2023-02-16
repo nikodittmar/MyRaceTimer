@@ -31,13 +31,20 @@ struct ContentView: View {
                 .padding(.top, 8)
                 .padding(.bottom, -1)
                 
-                Text(viewModel.results.count == 1 ? "\(viewModel.results.count) Recording" : "\(viewModel.results.count) Recordings")
-                    .frame(maxWidth: .infinity)
-                    .font(.footnote)
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .border(Color(UIColor.systemGray4))
-                    .background(Color(UIColor.systemGray6))
+                HStack {
+                    Text(viewModel.results.count == 1 ? "\(viewModel.results.count) Recording" : "\(viewModel.results.count) Recordings")
+                    Spacer()
+                    Text(viewModel.timeElapsedString)
+                        .onReceive(viewModel.timer) { _ in
+                            viewModel.updateTime()
+                        }
+                }
+                .frame(maxWidth: .infinity)
+                .font(.footnote)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .border(Color(UIColor.systemGray4))
+                .background(Color(UIColor.systemGray6))
                 
                 ResultsList(viewModel: viewModel)
                 
