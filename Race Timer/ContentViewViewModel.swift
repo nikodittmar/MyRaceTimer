@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-enum TimingMode {
+public enum TimingMode {
     case start
     case finish
 }
@@ -32,7 +32,6 @@ enum TimingMode {
     @Published var presentingExportSheet: Bool = false
     
     @Published var presentingResetWarning: Bool = false
-    @Published var timingMode: TimingMode = .start
     
     @Published var upcomingPlateEntrySelected: Bool = false
     @Published var upcomingPlate: String = ""
@@ -45,12 +44,10 @@ enum TimingMode {
         
         let activeTimingResult: TimingResult? = coreDM.getActiveTimingResult()
         if activeTimingResult != nil {
-            print("Active Results Set Found.")
             self.timingResultSet = activeTimingResult!
             self.results = coreDM.getResultsFrom(activeTimingResult!)
             self.plateList = coreDM.getAllPlatesFrom(activeTimingResult!)
         } else {
-            print("No Active Results Set Found, Creating New Result Set!")
             coreDM.createTimingResult(mode: .start)
             let newActiveTimingResult: TimingResult? = coreDM.getActiveTimingResult()
             self.timingResultSet = newActiveTimingResult!
@@ -78,29 +75,5 @@ enum TimingMode {
         selectedResult = nil
     }
     
-    func resetNextPlateEntryField() {
-        upcomingPlate = ""
-        recordingsType = timingMode
-    }
     
-    func updateTimingResultDetails() {
-        coreDM.setTimingResultName(timingResultSet, name: stageName)
-        coreDM.setTimingResultType(timingResultSet, timingMode: recordingsType)
-    }
-    
-    func allTimingResults() -> [TimingResult] {
-        return coreDM.getAllTimingResults()
-    }
-    
-    func switchTimingResultTo(_ timingResult: TimingResult) {
-        coreDM.activateTimingResult(timingResult)
-        timingResultSet = timingResult
-        syncResults()
-    }
-    
-    func newRecordingSet() {
-        coreDM.createTimingResult(mode: timingMode)
-        recordingsType = timingMode
-        syncResults()
-    }
 }

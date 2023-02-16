@@ -271,4 +271,22 @@ class DataController: ObservableObject {
         objectToEdit.setValue(true, forKey: "loaded")
     }
     
+    func missingPlateNumbersIn(_ timingResult: TimingResult) -> Bool {
+        let plateNumers = getAllPlatesFrom(timingResult)
+        let resultList = getResultsFrom(timingResult)
+        return plateNumers.count < resultList.count
+    }
+    
+    func duplicatePlateNumbersIn(_ timingResult: TimingResult) -> Bool {
+        let plateNumers = getAllPlatesFrom(timingResult)
+        return plateNumers.hasDuplicates()
+    }
+    
+    func deleteAllRecordingsFrom(_ timingResult: TimingResult) {
+        let results = timingResult.resultArray
+        
+        for result in results {
+            delete(result)
+        }
+    }
 }

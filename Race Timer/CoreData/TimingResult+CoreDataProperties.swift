@@ -50,6 +50,14 @@ extension TimingResult {
         
         return dateFormatter.string(from: unwrappedUpdatedTimestamp)
     }
+    
+    public var recordingsType: TimingMode {
+        if start {
+            return .start
+        } else {
+            return .finish
+        }
+    }
 
 }
 

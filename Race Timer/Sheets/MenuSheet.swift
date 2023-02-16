@@ -15,26 +15,85 @@ struct MenuSheet: View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Interface Setting")) {
-                        Picker("Interface", selection: $viewModel.timingMode) {
+                    Section(header: Text("Current Result")) {
+                        TextField("Stage Name", text: $viewModel.stageName)
+                            .onSubmit {
+                                viewModel.updateTimingResultDetails()
+                            }
+                        Picker("Timing Position", selection: $viewModel.recordingsType) {
                             Text("Stage Start")
                                 .tag(TimingMode.start)
                             Text("Stage Finish")
                                 .tag(TimingMode.finish)
                         }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .onChange(of: viewModel.timingMode, perform: { (value) in
-                            viewModel.resetNextPlateEntryField()
+                        .onChange(of: viewModel.recordingsType, perform: { (value) in
+                            viewModel.updateTimingResultDetails()
                         })
+                        .pickerStyle(SegmentedPickerStyle())
+                        if viewModel.duplicatePlateNumbersIn(viewModel.timingResultSet) {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Duplicate Race Plate Numbers")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        if viewModel.missingPlateNumbersIn(viewModel.timingResultSet) {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Missing Race Plate Numbers")
+                                    .foregroundColor(.black)
+                            }
+                        }
                     }
-                    Button("New Recordings Set", role: .destructive) {
-                        viewModel.newRecordingSet()
+                    Section {
+                        Button("Clear Recordings", role: .destructive) {
+                            viewModel.deleteAllRecordingsFrom(viewModel.timingResultSet)
+                        }
+                        Button("Delete Result", role: .destructive) {
+                            viewModel.clearResult()
+                        }
                     }
-                    List(viewModel.allTimingResults(), id: \.unwrappedId) { timingResult in
-                        Button {
-                            viewModel.switchTimingResultTo(timingResult)
-                        } label: {
-                            Text("\(timingResult.unwrappedName), \(timingResult.updatedTimeString), \(timingResult.resultArray.count)")
+                    Section(header: Text("Saved Results")) {
+                        Button("Create New Result") {
+                            viewModel.newRecordingSet()
+                        }
+                        Section {
+                            List(viewModel.allTimingResults(), id: \.unwrappedId) { timingResult in
+                                Button {
+                                    viewModel.switchTimingResultTo(timingResult)
+                                } label: {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            if timingResult.unwrappedName == "" {
+                                                Text("Untitled Stage")
+                                                    .foregroundColor(.gray)
+                                                    .lineLimit(1)
+                                                    .padding(.top, 2)
+                                            } else {
+                                                Text(timingResult.unwrappedName)
+                                                .padding(.top, 2)
+                                                .foregroundColor(.black)
+                                                .lineLimit(1)
+                                            }
+                                            Text("\(timingResult.resultArray.count) Recordings, Stage \(viewModel.resultsTypeLabel(resultsSet: timingResult))")
+                                                .font(.caption)
+                                                .padding(.bottom, 2)
+                                                .foregroundColor(.black)
+                                        }
+                                        Spacer()
+                                        if viewModel.warningCountIn(timingResult) != 0 {
+                                            HStack {
+                                                Text(String(viewModel.warningCountIn(timingResult)))
+                                                    .foregroundColor(.black)
+                                                Image(systemName: "exclamationmark.triangle.fill")
+                                                    .foregroundColor(.yellow)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

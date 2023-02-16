@@ -41,7 +41,7 @@ struct ContentView: View {
                 
                 ResultsList(viewModel: viewModel)
                 
-                if viewModel.timingMode == .start {
+                if viewModel.recordingsType == .start {
                     UpcomingPlateEntry(viewModel: viewModel)
                 }
                 
@@ -65,9 +65,6 @@ struct ContentView: View {
                             .fontWeight(.bold)
                     }
                 }
-            }
-            .sheet(isPresented: $viewModel.presentingExportSheet) {
-                ExportRecordingsSheet(viewModel: viewModel)
             }
             .sheet(isPresented: $viewModel.presentingMenuSheet) {
                 MenuSheet(viewModel: viewModel)
