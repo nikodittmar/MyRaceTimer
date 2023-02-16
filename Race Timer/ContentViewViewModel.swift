@@ -31,7 +31,9 @@ public enum TimingMode {
     @Published var presentingMenuSheet: Bool = false
     @Published var presentingExportSheet: Bool = false
     
-    @Published var presentingResetWarning: Bool = false
+    @Published var presentingClearWarning: Bool = false
+    @Published var presentingDeleteAllWarning: Bool = false
+
     
     @Published var upcomingPlateEntrySelected: Bool = false
     @Published var upcomingPlate: String = ""

@@ -49,10 +49,10 @@ struct MenuSheet: View {
                     }
                     Section {
                         Button("Clear Recordings", role: .destructive) {
-                            viewModel.deleteAllRecordingsFrom(viewModel.timingResultSet)
+                            viewModel.presentingDeleteAllWarning = true
                         }
                         Button("Delete Result", role: .destructive) {
-                            viewModel.clearResult()
+                            viewModel.presentingClearWarning = true
                         }
                     }
                     Section(header: Text("Saved Results")) {
@@ -106,11 +106,18 @@ struct MenuSheet: View {
                     }
                 }
             }
-            .alert("Are you sure you want to delete all recordings?", isPresented: $viewModel.presentingResetWarning, actions: {
+            .alert("Are you sure you want to delete all recordings?", isPresented: $viewModel.presentingDeleteAllWarning, actions: {
                 Button("No", role: .cancel, action: {})
                 Button("Yes", role: .destructive, action: {
-                    viewModel.deleteAll()
-                    presentationMode.wrappedValue.dismiss()
+                    viewModel.deleteAllRecordingsFrom(viewModel.timingResultSet)
+                })
+            }, message: {
+                Text("This cannot be undone.")
+            })
+            .alert("Are you sure you want to delete this result?", isPresented: $viewModel.presentingClearWarning, actions: {
+                Button("No", role: .cancel, action: {})
+                Button("Yes", role: .destructive, action: {
+                    viewModel.clearResult()
                 })
             }, message: {
                 Text("This cannot be undone.")

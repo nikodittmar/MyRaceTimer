@@ -40,6 +40,7 @@ extension ContentViewViewModel {
     
     func clearResult() {
         deleteAllRecordingsFrom(timingResultSet)
+        coreDM.setTimingResultName(timingResultSet, name: "")
         stageName = ""
         recordingsType = .start
         syncResults()
