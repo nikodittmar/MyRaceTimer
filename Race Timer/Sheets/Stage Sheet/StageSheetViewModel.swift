@@ -1,5 +1,5 @@
 //
-//  MenuSheetViewModel.swift
+//  StageSheetViewModel.swift
 //  Race Timer
 //
 //  Created by niko dittmar on 2/15/23.
@@ -85,6 +85,20 @@ extension ContentViewViewModel {
             }
             syncResults()
         }
+    }
+    
+    func exportableStageResult() -> StageResult {
+        let name: String = timingResultSet.unwrappedName
+        let start: Bool = timingResultSet.start
+        let results: [Result] = timingResultSet.resultArray
+        var exportableResults: [Recording] = []
+        for result in results {
+            let plate = result.unwrappedPlate
+            let timestamp = result.timestamp
+            exportableResults.append(Recording(plate: plate, timestamp: timestamp))
+        }
+        
+        return StageResult(name: name, start: start, recordings: exportableResults)
     }
     
 }

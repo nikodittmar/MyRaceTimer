@@ -83,6 +83,6 @@ public enum TimingMode {
         formatter.unitsStyle = .abbreviated
 
         let formattedString = formatter.string(from: TimeInterval(secondsSinceLastRecording)) ?? ""
-        timeElapsedString = "Since Last: \(formattedString)"
+        timeElapsedString = formattedString
     }
 }

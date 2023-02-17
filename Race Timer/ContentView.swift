@@ -34,7 +34,7 @@ struct ContentView: View {
                 HStack {
                     Text(viewModel.results.count == 1 ? "\(viewModel.results.count) Recording" : "\(viewModel.results.count) Recordings")
                     Spacer()
-                    Text(viewModel.timeElapsedString)
+                    Text("Since Last: \(viewModel.timeElapsedString)")
                         .onReceive(viewModel.timer) { _ in
                             viewModel.updateTime()
                         }
@@ -61,20 +61,20 @@ struct ContentView: View {
                     Button {
                         viewModel.presentingMenuSheet = true
                     } label: {
-                        Text("Menu")
+                        Text("Stage")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         viewModel.presentingExportSheet = true
                     } label: {
-                        Text("Finish")
+                        Text("Race")
                             .fontWeight(.bold)
                     }
                 }
             }
             .sheet(isPresented: $viewModel.presentingMenuSheet) {
-                MenuSheet(viewModel: viewModel)
+                StageSheet(viewModel: viewModel)
             }
             .ignoresSafeArea(.keyboard)
         }

@@ -1,5 +1,5 @@
 //
-//  MenuSheet.swift
+//  StageSheet.swift
 //  Race Timer
 //
 //  Created by niko dittmar on 8/4/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuSheet: View {
+struct StageSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ContentViewViewModel
     
@@ -15,7 +15,7 @@ struct MenuSheet: View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Current Result")) {
+                    Section(header: Text("Current Stage Result")) {
                         TextField("Stage Name", text: $viewModel.stageName)
                             .onSubmit {
                                 viewModel.updateTimingResultDetails()
@@ -48,15 +48,23 @@ struct MenuSheet: View {
                         }
                     }
                     Section {
+                        ShareLink(item: viewModel.exportableStageResult(), preview: SharePreview("Result")) {
+                            Text("Share Stage Result")
+                        }
+                        Button("Download Stage Result CSV") {
+                            
+                        }
+                    }
+                    Section {
                         Button("Clear Recordings", role: .destructive) {
                             viewModel.presentingDeleteAllWarning = true
                         }
-                        Button("Delete Result", role: .destructive) {
+                        Button("Delete Stage Result", role: .destructive) {
                             viewModel.presentingClearWarning = true
                         }
                     }
-                    Section(header: Text("Saved Results")) {
-                        Button("Create New Result") {
+                    Section(header: Text("Saved Stage Results")) {
+                        Button("Create New Stage Result") {
                             viewModel.newRecordingSet()
                         }
                         Section {
@@ -98,7 +106,7 @@ struct MenuSheet: View {
                     }
                 }
             }
-            .navigationBarTitle(Text("Menu"), displayMode: .inline)
+            .navigationBarTitle(Text("Stage Results"), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1707250A289C531700F39B89 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* MenuSheet.swift */; };
+		1707250A289C531700F39B89 /* ResultsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* ResultsSheet.swift */; };
 		172F1443299D46E700A4513C /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F143F299D46E700A4513C /* Result+CoreDataClass.swift */; };
 		172F1444299D46E700A4513C /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */; };
 		172F1445299D46E700A4513C /* TimingResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */; };
@@ -16,7 +16,8 @@
 		172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F144C299D66EB00A4513C /* NumberPadViewModel.swift */; };
 		172F1451299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1450299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift */; };
 		172F1454299D68A400A4513C /* ResultsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1453299D68A400A4513C /* ResultsListViewModel.swift */; };
-		172F1456299D934300A4513C /* MenuSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1455299D934300A4513C /* MenuSheetViewModel.swift */; };
+		172F1456299D934300A4513C /* StageSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1455299D934300A4513C /* StageSheetViewModel.swift */; };
+		172F145A299ED06100A4513C /* StageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1459299ED06100A4513C /* StageResult.swift */; };
 		17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* Race_TimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -31,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		17072509289C531700F39B89 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
+		17072509289C531700F39B89 /* ResultsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsSheet.swift; sourceTree = "<group>"; };
 		172F143F299D46E700A4513C /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Result+CoreDataClass.swift"; path = "Race Timer/CoreData/Result+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		172F1440299D46E700A4513C /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Result+CoreDataProperties.swift"; path = "Race Timer/CoreData/Result+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		172F1441299D46E700A4513C /* TimingResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimingResult+CoreDataClass.swift"; path = "Race Timer/CoreData/TimingResult+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -40,8 +41,10 @@
 		172F144C299D66EB00A4513C /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
 		172F1450299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPlateEntryViewModel.swift; sourceTree = "<group>"; };
 		172F1453299D68A400A4513C /* ResultsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsListViewModel.swift; sourceTree = "<group>"; };
-		172F1455299D934300A4513C /* MenuSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheetViewModel.swift; sourceTree = "<group>"; };
+		172F1455299D934300A4513C /* StageSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSheetViewModel.swift; sourceTree = "<group>"; };
 		172F1458299E9FDD00A4513C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		172F1459299ED06100A4513C /* StageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageResult.swift; sourceTree = "<group>"; };
+		172F145B299ED44900A4513C /* Race-Timer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Race-Timer-Info.plist"; sourceTree = SOURCE_ROOT; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				17662D41288DC62E0022124F /* ActivityViewController.swift */,
-				172F1457299DF83B00A4513C /* MenuSheet */,
+				172F1457299DF83B00A4513C /* Stage Sheet */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -126,13 +129,13 @@
 			path = ResultsList;
 			sourceTree = "<group>";
 		};
-		172F1457299DF83B00A4513C /* MenuSheet */ = {
+		172F1457299DF83B00A4513C /* Stage Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				17072509289C531700F39B89 /* MenuSheet.swift */,
-				172F1455299D934300A4513C /* MenuSheetViewModel.swift */,
+				17072509289C531700F39B89 /* ResultsSheet.swift */,
+				172F1455299D934300A4513C /* StageSheetViewModel.swift */,
 			);
-			path = MenuSheet;
+			path = "Stage Sheet";
 			sourceTree = "<group>";
 		};
 		17662D25288DC5E80022124F = {
@@ -155,12 +158,14 @@
 		17662D30288DC5E80022124F /* Race Timer */ = {
 			isa = PBXGroup;
 			children = (
+				172F145B299ED44900A4513C /* Race-Timer-Info.plist */,
 				17662D31288DC5E80022124F /* Race_TimerApp.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
 				172F1447299D660100A4513C /* ContentViewViewModel.swift */,
 				172F1449299D663600A4513C /* ContentViewComponents */,
 				172F144A299D665F00A4513C /* Sheets */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
+				172F1459299ED06100A4513C /* StageResult.swift */,
 				172F144B299D667300A4513C /* CoreData */,
 				17662D35288DC5EA0022124F /* Assets.xcassets */,
 				17662D37288DC5EA0022124F /* Preview Content */,
@@ -247,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				172F1454299D68A400A4513C /* ResultsListViewModel.swift in Sources */,
-				1707250A289C531700F39B89 /* MenuSheet.swift in Sources */,
+				1707250A289C531700F39B89 /* ResultsSheet.swift in Sources */,
 				172F1446299D46E700A4513C /* TimingResult+CoreDataProperties.swift in Sources */,
 				17FC6647299B11CE00990518 /* ResultsList.swift in Sources */,
 				172F1451299D67FD00A4513C /* UpcomingPlateEntryViewModel.swift in Sources */,
@@ -257,6 +262,7 @@
 				172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */,
 				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */,
+				172F145A299ED06100A4513C /* StageResult.swift in Sources */,
 				172F1443299D46E700A4513C /* Result+CoreDataClass.swift in Sources */,
 				172F1444299D46E700A4513C /* Result+CoreDataProperties.swift in Sources */,
 				172F1445299D46E700A4513C /* TimingResult+CoreDataClass.swift in Sources */,
@@ -264,7 +270,7 @@
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				17F1C071299BF58B00B6406A /* UpcomingPlateEntry.swift in Sources */,
 				172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */,
-				172F1456299D934300A4513C /* MenuSheetViewModel.swift in Sources */,
+				172F1456299D934300A4513C /* StageSheetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,13 +402,16 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Race-Timer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Race Timer";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -427,13 +436,16 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Race-Timer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Race Timer";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
