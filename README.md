@@ -1,3 +1,3 @@
 # MyRaceTimer
-## Timer for enduro mountain bike races
+ Timer for enduro mountain bike races
 

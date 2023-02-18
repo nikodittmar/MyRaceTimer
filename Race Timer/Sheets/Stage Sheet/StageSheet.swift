@@ -51,22 +51,27 @@ struct StageSheet: View {
                         ShareLink(item: viewModel.exportableStageResult(), preview: SharePreview(viewModel.exportableStageResultName())) {
                             Text("Share Stage Result")
                         }
+                        .disabled(viewModel.emptyResultSet())
                         ShareLink(item: viewModel.resultCsv(), preview: SharePreview(viewModel.exportableStageResultName())) {
                             Text("Download Stage Result CSV")
                         }
+                        .disabled(viewModel.emptyResultSet())
                     }
                     Section {
                         Button("Clear Recordings", role: .destructive) {
                             viewModel.presentingDeleteAllWarning = true
                         }
+                        .disabled(viewModel.emptyResultSet())
                         Button("Delete Stage Result", role: .destructive) {
                             viewModel.presentingClearWarning = true
                         }
+                        .disabled(viewModel.emptyResultSet())
                     }
                     Section(header: Text("Saved Stage Results")) {
                         Button("Create New Stage Result") {
                             viewModel.newRecordingSet()
                         }
+                        .disabled(viewModel.emptyResultSet())
                         Section {
                             List(viewModel.allTimingResults(), id: \.unwrappedId) { timingResult in
                                 Button {

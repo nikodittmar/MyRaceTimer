@@ -21,16 +21,38 @@ struct ImportSheet: View {
                     Section(header: Text("Stage Result Type")) {
                         Text(viewModel.importStageResultType())
                     }
+                    Section(header: Text("Warnings")) {
+                        if viewModel.overallDuplicateWarning() {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Duplicate Race Plate Numbers")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        if viewModel.overallMissingWarning() {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Missing Race Plate Numbers")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                    }
                     Section(header: Text("Stage Result Recordings")) {
                         List(viewModel.importStageRecordingsList(), id: \.id) { recording in
                             HStack {
-                                Text(recording.plate)
+                                Text(viewModel.importRecordingPlateString(recording))
                                     .frame(width: 80, height: 20)
                                     .padding(6)
                                     .overlay(RoundedRectangle(cornerRadius: 8) .stroke(Color(UIColor.systemGray2), lineWidth: 0.5))
                                     .background(Color(UIColor.systemGray6))
                                     .cornerRadius(8)
                                     .padding(.leading, 10)
+                                if viewModel.importRecordingHasDuplicatePlate(recording.plate) {
+                                    Image(systemName: "square.on.square")
+                                        .foregroundColor(.yellow)
+                                }
                                 Spacer()
                                 Text(viewModel.importRecordingTimeString(double: recording.timestamp))
                             }

@@ -8,6 +8,15 @@
 import Foundation
 
 extension ContentViewViewModel {
+    func importRecordingPlateString(_ recording: Recording) -> String {
+        let name = recording.plate
+        if name.isEmpty {
+            return "-       -"
+        } else {
+            return name
+        }
+    }
+    
     func importStageResult(url: URL) {
         do {
             let data = try Data(contentsOf: url)
@@ -87,5 +96,17 @@ extension ContentViewViewModel {
 
         
         syncResults()
+    }
+    
+    func overallDuplicateWarning() -> Bool {
+        return importedStageResult?.duplicatePlateNumbers() ?? false
+    }
+    
+    func overallMissingWarning() -> Bool {
+        return importedStageResult?.missingPlateNumbers() ?? false
+    }
+    
+    func importRecordingHasDuplicatePlate(_ plate: String) -> Bool {
+        return importedStageResult?.isDuplicate(plate) ?? false
     }
 }

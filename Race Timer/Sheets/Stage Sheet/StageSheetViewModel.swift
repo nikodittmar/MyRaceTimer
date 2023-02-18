@@ -70,7 +70,7 @@ extension ContentViewViewModel {
         recordingsType = timingResult.recordingsType
         syncResults()
         
-        if oldTimingResult.resultArray.isEmpty || oldTimingResult.unwrappedName.isEmpty {
+        if oldTimingResult.resultArray.isEmpty && oldTimingResult.unwrappedName.isEmpty {
             coreDM.deleteTimingResult(oldTimingResult)
         }
     }
@@ -127,5 +127,13 @@ extension ContentViewViewModel {
         }
         
         return CSV(csvString: csvString)
+    }
+    
+    func emptyResultSet() -> Bool {
+        if timingResultSet.unwrappedName.isEmpty && timingResultSet.resultArray.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
 }

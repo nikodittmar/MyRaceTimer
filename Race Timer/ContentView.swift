@@ -11,7 +11,6 @@ struct ContentView: View {
     
     let coreDM: DataController
     
-    //@StateObject var viewModel: ContentViewViewModel = ContentViewViewModel()
     @ObservedObject var viewModel: ContentViewViewModel
     
     var body: some View {
