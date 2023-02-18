@@ -11,7 +11,8 @@ struct ContentView: View {
     
     let coreDM: DataController
     
-    @StateObject var viewModel: ContentViewViewModel = ContentViewViewModel()
+    //@StateObject var viewModel: ContentViewViewModel = ContentViewViewModel()
+    @ObservedObject var viewModel: ContentViewViewModel
     
     var body: some View {
         NavigationView {
@@ -66,7 +67,7 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.presentingExportSheet = true
+                        
                     } label: {
                         Text("Race")
                             .fontWeight(.bold)
@@ -75,6 +76,12 @@ struct ContentView: View {
             }
             .sheet(isPresented: $viewModel.presentingMenuSheet) {
                 StageSheet(viewModel: viewModel)
+            }
+            .sheet(isPresented: $viewModel.presentingImportSheet) {
+                ImportSheet(viewModel: viewModel)
+            }
+            .alert("Unable to Import Stage Result", isPresented: $viewModel.presentingImportErrorWarning) {
+                Button("Ok", role: .cancel) { }
             }
             .ignoresSafeArea(.keyboard)
         }

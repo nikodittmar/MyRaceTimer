@@ -34,17 +34,18 @@ public enum TimingMode {
     @Published var presentingDuplicateAndMissingPlateWarning: Bool = false
 
     @Published var presentingMenuSheet: Bool = false
-    @Published var presentingExportSheet: Bool = false
+    @Published var presentingImportSheet: Bool = false
+    @Published var presentingImportErrorWarning: Bool = false
     
     @Published var presentingClearWarning: Bool = false
     @Published var presentingDeleteAllWarning: Bool = false
-
     
     @Published var upcomingPlateEntrySelected: Bool = false
     @Published var upcomingPlate: String = ""
     
     @Published var stageName: String = ""
     @Published var recordingsType: TimingMode = .start
+    @Published var importedStageResult: StageResult?
     
     
     init() {
@@ -53,6 +54,12 @@ public enum TimingMode {
             self.timingResultSet = activeTimingResult!
             self.results = coreDM.getResultsFrom(activeTimingResult!)
             self.plateList = coreDM.getAllPlatesFrom(activeTimingResult!)
+            self.stageName = activeTimingResult?.unwrappedName ?? ""
+            if activeTimingResult?.start == true {
+                self.recordingsType = .start
+            } else {
+                self.recordingsType = .finish
+            }
         } else {
             coreDM.createTimingResult(mode: .start)
             let newActiveTimingResult: TimingResult? = coreDM.getActiveTimingResult()

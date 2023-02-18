@@ -10,16 +10,18 @@ import SwiftUI
 import Foundation
 
 extension UTType {
-    static var stageresult: UTType { UTType(exportedAs: "com.nikodittmar.stageresult") }
+    static var stageresult: UTType { UTType(exportedAs: "com.nikodittmar.JMPEnduroTiming.stageresult") }
 }
 
-struct StageResult: Codable {
+struct StageResult: Codable, Identifiable {
+    var id = UUID()
     var name: String
     var start: Bool
     var recordings: [Recording]
 }
 
-struct Recording: Codable {
+struct Recording: Codable, Identifiable {
+    var id = UUID()
     var plate: String
     var timestamp: Double
 }

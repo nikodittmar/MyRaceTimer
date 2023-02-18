@@ -101,4 +101,16 @@ extension ContentViewViewModel {
         return StageResult(name: name, start: start, recordings: exportableResults)
     }
     
+    func exportableStageResultName() -> String {
+        var name: String = timingResultSet.unwrappedName
+        let start: Bool = timingResultSet.start
+        
+        if start {
+            name.append(" Start")
+        } else {
+            name.append(" Finish")
+        }
+        
+        return name
+    }
 }

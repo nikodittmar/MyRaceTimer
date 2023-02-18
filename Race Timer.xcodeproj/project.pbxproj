@@ -23,6 +23,8 @@
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
 		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
 		17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D41288DC62E0022124F /* ActivityViewController.swift */; };
+		17912D0829A04E8000FFB1C2 /* ImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17912D0729A04E8000FFB1C2 /* ImportSheet.swift */; };
+		17912D0A29A04E9B00FFB1C2 /* ImportSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17912D0929A04E9B00FFB1C2 /* ImportSheetViewModel.swift */; };
 		17A78A90289AF3BF000AA754 /* Race_Timer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A8E289AF3BF000AA754 /* Race_Timer.xcdatamodeld */; };
 		17A78A92289AF735000AA754 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A91289AF735000AA754 /* DataController.swift */; };
 		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
@@ -30,6 +32,19 @@
 		17FC6645299AB7F000990518 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6644299AB7F000990518 /* NumberPad.swift */; };
 		17FC6647299B11CE00990518 /* ResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6646299B11CE00990518 /* ResultsList.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17D78B0729A01C1F00BD7944 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		17072509289C531700F39B89 /* ResultsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsSheet.swift; sourceTree = "<group>"; };
@@ -44,13 +59,15 @@
 		172F1455299D934300A4513C /* StageSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSheetViewModel.swift; sourceTree = "<group>"; };
 		172F1458299E9FDD00A4513C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		172F1459299ED06100A4513C /* StageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageResult.swift; sourceTree = "<group>"; };
-		172F145B299ED44900A4513C /* Race-Timer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Race-Timer-Info.plist"; sourceTree = SOURCE_ROOT; };
+		172F145B299ED44900A4513C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		17662D2E288DC5E80022124F /* Race Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Race Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* Race_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race_TimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		17662D35288DC5EA0022124F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17662D38288DC5EA0022124F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17662D41288DC62E0022124F /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		17912D0729A04E8000FFB1C2 /* ImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSheet.swift; sourceTree = "<group>"; };
+		17912D0929A04E9B00FFB1C2 /* ImportSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSheetViewModel.swift; sourceTree = "<group>"; };
 		17A78A8F289AF3BF000AA754 /* Race_Timer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Race_Timer.xcdatamodel; sourceTree = "<group>"; };
 		17A78A91289AF735000AA754 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -84,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				17662D41288DC62E0022124F /* ActivityViewController.swift */,
+				17912D0629A04E6E00FFB1C2 /* Import Sheet */,
 				172F1457299DF83B00A4513C /* Stage Sheet */,
 			);
 			path = Sheets;
@@ -141,6 +159,7 @@
 		17662D25288DC5E80022124F = {
 			isa = PBXGroup;
 			children = (
+				172F145B299ED44900A4513C /* Info.plist */,
 				172F1458299E9FDD00A4513C /* README.md */,
 				17662D30288DC5E80022124F /* Race Timer */,
 				17662D2F288DC5E80022124F /* Products */,
@@ -158,7 +177,6 @@
 		17662D30288DC5E80022124F /* Race Timer */ = {
 			isa = PBXGroup;
 			children = (
-				172F145B299ED44900A4513C /* Race-Timer-Info.plist */,
 				17662D31288DC5E80022124F /* Race_TimerApp.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
 				172F1447299D660100A4513C /* ContentViewViewModel.swift */,
@@ -181,6 +199,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		17912D0629A04E6E00FFB1C2 /* Import Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				17912D0729A04E8000FFB1C2 /* ImportSheet.swift */,
+				17912D0929A04E9B00FFB1C2 /* ImportSheetViewModel.swift */,
+			);
+			path = "Import Sheet";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,6 +218,7 @@
 				17662D2A288DC5E80022124F /* Sources */,
 				17662D2B288DC5E80022124F /* Frameworks */,
 				17662D2C288DC5E80022124F /* Resources */,
+				17D78B0729A01C1F00BD7944 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -208,7 +236,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					17662D2D288DC5E80022124F = {
@@ -262,6 +290,7 @@
 				172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */,
 				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* Race_TimerApp.swift in Sources */,
+				17912D0829A04E8000FFB1C2 /* ImportSheet.swift in Sources */,
 				172F145A299ED06100A4513C /* StageResult.swift in Sources */,
 				172F1443299D46E700A4513C /* Result+CoreDataClass.swift in Sources */,
 				172F1444299D46E700A4513C /* Result+CoreDataProperties.swift in Sources */,
@@ -269,6 +298,7 @@
 				17662D42288DC62E0022124F /* ActivityViewController.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				17F1C071299BF58B00B6406A /* UpcomingPlateEntry.swift in Sources */,
+				17912D0A29A04E9B00FFB1C2 /* ImportSheetViewModel.swift in Sources */,
 				172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */,
 				172F1456299D934300A4513C /* StageSheetViewModel.swift in Sources */,
 			);
@@ -402,7 +432,7 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Race-Timer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Race Timer";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -436,7 +466,7 @@
 				DEVELOPMENT_TEAM = WF5NY4PC3R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Race-Timer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Race Timer";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
