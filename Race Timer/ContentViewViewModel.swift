@@ -46,8 +46,7 @@ public enum TimingMode {
     @Published var stageName: String = ""
     @Published var recordingsType: TimingMode = .start
     @Published var importedStageResult: StageResult?
-    
-    
+        
     init() {
         let activeTimingResult: TimingResult? = coreDM.getActiveTimingResult()
         if activeTimingResult != nil {
@@ -70,6 +69,15 @@ public enum TimingMode {
     }
     
     func syncResults() {
+        if coreDM.getActiveTimingResult() != nil {
+            timingResultSet = coreDM.getActiveTimingResult()!
+        }
+        stageName = timingResultSet.unwrappedName
+        if timingResultSet.start {
+            recordingsType = .start
+        } else {
+            recordingsType = .finish
+        }
         results = coreDM.getResultsFrom(timingResultSet)
         plateList = coreDM.getAllPlatesFrom(timingResultSet)
     }
@@ -81,6 +89,7 @@ public enum TimingMode {
         upcomingPlate = ""
         selectedResult = results[0]
         secondsSinceLastRecording = 0.0
+        timeElapsedString = "0s"
     }
     
     func updateTime() {

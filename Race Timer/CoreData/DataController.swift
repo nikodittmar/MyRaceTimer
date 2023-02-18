@@ -167,6 +167,53 @@ class DataController: ObservableObject {
         }
     }
     
+    func createFullTimingResult(mode: TimingMode, name: String, recordings: [Recording]) {
+        deactivateAllTimingResults()
+        let timingResult = TimingResult(context: container.viewContext)
+        timingResult.name = name
+        switch mode {
+        case.start:
+            timingResult.start = true
+        case.finish:
+            timingResult.start = false
+        }
+        timingResult.loaded = true
+        timingResult.id = UUID()
+        timingResult.lastUpdated = Double(Date().timeIntervalSince1970)
+        
+        for recording in recordings {
+            let result = Result(context: container.viewContext)
+            result.id = UUID()
+            result.plate = recording.plate
+            result.timestamp = recording.timestamp
+            result.timingResult = timingResult
+        }
+        
+        do {
+            try container.viewContext.save()
+            
+        } catch {
+            print("Failed to save timing Result")
+        }
+    }
+    
+    func bulkCreateResults(timingResult: TimingResult, recordings: [Recording]) {
+        for recording in recordings {
+            let result = Result(context: container.viewContext)
+            result.id = recording.id
+            result.plate = recording.plate
+            result.timestamp = recording.timestamp
+            result.timingResult = timingResult
+        }
+        
+        do {
+            try container.viewContext.save()
+            
+        } catch {
+            print("Failed to save timing Result")
+        }
+    }
+    
     func getAllTimingResults() -> [TimingResult] {
         let fetchRequest: NSFetchRequest<TimingResult> = TimingResult.fetchRequest()
         let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "lastUpdated", ascending: false)

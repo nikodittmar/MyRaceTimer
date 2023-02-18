@@ -113,4 +113,19 @@ extension ContentViewViewModel {
         
         return name
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func resultCsv() -> CSV {
+        var csvString: String = ""
+        
+        for result in timingResultSet.resultArray {
+            csvString.append("\(result.unwrappedPlate),\(result.timeString)\n")
+        }
+        
+        return CSV(csvString: csvString)
+    }
 }

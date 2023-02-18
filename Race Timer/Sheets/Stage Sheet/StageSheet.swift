@@ -51,8 +51,8 @@ struct StageSheet: View {
                         ShareLink(item: viewModel.exportableStageResult(), preview: SharePreview(viewModel.exportableStageResultName())) {
                             Text("Share Stage Result")
                         }
-                        Button("Download Stage Result CSV") {
-                            
+                        ShareLink(item: viewModel.resultCsv(), preview: SharePreview(viewModel.exportableStageResultName())) {
+                            Text("Download Stage Result CSV")
                         }
                     }
                     Section {

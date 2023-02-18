@@ -44,8 +44,14 @@ struct ImportSheet: View {
                     Button("Close") {
                         presentationMode.wrappedValue.dismiss()
                     }
-                    Button("Import") {
-                        
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.addStageResultToCoreData()
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Import")
+                            .fontWeight(.bold)
                     }
                 }
             }

@@ -69,4 +69,23 @@ extension ContentViewViewModel {
         
         return dateFormatter.string(from: date)
     }
+    
+    func addStageResultToCoreData() {
+        var timingMode: TimingMode = .finish
+        if importedStageResult?.start == true {
+            timingMode = .start
+        }
+        if timingResultSet.unwrappedName.isEmpty && timingResultSet.resultArray.isEmpty {
+            //If the current timing set is empty, populate it with imported data.
+            coreDM.setTimingResultName(timingResultSet, name: importedStageResult?.name ?? "")
+            coreDM.setTimingResultType(timingResultSet, timingMode: timingMode)
+            coreDM.bulkCreateResults(timingResult: timingResultSet, recordings: importedStageResult?.recordings ?? [])
+        } else {
+            //Make a new timing result set.
+            coreDM.createFullTimingResult(mode: timingMode, name: importedStageResult?.name ?? "", recordings: importedStageResult?.recordings ?? [])
+        }
+
+        
+        syncResults()
+    }
 }
