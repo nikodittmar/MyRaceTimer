@@ -14,7 +14,7 @@ struct ContentView: View {
     @ObservedObject var viewModel: ContentViewViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 Button {
                     viewModel.recordTime()
@@ -66,7 +66,7 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        viewModel.presentingResultSheet = true
                     } label: {
                         Text("Race")
                     }
@@ -77,6 +77,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $viewModel.presentingImportSheet) {
                 ImportSheet(viewModel: viewModel)
+            }
+            .sheet(isPresented: $viewModel.presentingResultSheet) {
+                ResultsSheet()
             }
             .alert("Unable to Import Stage Result", isPresented: $viewModel.presentingImportErrorWarning) {
                 Button("Ok", role: .cancel) { }

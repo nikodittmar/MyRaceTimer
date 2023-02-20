@@ -40,6 +40,17 @@ extension TimingResult {
         }
     }
     
+    public var plateArray: [String] {
+        var plateArray: [String] = []
+        for result in resultArray {
+            let plate = result.unwrappedPlate
+            if plate != "" {
+                plateArray.append(plate)
+            }
+        }
+        return plateArray
+    }
+    
     public var unwrappedUpdatedTimestamp: Date {
         Date(timeIntervalSince1970: lastUpdated)
     }
@@ -57,6 +68,38 @@ extension TimingResult {
         } else {
             return .finish
         }
+    }
+    
+    public var recordingsTypeLabel: String {
+        if start {
+            return "Start"
+        } else {
+            return "Finish"
+        }
+    }
+    
+    public var recordingCount: Int {
+        return resultArray.count
+    }
+    
+    public var hasDuplicatePlates: Bool {
+        plateArray.hasDuplicates()
+    }
+    
+    public var hasMissingPlates: Bool {
+        //The plate array does not include duplicates so if it is smaller than the overall recording count, there are recordings with missing plate numbers.
+        recordingCount > plateArray.count
+    }
+    
+    public var recordingsIssuesCount: Int {
+        var warnings: Int = 0
+        if hasDuplicatePlates {
+            warnings += 1
+        }
+        if hasMissingPlates {
+            warnings += 1
+        }
+        return warnings
     }
 
 }
