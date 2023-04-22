@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1707250A289C531700F39B89 /* ResultSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* ResultSheet.swift */; };
+		172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1447299D660100A4513C /* ContentViewViewModel.swift */; };
+		172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F144C299D66EB00A4513C /* NumberPadViewModel.swift */; };
+		172F1456299D934300A4513C /* ResultSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1455299D934300A4513C /* ResultSheetViewModel.swift */; };
+		172F145A299ED06100A4513C /* StageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1459299ED06100A4513C /* StageResult.swift */; };
+		17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* MyRaceTimerApp.swift */; };
+		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
+		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
+		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
+		17763CA229A1541E002D0B12 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17763CA129A1541E002D0B12 /* CSV.swift */; };
+		177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */; };
+		177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C329EF3F9A0019C38F /* PersistenceController.swift */; };
+		177BB8C629EF3FD00019C38F /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */; };
+		177BB8CB29EF47010019C38F /* Recording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */; };
+		177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C829EF47010019C38F /* Recording+CoreDataProperties.swift */; };
+		177BB8CD29EF47010019C38F /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C929EF47010019C38F /* Result+CoreDataClass.swift */; };
+		177BB8CE29EF47010019C38F /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8CA29EF47010019C38F /* Result+CoreDataProperties.swift */; };
+		178AFA1429F315D1001B878D /* UpcomingPlateFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178AFA1329F315D1001B878D /* UpcomingPlateFieldViewModel.swift */; };
+		17912D0829A04E8000FFB1C2 /* ImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17912D0729A04E8000FFB1C2 /* ImportSheet.swift */; };
+		17912D0A29A04E9B00FFB1C2 /* ImportSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17912D0929A04E9B00FFB1C2 /* ImportSheetViewModel.swift */; };
+		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
+		17E860F529A1C6A7004F2C86 /* SelectRecordings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F429A1C6A7004F2C86 /* SelectRecordings.swift */; };
+		17E860F729A1C6B9004F2C86 /* PairRecordings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F629A1C6B9004F2C86 /* PairRecordings.swift */; };
+		17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F829A1C720004F2C86 /* ResolveIssues.swift */; };
+		17E860FB29A1E393004F2C86 /* SelectRecordingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860FA29A1E393004F2C86 /* SelectRecordingsViewModel.swift */; };
+		17E860FF29A28E18004F2C86 /* PairRecordingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860FE29A28E18004F2C86 /* PairRecordingsViewModel.swift */; };
+		17E8610129A2C96F004F2C86 /* TimingResultPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8610029A2C96F004F2C86 /* TimingResultPair.swift */; };
+		17F1C071299BF58B00B6406A /* UpcomingPlateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1C070299BF58B00B6406A /* UpcomingPlateField.swift */; };
+		17FC6645299AB7F000990518 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6644299AB7F000990518 /* NumberPad.swift */; };
+		17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6646299B11CE00990518 /* RecordingsList.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17D78B0729A01C1F00BD7944 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		17072509289C531700F39B89 /* ResultSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheet.swift; sourceTree = "<group>"; };
+		172F1447299D660100A4513C /* ContentViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewViewModel.swift; sourceTree = "<group>"; };
+		172F144C299D66EB00A4513C /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
+		172F1455299D934300A4513C /* ResultSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheetViewModel.swift; sourceTree = "<group>"; };
+		172F1458299E9FDD00A4513C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		172F1459299ED06100A4513C /* StageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageResult.swift; sourceTree = "<group>"; };
+		172F145B299ED44900A4513C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		17662D2E288DC5E80022124F /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17662D31288DC5E80022124F /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
+		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		17662D35288DC5EA0022124F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		17662D38288DC5EA0022124F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		17763CA129A1541E002D0B12 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
+		177BB8C329EF3F9A0019C38F /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
+		177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataClass.swift"; sourceTree = "<group>"; };
+		177BB8C829EF47010019C38F /* Recording+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		177BB8C929EF47010019C38F /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = "<group>"; };
+		177BB8CA29EF47010019C38F /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		178AFA1329F315D1001B878D /* UpcomingPlateFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPlateFieldViewModel.swift; sourceTree = "<group>"; };
+		17912D0729A04E8000FFB1C2 /* ImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSheet.swift; sourceTree = "<group>"; };
+		17912D0929A04E9B00FFB1C2 /* ImportSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSheetViewModel.swift; sourceTree = "<group>"; };
+		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		17E860F429A1C6A7004F2C86 /* SelectRecordings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecordings.swift; sourceTree = "<group>"; };
+		17E860F629A1C6B9004F2C86 /* PairRecordings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairRecordings.swift; sourceTree = "<group>"; };
+		17E860F829A1C720004F2C86 /* ResolveIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssues.swift; sourceTree = "<group>"; };
+		17E860FA29A1E393004F2C86 /* SelectRecordingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecordingsViewModel.swift; sourceTree = "<group>"; };
+		17E860FE29A28E18004F2C86 /* PairRecordingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairRecordingsViewModel.swift; sourceTree = "<group>"; };
+		17E8610029A2C96F004F2C86 /* TimingResultPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingResultPair.swift; sourceTree = "<group>"; };
+		17F1C070299BF58B00B6406A /* UpcomingPlateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingPlateField.swift; sourceTree = "<group>"; };
+		17FC6644299AB7F000990518 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		17FC6646299B11CE00990518 /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17662D2B288DC5E80022124F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		172F1449299D663600A4513C /* ContentViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				172F1452299D688500A4513C /* RecordingsList */,
+				172F144E299D67B300A4513C /* NumberPad */,
+				172F144F299D67E200A4513C /* UpcomingPlateField */,
+			);
+			path = ContentViewComponents;
+			sourceTree = "<group>";
+		};
+		172F144A299D665F00A4513C /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				17E860EE29A19E03004F2C86 /* ResultsSheet */,
+				17912D0629A04E6E00FFB1C2 /* Import Sheet */,
+				172F1457299DF83B00A4513C /* Result Sheet */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		172F144B299D667300A4513C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */,
+				177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */,
+				177BB8C829EF47010019C38F /* Recording+CoreDataProperties.swift */,
+				177BB8C929EF47010019C38F /* Result+CoreDataClass.swift */,
+				177BB8CA29EF47010019C38F /* Result+CoreDataProperties.swift */,
+				177BB8C329EF3F9A0019C38F /* PersistenceController.swift */,
+				177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		172F144E299D67B300A4513C /* NumberPad */ = {
+			isa = PBXGroup;
+			children = (
+				17FC6644299AB7F000990518 /* NumberPad.swift */,
+				172F144C299D66EB00A4513C /* NumberPadViewModel.swift */,
+			);
+			path = NumberPad;
+			sourceTree = "<group>";
+		};
+		172F144F299D67E200A4513C /* UpcomingPlateField */ = {
+			isa = PBXGroup;
+			children = (
+				17F1C070299BF58B00B6406A /* UpcomingPlateField.swift */,
+				178AFA1329F315D1001B878D /* UpcomingPlateFieldViewModel.swift */,
+			);
+			path = UpcomingPlateField;
+			sourceTree = "<group>";
+		};
+		172F1452299D688500A4513C /* RecordingsList */ = {
+			isa = PBXGroup;
+			children = (
+				17FC6646299B11CE00990518 /* RecordingsList.swift */,
+			);
+			path = RecordingsList;
+			sourceTree = "<group>";
+		};
+		172F1457299DF83B00A4513C /* Result Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				17072509289C531700F39B89 /* ResultSheet.swift */,
+				172F1455299D934300A4513C /* ResultSheetViewModel.swift */,
+			);
+			path = "Result Sheet";
+			sourceTree = "<group>";
+		};
+		17662D25288DC5E80022124F = {
+			isa = PBXGroup;
+			children = (
+				172F145B299ED44900A4513C /* Info.plist */,
+				172F1458299E9FDD00A4513C /* README.md */,
+				17662D30288DC5E80022124F /* MyRaceTimer */,
+				17662D2F288DC5E80022124F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		17662D2F288DC5E80022124F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17662D2E288DC5E80022124F /* MyRaceTimer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17662D30288DC5E80022124F /* MyRaceTimer */ = {
+			isa = PBXGroup;
+			children = (
+				17662D31288DC5E80022124F /* MyRaceTimerApp.swift */,
+				17662D33288DC5E80022124F /* ContentView.swift */,
+				172F1447299D660100A4513C /* ContentViewViewModel.swift */,
+				172F1449299D663600A4513C /* ContentViewComponents */,
+				172F144A299D665F00A4513C /* Sheets */,
+				17A78A9B289B5D76000AA754 /* Extensions.swift */,
+				17763CA329A15CD3002D0B12 /* TransferRepresentations */,
+				172F144B299D667300A4513C /* CoreData */,
+				17662D35288DC5EA0022124F /* Assets.xcassets */,
+				17662D37288DC5EA0022124F /* Preview Content */,
+			);
+			path = MyRaceTimer;
+			sourceTree = "<group>";
+		};
+		17662D37288DC5EA0022124F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				17662D38288DC5EA0022124F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		17763CA329A15CD3002D0B12 /* TransferRepresentations */ = {
+			isa = PBXGroup;
+			children = (
+				172F1459299ED06100A4513C /* StageResult.swift */,
+				17763CA129A1541E002D0B12 /* CSV.swift */,
+			);
+			path = TransferRepresentations;
+			sourceTree = "<group>";
+		};
+		17912D0629A04E6E00FFB1C2 /* Import Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				17912D0729A04E8000FFB1C2 /* ImportSheet.swift */,
+				17912D0929A04E9B00FFB1C2 /* ImportSheetViewModel.swift */,
+			);
+			path = "Import Sheet";
+			sourceTree = "<group>";
+		};
+		17E860EE29A19E03004F2C86 /* ResultsSheet */ = {
+			isa = PBXGroup;
+			children = (
+				17E8610029A2C96F004F2C86 /* TimingResultPair.swift */,
+				17E860F329A1C631004F2C86 /* Result Calculator */,
+			);
+			path = ResultsSheet;
+			sourceTree = "<group>";
+		};
+		17E860F329A1C631004F2C86 /* Result Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				17E860FC29A1FE31004F2C86 /* SelectRecordings */,
+				17E860FD29A28E03004F2C86 /* PairRecordings */,
+				17E860F829A1C720004F2C86 /* ResolveIssues.swift */,
+			);
+			path = "Result Calculator";
+			sourceTree = "<group>";
+		};
+		17E860FC29A1FE31004F2C86 /* SelectRecordings */ = {
+			isa = PBXGroup;
+			children = (
+				17E860F429A1C6A7004F2C86 /* SelectRecordings.swift */,
+				17E860FA29A1E393004F2C86 /* SelectRecordingsViewModel.swift */,
+			);
+			path = SelectRecordings;
+			sourceTree = "<group>";
+		};
+		17E860FD29A28E03004F2C86 /* PairRecordings */ = {
+			isa = PBXGroup;
+			children = (
+				17E860F629A1C6B9004F2C86 /* PairRecordings.swift */,
+				17E860FE29A28E18004F2C86 /* PairRecordingsViewModel.swift */,
+			);
+			path = PairRecordings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		17662D2D288DC5E80022124F /* MyRaceTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17662D3C288DC5EA0022124F /* Build configuration list for PBXNativeTarget "MyRaceTimer" */;
+			buildPhases = (
+				17662D2A288DC5E80022124F /* Sources */,
+				17662D2B288DC5E80022124F /* Frameworks */,
+				17662D2C288DC5E80022124F /* Resources */,
+				17D78B0729A01C1F00BD7944 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyRaceTimer;
+			productName = "Race Timer";
+			productReference = 17662D2E288DC5E80022124F /* MyRaceTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		17662D26288DC5E80022124F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					17662D2D288DC5E80022124F = {
+						CreatedOnToolsVersion = 13.4;
+					};
+				};
+			};
+			buildConfigurationList = 17662D29288DC5E80022124F /* Build configuration list for PBXProject "MyRaceTimer" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 17662D25288DC5E80022124F;
+			productRefGroup = 17662D2F288DC5E80022124F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17662D2D288DC5E80022124F /* MyRaceTimer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		17662D2C288DC5E80022124F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */,
+				17662D36288DC5EA0022124F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17662D2A288DC5E80022124F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				177BB8C629EF3FD00019C38F /* CoreDataViewModel.swift in Sources */,
+				1707250A289C531700F39B89 /* ResultSheet.swift in Sources */,
+				17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */,
+				17763CA229A1541E002D0B12 /* CSV.swift in Sources */,
+				17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */,
+				17E860FF29A28E18004F2C86 /* PairRecordingsViewModel.swift in Sources */,
+				177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */,
+				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
+				172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */,
+				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
+				17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */,
+				177BB8CD29EF47010019C38F /* Result+CoreDataClass.swift in Sources */,
+				177BB8CB29EF47010019C38F /* Recording+CoreDataClass.swift in Sources */,
+				177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */,
+				17912D0829A04E8000FFB1C2 /* ImportSheet.swift in Sources */,
+				172F145A299ED06100A4513C /* StageResult.swift in Sources */,
+				177BB8CE29EF47010019C38F /* Result+CoreDataProperties.swift in Sources */,
+				177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */,
+				17E8610129A2C96F004F2C86 /* TimingResultPair.swift in Sources */,
+				17E860FB29A1E393004F2C86 /* SelectRecordingsViewModel.swift in Sources */,
+				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
+				178AFA1429F315D1001B878D /* UpcomingPlateFieldViewModel.swift in Sources */,
+				17F1C071299BF58B00B6406A /* UpcomingPlateField.swift in Sources */,
+				17912D0A29A04E9B00FFB1C2 /* ImportSheetViewModel.swift in Sources */,
+				172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */,
+				172F1456299D934300A4513C /* ResultSheetViewModel.swift in Sources */,
+				17E860F529A1C6A7004F2C86 /* SelectRecordings.swift in Sources */,
+				17E860F729A1C6B9004F2C86 /* PairRecordings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		17662D3A288DC5EA0022124F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		17662D3B288DC5EA0022124F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		17662D3D288DC5EA0022124F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyRaceTimer/Preview Content\"";
+				DEVELOPMENT_TEAM = WF5NY4PC3R;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyRaceTimer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.MyRaceTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		17662D3E288DC5EA0022124F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyRaceTimer/Preview Content\"";
+				DEVELOPMENT_TEAM = WF5NY4PC3R;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyRaceTimer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.MyRaceTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17662D29288DC5E80022124F /* Build configuration list for PBXProject "MyRaceTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17662D3A288DC5EA0022124F /* Debug */,
+				17662D3B288DC5EA0022124F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17662D3C288DC5EA0022124F /* Build configuration list for PBXNativeTarget "MyRaceTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17662D3D288DC5EA0022124F /* Debug */,
+				17662D3E288DC5EA0022124F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */,
+			);
+			currentVersion = 177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */;
+			path = MyRaceTimer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 17662D26288DC5E80022124F /* Project object */;
+}
