@@ -1,3 +1,10 @@
-<img src="./READMEImages/MyRaceTimerLogo.png" alt="Logo" style="width: 300px">
- Timer for enduro mountain bike races
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./READMEImages/MRTLogoWhite.png">
+  <source media="(prefers-color-scheme: light)" srcset="./READMEImages/MRTLogo.png">
+  <img alt="Logo" src="./READMEImages/MRTLogoWhite.png" style="width: 300px">
+</picture>
 
+##Background
+###Background
+####Background
+Background
