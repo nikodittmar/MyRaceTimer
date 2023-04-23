@@ -77,7 +77,7 @@ struct MenuSheet: View {
                         }
                         .disabled(coreData.selectedResultIsEmpty())
                     }
-                    Section(header: Text("Saved Stage Results")) {
+                    Section(header: Text("Saved Results")) {
                         Button("Create New Stage Result") {
                             coreData.createResult()
                         }
@@ -119,9 +119,14 @@ struct MenuSheet: View {
                             }
                         }
                     }
+                    Section {
+                        Button("Calculate Overall Results") {
+                            
+                        }
+                    }
                 }
             }
-            .navigationBarTitle(Text("Stage Results"), displayMode: .inline)
+            .navigationBarTitle(Text("Menu"), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {
