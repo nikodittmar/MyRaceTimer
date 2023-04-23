@@ -11,12 +11,11 @@
 		172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1447299D660100A4513C /* ContentViewViewModel.swift */; };
 		172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F144C299D66EB00A4513C /* NumberPadViewModel.swift */; };
 		172F1456299D934300A4513C /* ResultSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1455299D934300A4513C /* ResultSheetViewModel.swift */; };
-		172F145A299ED06100A4513C /* StageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1459299ED06100A4513C /* StageResult.swift */; };
 		17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* MyRaceTimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
 		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
-		17763CA229A1541E002D0B12 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17763CA129A1541E002D0B12 /* CSV.swift */; };
+		17763CA229A1541E002D0B12 /* TransferableCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17763CA129A1541E002D0B12 /* TransferableCSV.swift */; };
 		177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */; };
 		177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C329EF3F9A0019C38F /* PersistenceController.swift */; };
 		177BB8C629EF3FD00019C38F /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */; };
@@ -56,14 +55,13 @@
 		172F144C299D66EB00A4513C /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
 		172F1455299D934300A4513C /* ResultSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheetViewModel.swift; sourceTree = "<group>"; };
 		172F1458299E9FDD00A4513C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		172F1459299ED06100A4513C /* StageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageResult.swift; sourceTree = "<group>"; };
 		172F145B299ED44900A4513C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		17662D2E288DC5E80022124F /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		17662D35288DC5EA0022124F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17662D38288DC5EA0022124F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		17763CA129A1541E002D0B12 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		17763CA129A1541E002D0B12 /* TransferableCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferableCSV.swift; sourceTree = "<group>"; };
 		177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
 		177BB8C329EF3F9A0019C38F /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
@@ -182,7 +180,7 @@
 				172F1449299D663600A4513C /* ContentViewComponents */,
 				172F144A299D665F00A4513C /* Sheets */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
-				17763CA329A15CD3002D0B12 /* TransferRepresentations */,
+				17763CA129A1541E002D0B12 /* TransferableCSV.swift */,
 				172F144B299D667300A4513C /* CoreData */,
 				17662D35288DC5EA0022124F /* Assets.xcassets */,
 				17662D37288DC5EA0022124F /* Preview Content */,
@@ -196,15 +194,6 @@
 				17662D38288DC5EA0022124F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		17763CA329A15CD3002D0B12 /* TransferRepresentations */ = {
-			isa = PBXGroup;
-			children = (
-				172F1459299ED06100A4513C /* StageResult.swift */,
-				17763CA129A1541E002D0B12 /* CSV.swift */,
-			);
-			path = TransferRepresentations;
 			sourceTree = "<group>";
 		};
 		17E860EE29A19E03004F2C86 /* ResultsSheet */ = {
@@ -326,7 +315,7 @@
 				177BB8C629EF3FD00019C38F /* CoreDataViewModel.swift in Sources */,
 				1707250A289C531700F39B89 /* ResultSheet.swift in Sources */,
 				17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */,
-				17763CA229A1541E002D0B12 /* CSV.swift in Sources */,
+				17763CA229A1541E002D0B12 /* TransferableCSV.swift in Sources */,
 				17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */,
 				17E860FF29A28E18004F2C86 /* PairRecordingsViewModel.swift in Sources */,
 				177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */,
@@ -339,7 +328,6 @@
 				177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */,
 				17E88C3829F4E1CA009145BD /* CoreDataCodable.swift in Sources */,
 				17E88C3229F4AD0A009145BD /* AddPlateButton.swift in Sources */,
-				172F145A299ED06100A4513C /* StageResult.swift in Sources */,
 				177BB8CE29EF47010019C38F /* Result+CoreDataProperties.swift in Sources */,
 				177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */,
 				17E8610129A2C96F004F2C86 /* TimingResultPair.swift in Sources */,

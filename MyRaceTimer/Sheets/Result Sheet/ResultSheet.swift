@@ -49,14 +49,14 @@ struct ResultSheet: View {
 //                        }
                     }
                     Section {
-                        ShareLink(item: coreData.selectedResult!, preview: SharePreview("result")) {
+                        ShareLink(item: coreData.selectedResult!, preview: SharePreview(coreData.selectedResult?.fileName ?? "")) {
                             Text("Share Stage Result")
                         }
                         .disabled(coreData.selectedResultIsEmpty())
-//                        ShareLink(item: viewModel.resultCsv(), preview: SharePreview(viewModel.exportableStageResultName())) {
-//                            Text("Download Stage Result CSV")
-//                        }
-//                        .disabled(viewModel.emptyResultSet())
+                        ShareLink(item: coreData.selectedResult?.recordingsCSV ?? CSV(csvString: ""), preview: SharePreview(coreData.selectedResult?.fileName ?? "")) {
+                            Text("Download Stage Result CSV")
+                        }
+                        .disabled(coreData.selectedResultIsEmpty())
                     }
                     Section {
                         Button("Clear Recordings", role: .destructive) {

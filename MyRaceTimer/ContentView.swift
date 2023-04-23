@@ -69,12 +69,6 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.presentingResultSheet) {
                 ResultSheet()
             }
-//            .sheet(isPresented: $viewModel.presentingImportSheet) {
-//                ImportSheet(viewModel: viewModel)
-//            }
-//            .sheet(isPresented: $viewModel.presentingResultSheet) {
-//                ResultsSheet()
-//            }
             .alert("Unable to Import Result", isPresented: $coreData.presentingImportFailModal) {
                 Button("Ok", role: .cancel) { }
             }

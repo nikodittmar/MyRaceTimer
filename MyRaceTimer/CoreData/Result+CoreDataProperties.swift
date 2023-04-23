@@ -61,6 +61,20 @@ extension Result {
             $0.timestamp == 0.0
         }
     }
+    
+    public var recordingsCSV: CSV {
+        var csvString: String = ""
+        
+        for recording in wrappedRecordings {
+            csvString.append("\(recording.wrappedPlate),\(recording.timestampString)\n")
+        }
+        
+        return CSV(csvString: csvString)
+    }
+    
+    public var fileName: String {
+        return wrappedName + "-" + (type?.capitalized ?? "Start")
+    }
 }
 
 // MARK: Generated accessors for recordings

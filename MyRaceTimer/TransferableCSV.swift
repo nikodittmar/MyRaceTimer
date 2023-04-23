@@ -9,7 +9,7 @@ import UniformTypeIdentifiers
 import SwiftUI
 import Foundation
 
-struct CSV {
+public struct CSV {
     let csvString: String
     
     func data() -> Data {
@@ -18,7 +18,7 @@ struct CSV {
 }
 
 extension CSV: Transferable {
-    static var transferRepresentation: some TransferRepresentation {
+    public static var transferRepresentation: some TransferRepresentation {
         DataRepresentation(exportedContentType: .commaSeparatedText) { csvString in
             csvString.data()
         }
