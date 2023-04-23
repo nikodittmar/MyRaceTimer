@@ -10,13 +10,10 @@ import UniformTypeIdentifiers
 import Foundation
 import CoreData
 import SwiftUI
-
-extension UTType {
-    static var result: UTType { UTType(exportedAs: "com.nikodittmar.MyRaceTimer.result") }
-}
+import CoreTransferable
 
 @objc(Result)
-public class Result: NSManagedObject, Codable, Transferable {
+public class Result: NSManagedObject, Codable {
     enum CodingKeys: CodingKey {
         case name, type, id, createdDate, updatedDate, recordings
     }
@@ -45,9 +42,5 @@ public class Result: NSManagedObject, Codable, Transferable {
         try container.encode(createdDate, forKey: .createdDate)
         try container.encode(updatedDate, forKey: .updatedDate)
         try container.encode(recordings as! Set<Recording>, forKey: .recordings)
-    }
-    
-    public static var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(contentType: .result)
     }
 }

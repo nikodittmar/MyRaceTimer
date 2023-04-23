@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreTransferable
 
 struct ResultSheet: View {
     @Environment(\.presentationMode) var presentationMode
@@ -49,12 +50,12 @@ struct ResultSheet: View {
 //                        }
                     }
                     Section {
-                        ShareLink(item: coreData.selectedResult!, preview: SharePreview(coreData.selectedResult?.fileName ?? "")) {
-                            Text("Share Stage Result")
+                        Button("Share Result") {
+                            coreData.exportResult()
                         }
                         .disabled(coreData.selectedResultIsEmpty())
-                        ShareLink(item: coreData.selectedResult?.recordingsCSV ?? CSV(csvString: ""), preview: SharePreview(coreData.selectedResult?.fileName ?? "")) {
-                            Text("Download Stage Result CSV")
+                        Button("Download Result CSV") {
+                            coreData.exportResultCSV()
                         }
                         .disabled(coreData.selectedResultIsEmpty())
                     }
@@ -135,6 +136,9 @@ struct ResultSheet: View {
                 })
             }, message: {
                 Text("This cannot be undone.")
+            })
+            .sheet(isPresented: $coreData.presentingShareSheet, content: {
+                ActivityViewController(itemsToShare: coreData.fileToShareURL)
             })
         }
     }

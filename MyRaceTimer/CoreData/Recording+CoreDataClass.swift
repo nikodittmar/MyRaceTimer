@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreTransferable
 
 @objc(Recording)
 public class Recording: NSManagedObject, Codable {

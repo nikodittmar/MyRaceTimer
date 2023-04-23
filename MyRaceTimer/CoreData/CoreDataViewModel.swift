@@ -7,10 +7,15 @@
 
 import Foundation
 import CoreData
+import UniformTypeIdentifiers
 
 public enum ResultType: String {
     case Start = "start"
     case Finish = "finish"
+}
+
+extension UTType {
+    static var result: UTType { UTType(exportedAs: "com.nikodittmar.MyRaceTimer.result") }
 }
 
 @MainActor class CoreDataViewModel: ObservableObject {
@@ -39,6 +44,9 @@ public enum ResultType: String {
     
     @Published var presentingImportSuccessModal: Bool = false
     @Published var presentingImportFailModal: Bool = false
+    
+    @Published var presentingShareSheet: Bool = false
+    @Published var fileToShareURL: [URL] = []
     
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
@@ -156,6 +164,48 @@ public enum ResultType: String {
             }
             
             url.stopAccessingSecurityScopedResource()
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func exportResult() {
+        if let selectedResult = self.selectedResult {
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(selectedResult)
+                let fileName = selectedResult.fileName
+                let fileURL = getDocumentsDirectory().appendingPathComponent(fileName, conformingTo: .result)
+                do {
+                    try FileManager.default.removeItem(at: fileURL)
+                } catch {}
+                do {
+                    try data.write(to: fileURL)
+                    fileToShareURL = [fileURL]
+                    presentingShareSheet = true
+                } catch {}
+            } catch {
+                print("An Unknown Export Error Has Occured.")
+            }
+        }
+    }
+    
+    func exportResultCSV() {
+        if let selectedResult = self.selectedResult {
+            let data = selectedResult.recordingsCSVString
+            let fileName = selectedResult.fileName
+            let fileURL = getDocumentsDirectory().appendingPathComponent(fileName, conformingTo: .commaSeparatedText)
+            do {
+                try FileManager.default.removeItem(at: fileURL)
+            } catch {}
+            do {
+                try data.write(to: fileURL, atomically: true, encoding: .utf8)
+                fileToShareURL = [fileURL]
+                presentingShareSheet = true
+            } catch {}
         }
     }
     

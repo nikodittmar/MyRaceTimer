@@ -62,18 +62,23 @@ extension Result {
         }
     }
     
-    public var recordingsCSV: CSV {
+    public var recordingsCSVString: String {
         var csvString: String = ""
         
         for recording in wrappedRecordings {
             csvString.append("\(recording.wrappedPlate),\(recording.timestampString)\n")
         }
         
-        return CSV(csvString: csvString)
+        return csvString
     }
     
     public var fileName: String {
-        return wrappedName + "-" + (type?.capitalized ?? "Start")
+        var name: String = wrappedName
+        if name == "" {
+            name = "Untitled_Result"
+        }
+
+        return name.replacingOccurrences(of: " ", with: "_") + "_" + (type?.capitalized ?? "Start")
     }
 }
 
