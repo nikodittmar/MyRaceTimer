@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./READMEImages/MRTLogoWhite.png">
-  <source media="(prefers-color-scheme: light)" srcset="./READMEImages/MRTLogo.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./READMEImages/MRTLogoWhite.png" style="width: 300px">
+  <source media="(prefers-color-scheme: light)" srcset="./READMEImages/MRTLogo.png" style="width: 300px">
   <img alt="Logo" src="./READMEImages/MRTLogoWhite.png" style="width: 300px">
 </picture>
 
