@@ -80,6 +80,32 @@ extension Result {
 
         return name.replacingOccurrences(of: " ", with: "_") + "_" + (type?.capitalized ?? "Start")
     }
+    
+    public var missingPlates: Bool {
+        return wrappedRecordings.plates().count != wrappedRecordings.count
+    }
+    
+    public var missingTimestamps: Bool {
+        return !wrappedRecordingsWithoutTimestamps.isEmpty
+    }
+    
+    public var hasDuplicatePlates: Bool {
+        return !wrappedRecordings.plates().duplicates().isEmpty
+    }
+    
+    public var warningCount: Int {
+        var count: Int = 0
+        if missingPlates {
+            count += 1
+        }
+        if missingTimestamps {
+            count += 1
+        }
+        if hasDuplicatePlates {
+            count += 1
+        }
+        return count
+    }
 }
 
 // MARK: Generated accessors for recordings

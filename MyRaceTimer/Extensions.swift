@@ -42,7 +42,9 @@ extension Array where Element == Recording {
     func plates() -> [String] {
         var plates: [String] = []
         for recording in self {
-            plates.append(recording.wrappedPlate)
+            if recording.wrappedPlate != "" {
+                plates.append(recording.wrappedPlate)
+            }
         }
         return plates
     }

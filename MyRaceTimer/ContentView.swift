@@ -60,14 +60,14 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.presentingResultSheet = true
+                        viewModel.presentingMenuSheet = true
                     } label: {
                         Text("Menu")
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.presentingResultSheet) {
-                ResultSheet()
+            .sheet(isPresented: $viewModel.presentingMenuSheet) {
+                MenuSheet()
             }
             .alert("Unable to Import Result", isPresented: $coreData.presentingImportFailModal) {
                 Button("Ok", role: .cancel) { }

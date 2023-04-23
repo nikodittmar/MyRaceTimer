@@ -1,5 +1,5 @@
 //
-//  ResultSheet.swift
+//  MenuSheet.swift
 //  MyRaceTimer
 //
 //  Created by niko dittmar on 8/4/22.
@@ -8,10 +8,10 @@
 import SwiftUI
 import CoreTransferable
 
-struct ResultSheet: View {
+struct MenuSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var coreData: CoreDataViewModel
-    @StateObject var viewModel: ResultSheetViewModel = ResultSheetViewModel()
+    @StateObject var viewModel: MenuSheetViewModel = MenuSheetViewModel()
     
     var body: some View {
         NavigationView {
@@ -32,22 +32,30 @@ struct ResultSheet: View {
                             coreData.setResultType(value)
                         })
                         .pickerStyle(SegmentedPickerStyle())
-//                        if viewModel.duplicatePlateNumbersIn(viewModel.timingResultSet) {
-//                            HStack {
-//                                Image(systemName: "exclamationmark.triangle.fill")
-//                                    .foregroundColor(.yellow)
-//                                Text("Duplicate Race Plate Numbers")
-//                                    .foregroundColor(.black)
-//                            }
-//                        }
-//                        if viewModel.missingPlateNumbersIn(viewModel.timingResultSet) {
-//                            HStack {
-//                                Image(systemName: "exclamationmark.triangle.fill")
-//                                    .foregroundColor(.yellow)
-//                                Text("Missing Race Plate Numbers")
-//                                    .foregroundColor(.black)
-//                            }
-//                        }
+                        if coreData.selectedResult?.hasDuplicatePlates ?? false {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Duplicate Race Plate Numbers")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        if coreData.selectedResult?.missingPlates ?? false {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Missing Race Plate Numbers")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        if coreData.selectedResult?.missingTimestamps ?? false {
+                            HStack {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Missing Timestamps")
+                                    .foregroundColor(.black)
+                            }
+                        }
                     }
                     Section {
                         Button("Share Result") {
@@ -98,14 +106,14 @@ struct ResultSheet: View {
                                                 .foregroundColor(.black)
                                         }
                                         Spacer()
-//                                        if viewModel.warningCountIn(timingResult) != 0 {
-//                                            HStack {
-//                                                Text(String(viewModel.warningCountIn(timingResult)))
-//                                                    .foregroundColor(.black)
-//                                                Image(systemName: "exclamationmark.triangle.fill")
-//                                                    .foregroundColor(.yellow)
-//                                            }
-//                                        }
+                                        if result.warningCount != 0 {
+                                            HStack {
+                                                Text(String(result.warningCount))
+                                                    .foregroundColor(.black)
+                                                Image(systemName: "exclamationmark.triangle.fill")
+                                                    .foregroundColor(.yellow)
+                                            }
+                                        }
                                     }
                                 }
                             }

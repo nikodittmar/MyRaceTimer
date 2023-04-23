@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 @MainActor class ContentViewViewModel: ObservableObject {
-    @Published var presentingResultSheet: Bool = false
+    @Published var presentingMenuSheet: Bool = false
     
     func recordingCountLabel(count: Int) -> String {
         return count == 1 ? "\(count) Recording" : "\(count) Recordings"
