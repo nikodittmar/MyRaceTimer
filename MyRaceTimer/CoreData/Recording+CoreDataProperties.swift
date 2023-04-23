@@ -17,6 +17,7 @@ extension Recording {
     }
 
     @NSManaged public var timestamp: Double
+    @NSManaged public var createdDate: Double
     @NSManaged public var plate: String?
     @NSManaged public var id: UUID?
     @NSManaged public var result: Result?
@@ -33,11 +34,18 @@ extension Recording {
         Date(timeIntervalSince1970: timestamp)
     }
     
+    public var wrappedCreatedDate: Date {
+        Date(timeIntervalSince1970: createdDate)
+    }
+    
     public var timestampString: String {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "H:mm:ss.SS"
-                
-        return dateFormatter.string(from: wrappedTimestamp)
+        if Date(timeIntervalSince1970: 0.0) == wrappedTimestamp {
+            return "--:--:--.--"
+        } else {
+            return dateFormatter.string(from: wrappedTimestamp)
+        }
     }
     
     public var plateLabel: String {

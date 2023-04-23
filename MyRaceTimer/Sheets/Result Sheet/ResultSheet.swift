@@ -48,16 +48,16 @@ struct ResultSheet: View {
 //                            }
 //                        }
                     }
-//                    Section {
-//                        ShareLink(item: viewModel.exportableStageResult(), preview: SharePreview(viewModel.exportableStageResultName())) {
-//                            Text("Share Stage Result")
-//                        }
-//                        .disabled(viewModel.emptyResultSet())
+                    Section {
+                        ShareLink(item: coreData.selectedResult!, preview: SharePreview("result")) {
+                            Text("Share Stage Result")
+                        }
+                        .disabled(coreData.selectedResultIsEmpty())
 //                        ShareLink(item: viewModel.resultCsv(), preview: SharePreview(viewModel.exportableStageResultName())) {
 //                            Text("Download Stage Result CSV")
 //                        }
 //                        .disabled(viewModel.emptyResultSet())
-//                    }
+                    }
                     Section {
                         Button("Clear Recordings", role: .destructive) {
                             viewModel.presentingClearRecordingsWarning = true
@@ -91,7 +91,7 @@ struct ResultSheet: View {
                                                 .foregroundColor(.black)
                                                 .lineLimit(1)
                                             }
-                                            Text("\(result.wrappedRecordings.count) Recordings")
+                                            Text(viewModel.resultLabel(recordingCount: result.wrappedRecordings.count))
                                                 .font(.caption)
                                                 .padding(.bottom, 2)
                                                 .foregroundColor(.black)

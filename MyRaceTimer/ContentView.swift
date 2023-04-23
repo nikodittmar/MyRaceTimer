@@ -16,7 +16,7 @@ struct ContentView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 Button {
-                    coreData.createRecording()
+                    coreData.handleRecordTime()
                 } label: {
                     Text("Record Time")
                         .fontWeight(.bold)
@@ -50,7 +50,7 @@ struct ContentView: View {
                 RecordingsList()
                 
                 if coreData.selectedResult?.wrappedType == ResultType.Start {
-                    UpcomingPlateField()
+                    AddPlateButton()
                 }
                 
                 NumberPad()
@@ -58,18 +58,11 @@ struct ContentView: View {
             .navigationTitle("MyRaceTimer")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         viewModel.presentingResultSheet = true
                     } label: {
-                        Text("Stage")
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Text("Race")
+                        Text("Menu")
                     }
                 }
             }
@@ -82,9 +75,12 @@ struct ContentView: View {
 //            .sheet(isPresented: $viewModel.presentingResultSheet) {
 //                ResultsSheet()
 //            }
-//            .alert("Unable to Import Stage Result", isPresented: $viewModel.presentingImportErrorWarning) {
-//                Button("Ok", role: .cancel) { }
-//            }
+            .alert("Unable to Import Result", isPresented: $coreData.presentingImportFailModal) {
+                Button("Ok", role: .cancel) { }
+            }
+            .alert("Result Successfully Imported!", isPresented: $coreData.presentingImportSuccessModal) {
+                Button("Ok", role: .cancel) { }
+            }
             .ignoresSafeArea(.keyboard)
         }
     }

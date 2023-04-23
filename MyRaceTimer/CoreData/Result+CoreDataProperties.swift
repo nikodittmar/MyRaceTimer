@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 
 extension Result {
@@ -51,7 +52,13 @@ extension Result {
         let set = recordings as? Set<Recording> ?? []
         
         return set.sorted {
-            $0.timestamp > $1.timestamp
+            $0.createdDate > $1.createdDate
+        }
+    }
+    
+    public var wrappedRecordingsWithoutTimestamps: [Recording] {
+        return wrappedRecordings.filter {
+            $0.timestamp == 0.0
         }
     }
 }
@@ -76,3 +83,5 @@ extension Result {
 extension Result : Identifiable {
 
 }
+
+

@@ -22,17 +22,13 @@ public enum ResultType: String {
     @Published var results: [Result] = []
     
     @Published var selectedRecording: Recording?
-    @Published var upcomingPlateFieldSelected: Bool = false
-    @Published var upcomingPlate: String = ""
-    
+        
     @Published var resultName: String = ""
     @Published var resultType: ResultType = ResultType.Start
     
     @Published var selectedResult: Result? {
         didSet {
             UserDefaults.standard.set(selectedResult?.wrappedId.uuidString ?? "", forKey: "selectedResultIdString")
-            upcomingPlateFieldSelected = false
-            upcomingPlate = ""
             selectedRecording = nil
             updateRecordings()
         }
@@ -40,6 +36,9 @@ public enum ResultType: String {
     
     @Published var timeElapsedString: String = "0s"
     @Published var timerIsActive: Bool = false
+    
+    @Published var presentingImportSuccessModal: Bool = false
+    @Published var presentingImportFailModal: Bool = false
     
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
@@ -59,6 +58,105 @@ public enum ResultType: String {
         
         updateRecordings()
         updateResults()
+    }
+    
+    func handleRecordTime() {
+        if let selectedResult = self.selectedResult {
+            let recordingsWithoutTimestamp: [Recording] = selectedResult.wrappedRecordingsWithoutTimestamps
+            
+            if recordingsWithoutTimestamp.isEmpty {
+                createRecording()
+            } else {
+                let currentTime = Double(Date().timeIntervalSince1970)
+                
+                for recording in recordingsWithoutTimestamp {
+                    recording.setValue(currentTime, forKey: "timestamp")
+                }
+                
+                do {
+                    try viewContext.save()
+                    updateRecordings()
+                    secondsSinceLastRecording = 0.0
+                    timeElapsedString = "0s"
+                    timerIsActive = true
+                } catch {
+                    viewContext.rollback()
+                    print("Unable to set Recordings Timestamps: \(error)")
+                }
+            }
+        }
+    }
+    
+    func importResult(url: URL) {
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = JSONDecoder()
+            decoder.userInfo[CodingUserInfoKey.managedObjectContext] = viewContext
+            do {
+                let result = try decoder.decode(Result.self, from: data)
+                if let currentResult = selectedResult {
+                    if currentResult.wrappedRecordings.isEmpty && currentResult.wrappedName.isEmpty {
+                        viewContext.delete(currentResult)
+                    }
+                }
+                
+                do {
+                    try viewContext.save()
+                    selectedResult = result
+                    updateResults()
+                    updateRecordings()
+                    resultName = result.wrappedName
+                    resultType = result.wrappedType
+                    timerIsActive = false
+                    presentingImportSuccessModal = true
+                } catch {
+                    viewContext.rollback()
+                }
+            } catch {
+                presentingImportFailModal = true
+                print("\(error)")
+            }
+        } catch {
+            if url.startAccessingSecurityScopedResource() {
+                do {
+                    let data = try Data(contentsOf: url)
+                    let decoder = JSONDecoder()
+                    decoder.userInfo[CodingUserInfoKey.managedObjectContext] = viewContext
+                    do {
+                        let result = try decoder.decode(Result.self, from: data)
+                        if let currentResult = selectedResult {
+                            if currentResult.wrappedRecordings.isEmpty && currentResult.wrappedName.isEmpty {
+                                viewContext.delete(currentResult)
+                            }
+                        }
+                        
+                        do {
+                            try viewContext.save()
+                            selectedResult = result
+                            updateResults()
+                            updateRecordings()
+                            resultName = result.wrappedName
+                            resultType = result.wrappedType
+                            timerIsActive = false
+                            presentingImportSuccessModal = true
+                        } catch {
+                            viewContext.rollback()
+                        }
+                    } catch {
+                        presentingImportFailModal = true
+                        print("\(error)")
+                    }
+                } catch {
+                    presentingImportFailModal = true
+                    print("\(error)")
+                }
+            } else {
+                presentingImportFailModal = true
+                print("\(error)")
+            }
+            
+            url.stopAccessingSecurityScopedResource()
+        }
     }
     
     // Create
@@ -84,21 +182,18 @@ public enum ResultType: String {
         }
     }
     
-    func createRecording() {
+    func createRecording(withoutTimestamp: Bool = false) {
         if let selectedResult = self.selectedResult {
             let recording = Recording(context: viewContext)
             
             recording.id = UUID()
-            
-            if selectedResult.wrappedType == ResultType.Start {
-                recording.plate = upcomingPlate
-                upcomingPlate = ""
-                upcomingPlateFieldSelected = false
+            recording.plate = ""
+            recording.createdDate = Double(Date().timeIntervalSince1970)
+            if withoutTimestamp {
+                recording.timestamp = 0.0
             } else {
-                recording.plate = ""
+                recording.timestamp = Double(Date().timeIntervalSince1970)
             }
-            
-            recording.timestamp = Double(Date().timeIntervalSince1970)
             recording.result = selectedResult
             
             selectedResult.setValue(Double(Date().timeIntervalSince1970), forKey: "updatedDate")
@@ -107,9 +202,11 @@ public enum ResultType: String {
                 try viewContext.save()
                 updateRecordings()
                 selectedRecording = recording
-                secondsSinceLastRecording = 0.0
-                timeElapsedString = "0s"
-                timerIsActive = true
+                if !withoutTimestamp {
+                    secondsSinceLastRecording = 0.0
+                    timeElapsedString = "0s"
+                    timerIsActive = true
+                }
             } catch {
                 print("Failed to save Recording!")
             }
@@ -142,7 +239,7 @@ public enum ResultType: String {
     
     private func updateResults() {
         let fetchRequest = NSFetchRequest<Result>(entityName: "Result")
-        let sortDescriptor = NSSortDescriptor(key: "updatedDate", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "updatedDate", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
@@ -160,8 +257,6 @@ public enum ResultType: String {
         if recording.wrappedPlate != "" {
             if duplicatePlates.contains(recording.wrappedPlate) {
                 return true
-            } else if recording.wrappedPlate == upcomingPlate {
-                return true
             } else {
                 return false
             }
@@ -172,14 +267,6 @@ public enum ResultType: String {
     
     func recordingPlaceLabel(recording: Recording) -> String {
         return String(recordings.firstIndex(where: {$0.wrappedId == recording.wrappedId}) ?? 0)
-    }
-    
-    func upcomingPlateIsDuplicate() -> Bool {
-        if upcomingPlate != "" {
-            return recordings.plates().contains(upcomingPlate)
-        } else {
-            return false
-        }
     }
     
     func displayedResults() -> [Result] {
@@ -231,7 +318,14 @@ public enum ResultType: String {
     }
     
     func selectResult(_ result: Result) {
+        
         result.setValue(Double(Date().timeIntervalSince1970), forKey: "updatedDate")
+        
+        if let currentResult = selectedResult {
+            if currentResult.wrappedRecordings.isEmpty && currentResult.wrappedName.isEmpty {
+                viewContext.delete(currentResult)
+            }
+        }
         
         do {
             try viewContext.save()
@@ -239,6 +333,7 @@ public enum ResultType: String {
             resultName = result.wrappedName
             resultType = result.wrappedType
             timerIsActive = false
+            updateResults()
         } catch {
             viewContext.rollback()
             print("Unable to set Result updated date: \(error)")
@@ -250,16 +345,6 @@ public enum ResultType: String {
             selectedRecording = nil
         } else {
             selectedRecording = recording
-            upcomingPlateFieldSelected = false
-        }
-    }
-    
-    func selectUpcomingPlateField() {
-        if upcomingPlateFieldSelected {
-            upcomingPlateFieldSelected = false
-        } else {
-            upcomingPlateFieldSelected = true
-            selectedRecording = nil
         }
     }
     
@@ -285,21 +370,8 @@ public enum ResultType: String {
                         print("Unable to append plate digit: \(error)")
                     }
                 }
-            } else if upcomingPlateFieldSelected && upcomingPlate.count < 6 {
-                upcomingPlate.append(String(digit))
-                
-                selectedResult.setValue(Double(Date().timeIntervalSince1970), forKey: "updatedDate")
-                do {
-                    try viewContext.save()
-                    updateRecordings()
-                    updateResults()
-                } catch {
-                    viewContext.rollback()
-                    print("Unable to append plate digit: \(error)")
-                }
             }
         }
-        
     }
     
     func deleteLastPlateDigit() {
@@ -316,8 +388,6 @@ public enum ResultType: String {
                     print("Unable to delete last plate digit: \(error)")
                 }
             }
-        } else if upcomingPlateFieldSelected && upcomingPlate.count > 0 {
-            upcomingPlate = String(upcomingPlate.dropLast(1))
         }
     }
     

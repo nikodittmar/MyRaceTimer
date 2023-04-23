@@ -51,7 +51,7 @@ struct RecordingsListItem: View {
                         .foregroundColor(.yellow)
                 }
                 Spacer()
-                Text(recording.timestampString)
+                Text(recording.timestampString).font(.subheadline.monospaced())
             }
         }
     }

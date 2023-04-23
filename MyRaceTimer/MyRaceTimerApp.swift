@@ -15,9 +15,9 @@ struct MyRaceTimerApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(coreData)
-//                .onOpenURL(perform: { url in
-//                    viewModel.importStageResult(url: url)
-//                })
+                .onOpenURL(perform: { url in
+                    coreData.importResult(url: url)
+                })
                 
         }
     }
