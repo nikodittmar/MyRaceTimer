@@ -1,4 +1,3 @@
-![logo](./READMEImages/MyRaceTimerLogo.png)
-<img src="./READMEImages/MyRaceTimerLogo.png" alt="Logo" style="max-width: 300px">
+<img src="./READMEImages/MyRaceTimerLogo.png" alt="Logo" style="width: 200px">
  Timer for enduro mountain bike races
 
