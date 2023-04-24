@@ -16,7 +16,7 @@
 		1755B41529F5FAD600AB8C62 /* MRTLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1755B41429F5FAD600AB8C62 /* MRTLogo.png */; };
 		1755B41729F6065B00AB8C62 /* ResultPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B41629F6065B00AB8C62 /* ResultPair.swift */; };
 		1755B41929F60F2E00AB8C62 /* SelectResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B41829F60F2E00AB8C62 /* SelectResultsViewModel.swift */; };
-		1755B41B29F7257100AB8C62 /* appmockup.png in Resources */ = {isa = PBXBuildFile; fileRef = 1755B41A29F7257000AB8C62 /* appmockup.png */; };
+		1755B41D29F726DD00AB8C62 /* MRTMockup.png in Resources */ = {isa = PBXBuildFile; fileRef = 1755B41C29F726DD00AB8C62 /* MRTMockup.png */; };
 		17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* MyRaceTimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
@@ -64,7 +64,7 @@
 		1755B41429F5FAD600AB8C62 /* MRTLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MRTLogo.png; sourceTree = "<group>"; };
 		1755B41629F6065B00AB8C62 /* ResultPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPair.swift; sourceTree = "<group>"; };
 		1755B41829F60F2E00AB8C62 /* SelectResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResultsViewModel.swift; sourceTree = "<group>"; };
-		1755B41A29F7257000AB8C62 /* appmockup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appmockup.png; sourceTree = "<group>"; };
+		1755B41C29F726DD00AB8C62 /* MRTMockup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MRTMockup.png; sourceTree = "<group>"; };
 		17662D2E288DC5E80022124F /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		1755B40F29F5F70600AB8C62 /* READMEImages */ = {
 			isa = PBXGroup;
 			children = (
-				1755B41A29F7257000AB8C62 /* appmockup.png */,
+				1755B41C29F726DD00AB8C62 /* MRTMockup.png */,
 				1755B41429F5FAD600AB8C62 /* MRTLogo.png */,
 				1755B41229F5FAC200AB8C62 /* MRTLogoWhite.png */,
 			);
@@ -317,8 +317,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1755B41B29F7257100AB8C62 /* appmockup.png in Resources */,
 				1755B41329F5FAC200AB8C62 /* MRTLogoWhite.png in Resources */,
+				1755B41D29F726DD00AB8C62 /* MRTMockup.png in Resources */,
 				17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */,
 				1755B41529F5FAD600AB8C62 /* MRTLogo.png in Resources */,
 				17662D36288DC5EA0022124F /* Assets.xcassets in Resources */,

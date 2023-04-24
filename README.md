@@ -1,6 +1,7 @@
 <picture>
-    <img alt="mockup" src="./READMEImages/appmockup.png" width="400">
+    <img alt="mockup" src="./READMEImages/MRTMockup.png" width="300">
 </picture>
+<br>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./READMEImages/MRTLogoWhite.png">
   <source media="(prefers-color-scheme: light)" srcset="./READMEImages/MRTLogo.png">
