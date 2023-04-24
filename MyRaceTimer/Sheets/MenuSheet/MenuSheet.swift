@@ -100,7 +100,7 @@ struct MenuSheet: View {
                                                 .foregroundColor(.black)
                                                 .lineLimit(1)
                                             }
-                                            Text(viewModel.resultLabel(recordingCount: result.wrappedRecordings.count))
+                                            Text(viewModel.resultLabel(result: result))
                                                 .font(.caption)
                                                 .padding(.bottom, 2)
                                                 .foregroundColor(.black)
@@ -121,7 +121,7 @@ struct MenuSheet: View {
                     }
                     Section {
                         Button("Calculate Overall Results") {
-                            
+                            viewModel.presentingOverallResultCalculator = true
                         }
                     }
                 }
@@ -152,6 +152,9 @@ struct MenuSheet: View {
             })
             .sheet(isPresented: $coreData.presentingShareSheet, content: {
                 ActivityViewController(itemsToShare: coreData.fileToShareURL)
+            })
+            .fullScreenCover(isPresented: $viewModel.presentingOverallResultCalculator, content: {
+                SelectResults()
             })
         }
     }

@@ -10,12 +10,19 @@ import Foundation
 @MainActor class MenuSheetViewModel: ObservableObject {
     @Published var presentingDeleteResultWarning: Bool = false
     @Published var presentingClearRecordingsWarning: Bool = false
+    @Published var presentingOverallResultCalculator: Bool = false
     
-    func resultLabel(recordingCount: Int) -> String {
+    func resultLabel(result: Result) -> String {
+        let resultType: String = result.wrappedType.rawValue.capitalized
+        let recordingCount: Int = result.wrappedRecordings.count
+        var resultLabel: String = ""
+        
         if recordingCount == 1 {
-            return "\(recordingCount) Recording"
+            resultLabel = "\(recordingCount) Recording, Stage " + resultType
         } else {
-            return "\(recordingCount) Recordings"
+            resultLabel =  "\(recordingCount) Recordings, Stage " + resultType
         }
+        
+        return resultLabel
     }
 }
