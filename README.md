@@ -11,5 +11,4 @@
     </picture>
 </div>
 <br>
-<br>
 MyRaceTimer is an iPhone app that makes timing mountain bike races/timed trials easier than ever before.
