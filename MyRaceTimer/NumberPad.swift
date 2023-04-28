@@ -12,6 +12,8 @@ struct NumberPad: View {
     var onBackspace: () -> Void
     var onDelete: () -> Void
     
+    @State var presentingDeleteWarning: Bool = false
+    
     var body: some View {
         VStack(spacing: -1) {
             HStack(spacing: -1) {
@@ -30,7 +32,15 @@ struct NumberPad: View {
                 Button { self.onInputDigit(9) } label: { Text("9").NumPadButtonStyle() }
             }
             HStack(spacing: -1) {
-                Button { self.onDelete() } label: { Image(systemName: "trash").NumPadButtonStyle(destructive: true) }
+                Button { presentingDeleteWarning = true } label: { Image(systemName: "trash").NumPadButtonStyle(destructive: true) }
+                    .alert("Are you sure you want to delete this recording?", isPresented: $presentingDeleteWarning, actions: {
+                        Button("No", role: .cancel, action: {})
+                        Button("Yes", role: .destructive, action: {
+                            self.onDelete()
+                        })
+                    }, message: {
+                        Text("This cannot be undone.")
+                    })
                 Button { self.onInputDigit(0) } label: { Text("0").NumPadButtonStyle() }
                 Button { self.onBackspace() } label: { Image(systemName: "delete.left").NumPadButtonStyle(destructive: false) }
             }

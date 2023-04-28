@@ -69,7 +69,7 @@ struct ContentView: View {
                 }, onBackspace: {
                     viewModel.handleRemoveLastPlateDigit()
                 }, onDelete: {
-                    viewModel.presentingDeleteResultWarning.toggle()
+                    viewModel.handleDeleteRecording()
                 })
             }
             .navigationTitle("MyRaceTimer")
@@ -89,14 +89,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .alert("Are you sure you want to delete this recording?", isPresented: $viewModel.presentingDeleteResultWarning, actions: {
-                Button("No", role: .cancel, action: {})
-                Button("Yes", role: .destructive, action: {
-                    viewModel.handleDeleteRecording()
-                })
-            }, message: {
-                Text("This cannot be undone.")
-            })
             .sheet(isPresented: $viewModel.presentingRecordingSetsSheet) {
                 RecordingSetsSheet(update: {
                     viewModel.updateRecordings()
@@ -104,6 +96,12 @@ struct ContentView: View {
                     viewModel.deactivateTimer()
                 })
             }
+            .alert("Successfully Imported Recording Set!", isPresented: $viewModel.presentingSuccessfulImportAlert, actions: {
+                Button("Ok", role: .cancel, action: {})
+            })
+            .alert("Error Importing Recording Set!", isPresented: $viewModel.presentingImportErrorAlert, actions: {
+                Button("Ok", role: .cancel, action: {})
+            })
             .ignoresSafeArea(.keyboard)
         }
     }

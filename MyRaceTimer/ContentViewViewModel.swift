@@ -16,8 +16,10 @@ import Foundation
     
     @Published var presentingRecordingSetsSheet: Bool = false
     
-    @Published var presentingDeleteResultWarning: Bool = false
-        
+    @Published var presentingSuccessfulImportAlert: Bool = false
+    @Published var presentingImportErrorAlert: Bool = false
+
+            
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
     
@@ -118,13 +120,15 @@ import Foundation
     }
         
     func importResult(url: URL) {
+        presentingRecordingSetsSheet = false
+        
         do {
             try dataController.importRecordingSet(url: url)
-            presentingRecordingSetsSheet = false
             updateRecordings()
             deactivateTimer()
+            presentingSuccessfulImportAlert = true
         } catch {
-            print("error")
+            presentingImportErrorAlert = true
         }
     }
 }
