@@ -22,6 +22,8 @@
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
 		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
+		17715AA429FC321300739174 /* MyRaceTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17715AA329FC321300739174 /* MyRaceTimerUITests.swift */; };
+		17715AA629FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17715AA529FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift */; };
 		177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */; };
 		177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C329EF3F9A0019C38F /* PersistenceController.swift */; };
 		177BB8CB29EF47010019C38F /* Recording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */; };
@@ -40,6 +42,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		1755B46F29F9D2DD00AB8C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17662D26288DC5E80022124F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17662D2D288DC5E80022124F;
+			remoteInfo = MyRaceTimer;
+		};
+		17715AA729FC321300739174 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 17662D26288DC5E80022124F /* Project object */;
 			proxyType = 1;
@@ -81,6 +90,9 @@
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		17662D35288DC5EA0022124F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17662D38288DC5EA0022124F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		17715AA129FC321300739174 /* MyRaceTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17715AA329FC321300739174 /* MyRaceTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITests.swift; sourceTree = "<group>"; };
+		17715AA529FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
 		177BB8C329EF3F9A0019C38F /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -106,6 +118,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		17662D2B288DC5E80022124F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17715A9E29FC321300739174 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -173,6 +192,7 @@
 				172F1458299E9FDD00A4513C /* README.md */,
 				17662D30288DC5E80022124F /* MyRaceTimer */,
 				1755B46C29F9D2DD00AB8C62 /* MyRaceTimerTests */,
+				17715AA229FC321300739174 /* MyRaceTimerUITests */,
 				17662D2F288DC5E80022124F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -182,6 +202,7 @@
 			children = (
 				17662D2E288DC5E80022124F /* MyRaceTimer.app */,
 				1755B46B29F9D2DD00AB8C62 /* MyRaceTimerTests.xctest */,
+				17715AA129FC321300739174 /* MyRaceTimerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,6 +232,15 @@
 				17662D38288DC5EA0022124F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		17715AA229FC321300739174 /* MyRaceTimerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				17715AA329FC321300739174 /* MyRaceTimerUITests.swift */,
+				17715AA529FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift */,
+			);
+			path = MyRaceTimerUITests;
 			sourceTree = "<group>";
 		};
 		17E860EE29A19E03004F2C86 /* ScoringSheet */ = {
@@ -289,6 +319,24 @@
 			productReference = 17662D2E288DC5E80022124F /* MyRaceTimer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		17715AA029FC321300739174 /* MyRaceTimerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17715AAB29FC321300739174 /* Build configuration list for PBXNativeTarget "MyRaceTimerUITests" */;
+			buildPhases = (
+				17715A9D29FC321300739174 /* Sources */,
+				17715A9E29FC321300739174 /* Frameworks */,
+				17715A9F29FC321300739174 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17715AA829FC321300739174 /* PBXTargetDependency */,
+			);
+			name = MyRaceTimerUITests;
+			productName = MyRaceTimerUITests;
+			productReference = 17715AA129FC321300739174 /* MyRaceTimerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -305,6 +353,10 @@
 					};
 					17662D2D288DC5E80022124F = {
 						CreatedOnToolsVersion = 13.4;
+					};
+					17715AA029FC321300739174 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 17662D2D288DC5E80022124F;
 					};
 				};
 			};
@@ -323,6 +375,7 @@
 			targets = (
 				17662D2D288DC5E80022124F /* MyRaceTimer */,
 				1755B46A29F9D2DD00AB8C62 /* MyRaceTimerTests */,
+				17715AA029FC321300739174 /* MyRaceTimerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +397,13 @@
 				17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */,
 				1755B41529F5FAD600AB8C62 /* MRTLogo.png in Resources */,
 				17662D36288DC5EA0022124F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17715A9F29FC321300739174 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +448,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		17715A9D29FC321300739174 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17715AA429FC321300739174 /* MyRaceTimerUITests.swift in Sources */,
+				17715AA629FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -395,6 +464,11 @@
 			isa = PBXTargetDependency;
 			target = 17662D2D288DC5E80022124F /* MyRaceTimer */;
 			targetProxy = 1755B46F29F9D2DD00AB8C62 /* PBXContainerItemProxy */;
+		};
+		17715AA829FC321300739174 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17662D2D288DC5E80022124F /* MyRaceTimer */;
+			targetProxy = 17715AA729FC321300739174 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -627,6 +701,44 @@
 			};
 			name = Release;
 		};
+		17715AA929FC321300739174 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WF5NY4PC3R;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.MyRaceTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyRaceTimer;
+			};
+			name = Debug;
+		};
+		17715AAA29FC321300739174 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WF5NY4PC3R;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.MyRaceTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyRaceTimer;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -653,6 +765,15 @@
 			buildConfigurations = (
 				17662D3D288DC5EA0022124F /* Debug */,
 				17662D3E288DC5EA0022124F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17715AAB29FC321300739174 /* Build configuration list for PBXNativeTarget "MyRaceTimerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17715AA929FC321300739174 /* Debug */,
+				17715AAA29FC321300739174 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

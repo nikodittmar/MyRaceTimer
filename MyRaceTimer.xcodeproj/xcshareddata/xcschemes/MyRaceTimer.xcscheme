@@ -39,6 +39,17 @@
                ReferencedContainer = "container:MyRaceTimer.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "17715AA029FC321300739174"
+               BuildableName = "MyRaceTimerUITests.xctest"
+               BlueprintName = "MyRaceTimerUITests"
+               ReferencedContainer = "container:MyRaceTimer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
