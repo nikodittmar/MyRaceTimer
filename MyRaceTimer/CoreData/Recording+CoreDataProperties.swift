@@ -20,7 +20,7 @@ extension Recording {
     @NSManaged public var createdDate: Double
     @NSManaged public var plate: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var result: Result?
+    @NSManaged public var recordingSet: RecordingSet?
     
     public var wrappedId: UUID {
         id ?? UUID()
@@ -54,6 +54,10 @@ extension Recording {
             label = "-       -"
         }
         return label
+    }
+    
+    public var missingTimestamp: Bool {
+        return timestamp == 0.0
     }
 }
 

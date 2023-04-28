@@ -8,7 +8,7 @@
 //import SwiftUI
 //
 //struct ResolveIssues: View {
-//    @EnvironmentObject var viewModel: ResultsSheetViewModel
+//    @EnvironmentObject var viewModel: RecordingSetsSheetViewModel
 //    
 //    var body: some View {
 //        VStack {
@@ -16,21 +16,21 @@
 //                Section {
 //                    Text("The following Issues Were Found.")
 //                }
-//                ForEach(viewModel.timingResultPairs, id: \.id) { timingResultPair in
-//                    Text(timingResultPair.start.unwrappedName + ", " + timingResultPair.finish.unwrappedName)
+//                ForEach(viewModel.timingRecordingSetPairs, id: \.id) { timingRecordingSetPair in
+//                    Text(timingRecordingSetPair.start.unwrappedName + ", " + timingRecordingSetPair.finish.unwrappedName)
 //                    Section(header: Text("No Matches Found")) {
-//                        List(timingResultPair.recordingsWithNoMatch(), id: \.id) { recording in
-//                            RecordingListItem(plate: recording.unwrappedPlate, timeString: recording.timeString, start: timingResultPair.recordingIsStart(recording))
+//                        List(timingRecordingSetPair.recordingsWithNoMatch(), id: \.id) { recording in
+//                            RecordingListItem(plate: recording.unwrappedPlate, timeString: recording.timeString, start: timingRecordingSetPair.recordingIsStart(recording))
 //                        }
 //                    }
 //                    Section(header: Text("Too Many Matches")) {
-//                        List(timingResultPair.recordingsWithTooManyMatches(), id: \.id) { recording in
-//                            RecordingListItem(plate: recording.unwrappedPlate, timeString: recording.timeString, start: timingResultPair.recordingIsStart(recording))
+//                        List(timingRecordingSetPair.recordingsWithTooManyMatches(), id: \.id) { recording in
+//                            RecordingListItem(plate: recording.unwrappedPlate, timeString: recording.timeString, start: timingRecordingSetPair.recordingIsStart(recording))
 //                        }
 //                    }
 //                    Section(header: Text("Missing Plates")) {
-//                        List(timingResultPair.recordingsWithNoPlate(), id: \.id) { recording in
-//                            RecordingListItem(plate: recording.unwrappedPlate, timeString: recording.timeString, start: timingResultPair.recordingIsStart(recording))
+//                        List(timingRecordingSetPair.recordingsWithNoPlate(), id: \.id) { recording in
+//                            RecordingListItem(plate: recording.unwrappedPlate, timeString: recording.timeString, start: timingRecordingSetPair.recordingIsStart(recording))
 //                        }
 //                    }
 //                }

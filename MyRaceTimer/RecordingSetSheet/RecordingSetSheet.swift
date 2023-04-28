@@ -1,5 +1,5 @@
 //
-//  MenuSheet.swift
+//  RecordingSetsSheet.swift
 //  MyRaceTimer
 //
 //  Created by niko dittmar on 8/4/22.
@@ -8,31 +8,35 @@
 import SwiftUI
 import CoreTransferable
 
-struct MenuSheet: View {
+struct RecordingSetsSheet: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var coreData: CoreDataViewModel
-    @StateObject var viewModel: MenuSheetViewModel = MenuSheetViewModel()
+    @StateObject var viewModel: RecordingSetsSheetViewModel = RecordingSetsSheetViewModel()
+    
+    var update: () -> Void
+    var deactivateTimer: () -> Void
     
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Current Result")) {
-                        TextField("Result Name", text: $coreData.resultName)
+                    Section(header: Text("Current Recording Set")) {
+                        TextField("Recording Set Name", text: $viewModel.selectedRecordingSetName)
                             .onSubmit {
-                                coreData.setResultName(coreData.resultName)
+                                viewModel.updateRecordingSetName()
                             }
-                        Picker("Timing Position", selection: $coreData.resultType) {
+                        Picker("Recordings Type", selection: $viewModel.selectedRecordingSetType) {
                             Text("Start")
-                                .tag(ResultType.Start)
+                                .tag(RecordingsType.Start)
                             Text("Finish")
-                                .tag(ResultType.Finish)
+                                .tag(RecordingsType.Finish)
                         }
-                        .onChange(of: coreData.resultType, perform: { (value) in
-                            coreData.setResultType(value)
+                        .onChange(of: viewModel.selectedRecordingSetType, perform: { (value) in
+                            viewModel.updateRecordingSetType()
+                            self.update()
                         })
                         .pickerStyle(SegmentedPickerStyle())
-                        if coreData.selectedResult?.hasDuplicatePlates ?? false {
+                        
+                        if viewModel.selectedRecordingSetHasDuplicatePlates() {
                             HStack {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .foregroundColor(.yellow)
@@ -40,7 +44,8 @@ struct MenuSheet: View {
                                     .foregroundColor(.black)
                             }
                         }
-                        if coreData.selectedResult?.missingPlates ?? false {
+                        
+                        if viewModel.selectedRecordingSetHasMissingPlates() {
                             HStack {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .foregroundColor(.yellow)
@@ -48,7 +53,8 @@ struct MenuSheet: View {
                                     .foregroundColor(.black)
                             }
                         }
-                        if coreData.selectedResult?.missingTimestamps ?? false {
+                        
+                        if viewModel.selectedRecordingSetHasMissingTimestamps() {
                             HStack {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .foregroundColor(.yellow)
@@ -58,57 +64,56 @@ struct MenuSheet: View {
                         }
                     }
                     Section {
-                        Button("Share Result") {
-                            coreData.exportResult()
+                        Button("Share Recording Set") {
+                            viewModel.exportSelectedRecordingSet()
                         }
-                        .disabled(coreData.selectedResultIsEmpty())
-                        Button("Download Result CSV") {
-                            coreData.exportResultCSV()
+                        .disabled(viewModel.selectedRecordingSetIsEmpty())
+                        Button("Download Recording Set CSV") {
+                            viewModel.exportSelectedRecordingSetCSV()
                         }
-                        .disabled(coreData.selectedResultIsEmpty())
+                        .disabled(viewModel.selectedRecordingSetIsEmpty())
                     }
                     Section {
-                        Button("Clear Recordings", role: .destructive) {
-                            viewModel.presentingClearRecordingsWarning = true
+                        Button("Delete Recording Set", role: .destructive) {
+                            viewModel.presentingDeleteRecordingSetWarning = true
                         }
-                        .disabled(coreData.selectedResultIsEmpty())
-                        Button("Delete Result", role: .destructive) {
-                            viewModel.presentingDeleteResultWarning = true
-                        }
-                        .disabled(coreData.selectedResultIsEmpty())
+                        .disabled(viewModel.selectedRecordingSetIsEmpty())
                     }
-                    Section(header: Text("Saved Results")) {
-                        Button("Create New Stage Result") {
-                            coreData.createResult()
+                    Section(header: Text("Saved Recording Sets")) {
+                        Button("Create New Recording Set") {
+                            viewModel.createRecordingSet()
+                            self.update()
                         }
-                        .disabled(coreData.selectedResultIsEmpty())
+                        .disabled(viewModel.selectedRecordingSetIsEmpty())
                         Section {
-                            List(coreData.displayedResults(), id: \.wrappedId) { result in
+                            List(viewModel.recordingSetsWithoutSelectedRecordingSet(), id: \.wrappedId) { recordingSet in
                                 Button {
-                                    coreData.selectResult(result)
+                                    viewModel.selectRecordingSet(recordingSet)
+                                    self.update()
+                                    self.deactivateTimer()
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 2) {
-                                            if result.wrappedName == "" {
+                                            if recordingSet.wrappedName == "" {
                                                 Text("Untitled Stage")
                                                     .foregroundColor(.gray)
                                                     .lineLimit(1)
                                                     .padding(.top, 2)
                                             } else {
-                                                Text(result.wrappedName)
+                                                Text(recordingSet.wrappedName)
                                                 .padding(.top, 2)
                                                 .foregroundColor(.black)
                                                 .lineLimit(1)
                                             }
-                                            Text(viewModel.resultLabel(result: result))
+                                            Text(recordingSet.label)
                                                 .font(.caption)
                                                 .padding(.bottom, 2)
                                                 .foregroundColor(.black)
                                         }
                                         Spacer()
-                                        if result.warningCount != 0 {
+                                        if recordingSet.warningCount != 0 {
                                             HStack {
-                                                Text(String(result.warningCount))
+                                                Text(String(recordingSet.warningCount))
                                                     .foregroundColor(.black)
                                                 Image(systemName: "exclamationmark.triangle.fill")
                                                     .foregroundColor(.yellow)
@@ -119,14 +124,9 @@ struct MenuSheet: View {
                             }
                         }
                     }
-                    Section {
-                        Button("Calculate Overall Results") {
-                            viewModel.presentingOverallResultCalculator = true
-                        }
-                    }
                 }
             }
-            .navigationBarTitle(Text("Menu"), displayMode: .inline)
+            .navigationBarTitle(Text("Recording Sets"), displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {
@@ -134,27 +134,17 @@ struct MenuSheet: View {
                     }
                 }
             }
-            .alert("Are you sure you want to delete all recordings?", isPresented: $viewModel.presentingClearRecordingsWarning, actions: {
+            .alert("Are you sure you want to delete this Recording Set?", isPresented: $viewModel.presentingDeleteRecordingSetWarning, actions: {
                 Button("No", role: .cancel, action: {})
                 Button("Yes", role: .destructive, action: {
-                    coreData.clearRecordings()
+                    viewModel.deleteSelectedRecordingSet()
+                    self.update()
                 })
             }, message: {
                 Text("This cannot be undone.")
             })
-            .alert("Are you sure you want to delete this result?", isPresented: $viewModel.presentingDeleteResultWarning, actions: {
-                Button("No", role: .cancel, action: {})
-                Button("Yes", role: .destructive, action: {
-                    coreData.deleteSelectedResult()
-                })
-            }, message: {
-                Text("This cannot be undone.")
-            })
-            .sheet(isPresented: $coreData.presentingShareSheet, content: {
-                ActivityViewController(itemsToShare: coreData.fileToShareURL)
-            })
-            .fullScreenCover(isPresented: $viewModel.presentingOverallResultCalculator, content: {
-                SelectResults()
+            .sheet(isPresented: $viewModel.presentingShareSheet, content: {
+                ActivityViewController(itemsToShare: viewModel.fileToShareURL)
             })
         }
     }

@@ -1,5 +1,5 @@
 //
-//  Result+CoreDataProperties.swift
+//  RecordingSet+CoreDataProperties.swift
 //  MyRaceTimer
 //
 //  Created by niko dittmar on 4/18/23.
@@ -11,10 +11,10 @@ import CoreData
 import SwiftUI
 
 
-extension Result {
+extension RecordingSet {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Result> {
-        return NSFetchRequest<Result>(entityName: "Result")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<RecordingSet> {
+        return NSFetchRequest<RecordingSet>(entityName: "RecordingSet")
     }
 
     @NSManaged public var createdDate: Double
@@ -40,11 +40,11 @@ extension Result {
         Date(timeIntervalSince1970: createdDate)
     }
     
-    public var wrappedType: ResultType {
-        if type ?? "" == ResultType.Finish.rawValue {
-            return ResultType.Finish
+    public var wrappedType: RecordingsType {
+        if type ?? "" == RecordingsType.Finish.rawValue {
+            return RecordingsType.Finish
         } else {
-            return ResultType.Start
+            return RecordingsType.Start
         }
     }
     
@@ -75,7 +75,7 @@ extension Result {
     public var fileName: String {
         var name: String = wrappedName
         if name == "" {
-            name = "Untitled_Result"
+            name = "Untitled_Recording_Set"
         }
 
         return name.replacingOccurrences(of: " ", with: "_") + "_" + (type?.capitalized ?? "Start")
@@ -91,6 +91,20 @@ extension Result {
     
     public var hasDuplicatePlates: Bool {
         return !wrappedRecordings.plates().duplicates().isEmpty
+    }
+    
+    public var label: String {
+        let RecordingsType: String = wrappedType.rawValue.capitalized
+        let recordingCount: Int = wrappedRecordings.count
+        var RecordingSetLabel: String = ""
+        
+        if recordingCount == 1 {
+            RecordingSetLabel = "\(recordingCount) Recording, " + RecordingsType
+        } else {
+            RecordingSetLabel =  "\(recordingCount) Recordings, " + RecordingsType
+        }
+        
+        return RecordingSetLabel
     }
     
     public var warningCount: Int {
@@ -109,7 +123,7 @@ extension Result {
 }
 
 // MARK: Generated accessors for recordings
-extension Result {
+extension RecordingSet {
 
     @objc(addRecordingsObject:)
     @NSManaged public func addToRecordings(_ value: Recording)
@@ -125,7 +139,7 @@ extension Result {
 
 }
 
-extension Result : Identifiable {
+extension RecordingSet : Identifiable {
 
 }
 

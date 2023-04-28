@@ -48,6 +48,20 @@ extension Array where Element == Recording {
         }
         return plates
     }
+    func recordingsWithoutTimestamps() -> [Recording] {
+        return self.filter {
+            $0.timestamp == 0.0
+        }
+    }
+    
+}
+
+extension Array where Element: Equatable {
+    func without(_ element: Element) -> [Element] {
+        return self.filter {
+            $0 != element
+        }
+    }
 }
 
 extension URL: Identifiable {

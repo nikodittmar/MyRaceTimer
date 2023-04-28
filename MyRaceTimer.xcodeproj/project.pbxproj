@@ -7,37 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1707250A289C531700F39B89 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* MenuSheet.swift */; };
+		1707250A289C531700F39B89 /* RecordingSetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17072509289C531700F39B89 /* RecordingSetSheet.swift */; };
 		172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1447299D660100A4513C /* ContentViewViewModel.swift */; };
-		172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F144C299D66EB00A4513C /* NumberPadViewModel.swift */; };
-		172F1456299D934300A4513C /* MenuSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1455299D934300A4513C /* MenuSheetViewModel.swift */; };
+		172F1456299D934300A4513C /* RecordingSetSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F1455299D934300A4513C /* RecordingSetSheetViewModel.swift */; };
 		1755B40E29F5D8D400AB8C62 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B40D29F5D8D400AB8C62 /* ActivityViewController.swift */; };
 		1755B41329F5FAC200AB8C62 /* MRTLogoWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 1755B41229F5FAC200AB8C62 /* MRTLogoWhite.png */; };
 		1755B41529F5FAD600AB8C62 /* MRTLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1755B41429F5FAD600AB8C62 /* MRTLogo.png */; };
 		1755B41729F6065B00AB8C62 /* ResultPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B41629F6065B00AB8C62 /* ResultPair.swift */; };
 		1755B41929F60F2E00AB8C62 /* SelectResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B41829F60F2E00AB8C62 /* SelectResultsViewModel.swift */; };
 		1755B41D29F726DD00AB8C62 /* MRTMockup.png in Resources */ = {isa = PBXBuildFile; fileRef = 1755B41C29F726DD00AB8C62 /* MRTMockup.png */; };
+		1755B46629F9CE7600AB8C62 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B46529F9CE7500AB8C62 /* DataController.swift */; };
+		1755B47529F9D30500AB8C62 /* DataControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1755B47429F9D30500AB8C62 /* DataControllerTests.swift */; };
 		17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D31288DC5E80022124F /* MyRaceTimerApp.swift */; };
 		17662D34288DC5E80022124F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17662D33288DC5E80022124F /* ContentView.swift */; };
 		17662D36288DC5EA0022124F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D35288DC5EA0022124F /* Assets.xcassets */; };
 		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
 		177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */; };
 		177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C329EF3F9A0019C38F /* PersistenceController.swift */; };
-		177BB8C629EF3FD00019C38F /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */; };
 		177BB8CB29EF47010019C38F /* Recording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */; };
 		177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C829EF47010019C38F /* Recording+CoreDataProperties.swift */; };
-		177BB8CD29EF47010019C38F /* Result+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C929EF47010019C38F /* Result+CoreDataClass.swift */; };
-		177BB8CE29EF47010019C38F /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8CA29EF47010019C38F /* Result+CoreDataProperties.swift */; };
+		177BB8CD29EF47010019C38F /* RecordingSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C929EF47010019C38F /* RecordingSet+CoreDataClass.swift */; };
+		177BB8CE29EF47010019C38F /* RecordingSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8CA29EF47010019C38F /* RecordingSet+CoreDataProperties.swift */; };
 		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
 		17E860F529A1C6A7004F2C86 /* SelectResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F429A1C6A7004F2C86 /* SelectResults.swift */; };
 		17E860F729A1C6B9004F2C86 /* PairResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F629A1C6B9004F2C86 /* PairResults.swift */; };
 		17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F829A1C720004F2C86 /* ResolveIssues.swift */; };
 		17E860FB29A1E393004F2C86 /* ResultCalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860FA29A1E393004F2C86 /* ResultCalculatorViewModel.swift */; };
-		17E88C3229F4AD0A009145BD /* AddPlateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E88C3129F4AD0A009145BD /* AddPlateButton.swift */; };
 		17E88C3829F4E1CA009145BD /* CoreDataCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E88C3729F4E1CA009145BD /* CoreDataCodable.swift */; };
 		17FC6645299AB7F000990518 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6644299AB7F000990518 /* NumberPad.swift */; };
 		17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6646299B11CE00990518 /* RecordingsList.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1755B46F29F9D2DD00AB8C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17662D26288DC5E80022124F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17662D2D288DC5E80022124F;
+			remoteInfo = MyRaceTimer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		17D78B0729A01C1F00BD7944 /* Embed Foundation Extensions */ = {
@@ -53,10 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		17072509289C531700F39B89 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
+		17072509289C531700F39B89 /* RecordingSetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSetSheet.swift; sourceTree = "<group>"; };
 		172F1447299D660100A4513C /* ContentViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewViewModel.swift; sourceTree = "<group>"; };
-		172F144C299D66EB00A4513C /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
-		172F1455299D934300A4513C /* MenuSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheetViewModel.swift; sourceTree = "<group>"; };
+		172F1455299D934300A4513C /* RecordingSetSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSetSheetViewModel.swift; sourceTree = "<group>"; };
 		172F1458299E9FDD00A4513C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		172F145B299ED44900A4513C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		1755B40D29F5D8D400AB8C62 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +73,9 @@
 		1755B41629F6065B00AB8C62 /* ResultPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPair.swift; sourceTree = "<group>"; };
 		1755B41829F60F2E00AB8C62 /* SelectResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResultsViewModel.swift; sourceTree = "<group>"; };
 		1755B41C29F726DD00AB8C62 /* MRTMockup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MRTMockup.png; sourceTree = "<group>"; };
+		1755B46529F9CE7500AB8C62 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		1755B46B29F9D2DD00AB8C62 /* MyRaceTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1755B47429F9D30500AB8C62 /* DataControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllerTests.swift; sourceTree = "<group>"; };
 		17662D2E288DC5E80022124F /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17662D31288DC5E80022124F /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		17662D33288DC5E80022124F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,23 +83,28 @@
 		17662D38288DC5EA0022124F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
 		177BB8C329EF3F9A0019C38F /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
-		177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
 		177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataClass.swift"; sourceTree = "<group>"; };
 		177BB8C829EF47010019C38F /* Recording+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		177BB8C929EF47010019C38F /* Result+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataClass.swift"; sourceTree = "<group>"; };
-		177BB8CA29EF47010019C38F /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		177BB8C929EF47010019C38F /* RecordingSet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingSet+CoreDataClass.swift"; sourceTree = "<group>"; };
+		177BB8CA29EF47010019C38F /* RecordingSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17E860F429A1C6A7004F2C86 /* SelectResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResults.swift; sourceTree = "<group>"; };
 		17E860F629A1C6B9004F2C86 /* PairResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairResults.swift; sourceTree = "<group>"; };
 		17E860F829A1C720004F2C86 /* ResolveIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssues.swift; sourceTree = "<group>"; };
 		17E860FA29A1E393004F2C86 /* ResultCalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCalculatorViewModel.swift; sourceTree = "<group>"; };
-		17E88C3129F4AD0A009145BD /* AddPlateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlateButton.swift; sourceTree = "<group>"; };
 		17E88C3729F4E1CA009145BD /* CoreDataCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCodable.swift; sourceTree = "<group>"; };
 		17FC6644299AB7F000990518 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		17FC6646299B11CE00990518 /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1755B46829F9D2DD00AB8C62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17662D2B288DC5E80022124F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,21 +115,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		172F1449299D663600A4513C /* ContentViewComponents */ = {
-			isa = PBXGroup;
-			children = (
-				17E88C3029F4ACE7009145BD /* AddPlateButton */,
-				172F1452299D688500A4513C /* RecordingsList */,
-				172F144E299D67B300A4513C /* NumberPad */,
-			);
-			path = ContentViewComponents;
-			sourceTree = "<group>";
-		};
 		172F144A299D665F00A4513C /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				17E860EE29A19E03004F2C86 /* ResultsSheet */,
-				172F1457299DF83B00A4513C /* MenuSheet */,
+				17E860EE29A19E03004F2C86 /* ScoringSheet */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -125,38 +130,21 @@
 				17E88C3729F4E1CA009145BD /* CoreDataCodable.swift */,
 				177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */,
 				177BB8C829EF47010019C38F /* Recording+CoreDataProperties.swift */,
-				177BB8C929EF47010019C38F /* Result+CoreDataClass.swift */,
-				177BB8CA29EF47010019C38F /* Result+CoreDataProperties.swift */,
+				177BB8C929EF47010019C38F /* RecordingSet+CoreDataClass.swift */,
+				177BB8CA29EF47010019C38F /* RecordingSet+CoreDataProperties.swift */,
 				177BB8C329EF3F9A0019C38F /* PersistenceController.swift */,
-				177BB8C529EF3FD00019C38F /* CoreDataViewModel.swift */,
+				1755B46529F9CE7500AB8C62 /* DataController.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		172F144E299D67B300A4513C /* NumberPad */ = {
+		172F1457299DF83B00A4513C /* RecordingSetSheet */ = {
 			isa = PBXGroup;
 			children = (
-				17FC6644299AB7F000990518 /* NumberPad.swift */,
-				172F144C299D66EB00A4513C /* NumberPadViewModel.swift */,
+				17072509289C531700F39B89 /* RecordingSetSheet.swift */,
+				172F1455299D934300A4513C /* RecordingSetSheetViewModel.swift */,
 			);
-			path = NumberPad;
-			sourceTree = "<group>";
-		};
-		172F1452299D688500A4513C /* RecordingsList */ = {
-			isa = PBXGroup;
-			children = (
-				17FC6646299B11CE00990518 /* RecordingsList.swift */,
-			);
-			path = RecordingsList;
-			sourceTree = "<group>";
-		};
-		172F1457299DF83B00A4513C /* MenuSheet */ = {
-			isa = PBXGroup;
-			children = (
-				17072509289C531700F39B89 /* MenuSheet.swift */,
-				172F1455299D934300A4513C /* MenuSheetViewModel.swift */,
-			);
-			path = MenuSheet;
+			path = RecordingSetSheet;
 			sourceTree = "<group>";
 		};
 		1755B40F29F5F70600AB8C62 /* READMEImages */ = {
@@ -169,6 +157,14 @@
 			path = READMEImages;
 			sourceTree = "<group>";
 		};
+		1755B46C29F9D2DD00AB8C62 /* MyRaceTimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1755B47429F9D30500AB8C62 /* DataControllerTests.swift */,
+			);
+			path = MyRaceTimerTests;
+			sourceTree = "<group>";
+		};
 		17662D25288DC5E80022124F = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +172,7 @@
 				1755B40F29F5F70600AB8C62 /* READMEImages */,
 				172F1458299E9FDD00A4513C /* README.md */,
 				17662D30288DC5E80022124F /* MyRaceTimer */,
+				1755B46C29F9D2DD00AB8C62 /* MyRaceTimerTests */,
 				17662D2F288DC5E80022124F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -184,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				17662D2E288DC5E80022124F /* MyRaceTimer.app */,
+				1755B46B29F9D2DD00AB8C62 /* MyRaceTimerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,10 +190,12 @@
 			isa = PBXGroup;
 			children = (
 				17662D31288DC5E80022124F /* MyRaceTimerApp.swift */,
-				1755B40D29F5D8D400AB8C62 /* ActivityViewController.swift */,
 				17662D33288DC5E80022124F /* ContentView.swift */,
 				172F1447299D660100A4513C /* ContentViewViewModel.swift */,
-				172F1449299D663600A4513C /* ContentViewComponents */,
+				17FC6644299AB7F000990518 /* NumberPad.swift */,
+				17FC6646299B11CE00990518 /* RecordingsList.swift */,
+				1755B40D29F5D8D400AB8C62 /* ActivityViewController.swift */,
+				172F1457299DF83B00A4513C /* RecordingSetSheet */,
 				172F144A299D665F00A4513C /* Sheets */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
 				172F144B299D667300A4513C /* CoreData */,
@@ -213,13 +213,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		17E860EE29A19E03004F2C86 /* ResultsSheet */ = {
+		17E860EE29A19E03004F2C86 /* ScoringSheet */ = {
 			isa = PBXGroup;
 			children = (
 				1755B41629F6065B00AB8C62 /* ResultPair.swift */,
 				17E860F329A1C631004F2C86 /* Result Calculator */,
 			);
-			path = ResultsSheet;
+			path = ScoringSheet;
 			sourceTree = "<group>";
 		};
 		17E860F329A1C631004F2C86 /* Result Calculator */ = {
@@ -250,17 +250,27 @@
 			path = PairResults;
 			sourceTree = "<group>";
 		};
-		17E88C3029F4ACE7009145BD /* AddPlateButton */ = {
-			isa = PBXGroup;
-			children = (
-				17E88C3129F4AD0A009145BD /* AddPlateButton.swift */,
-			);
-			path = AddPlateButton;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1755B46A29F9D2DD00AB8C62 /* MyRaceTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1755B47129F9D2DD00AB8C62 /* Build configuration list for PBXNativeTarget "MyRaceTimerTests" */;
+			buildPhases = (
+				1755B46729F9D2DD00AB8C62 /* Sources */,
+				1755B46829F9D2DD00AB8C62 /* Frameworks */,
+				1755B46929F9D2DD00AB8C62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1755B47029F9D2DD00AB8C62 /* PBXTargetDependency */,
+			);
+			name = MyRaceTimerTests;
+			productName = MyRaceTimerTests;
+			productReference = 1755B46B29F9D2DD00AB8C62 /* MyRaceTimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		17662D2D288DC5E80022124F /* MyRaceTimer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17662D3C288DC5EA0022124F /* Build configuration list for PBXNativeTarget "MyRaceTimer" */;
@@ -289,6 +299,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					1755B46A29F9D2DD00AB8C62 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 17662D2D288DC5E80022124F;
+					};
 					17662D2D288DC5E80022124F = {
 						CreatedOnToolsVersion = 13.4;
 					};
@@ -308,11 +322,19 @@
 			projectRoot = "";
 			targets = (
 				17662D2D288DC5E80022124F /* MyRaceTimer */,
+				1755B46A29F9D2DD00AB8C62 /* MyRaceTimerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1755B46929F9D2DD00AB8C62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17662D2C288DC5E80022124F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,12 +350,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1755B46729F9D2DD00AB8C62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1755B47529F9D30500AB8C62 /* DataControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17662D2A288DC5E80022124F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				177BB8C629EF3FD00019C38F /* CoreDataViewModel.swift in Sources */,
-				1707250A289C531700F39B89 /* MenuSheet.swift in Sources */,
+				1707250A289C531700F39B89 /* RecordingSetSheet.swift in Sources */,
 				17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */,
 				17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */,
 				177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */,
@@ -341,20 +370,19 @@
 				172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */,
 				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */,
-				177BB8CD29EF47010019C38F /* Result+CoreDataClass.swift in Sources */,
+				177BB8CD29EF47010019C38F /* RecordingSet+CoreDataClass.swift in Sources */,
 				1755B41929F60F2E00AB8C62 /* SelectResultsViewModel.swift in Sources */,
+				1755B46629F9CE7600AB8C62 /* DataController.swift in Sources */,
 				177BB8CB29EF47010019C38F /* Recording+CoreDataClass.swift in Sources */,
 				177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */,
 				17E88C3829F4E1CA009145BD /* CoreDataCodable.swift in Sources */,
-				17E88C3229F4AD0A009145BD /* AddPlateButton.swift in Sources */,
-				177BB8CE29EF47010019C38F /* Result+CoreDataProperties.swift in Sources */,
+				177BB8CE29EF47010019C38F /* RecordingSet+CoreDataProperties.swift in Sources */,
 				177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */,
 				1755B41729F6065B00AB8C62 /* ResultPair.swift in Sources */,
 				17E860FB29A1E393004F2C86 /* ResultCalculatorViewModel.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				1755B40E29F5D8D400AB8C62 /* ActivityViewController.swift in Sources */,
-				172F144D299D66EB00A4513C /* NumberPadViewModel.swift in Sources */,
-				172F1456299D934300A4513C /* MenuSheetViewModel.swift in Sources */,
+				172F1456299D934300A4513C /* RecordingSetSheetViewModel.swift in Sources */,
 				17E860F529A1C6A7004F2C86 /* SelectResults.swift in Sources */,
 				17E860F729A1C6B9004F2C86 /* PairResults.swift in Sources */,
 			);
@@ -362,7 +390,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1755B47029F9D2DD00AB8C62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17662D2D288DC5E80022124F /* MyRaceTimer */;
+			targetProxy = 1755B46F29F9D2DD00AB8C62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		1755B47229F9D2DD00AB8C62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WF5NY4PC3R;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.MyRaceTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyRaceTimer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyRaceTimer";
+			};
+			name = Debug;
+		};
+		1755B47329F9D2DD00AB8C62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WF5NY4PC3R;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikodittmar.MyRaceTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyRaceTimer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyRaceTimer";
+			};
+			name = Release;
+		};
 		17662D3A288DC5EA0022124F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -554,6 +630,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1755B47129F9D2DD00AB8C62 /* Build configuration list for PBXNativeTarget "MyRaceTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1755B47229F9D2DD00AB8C62 /* Debug */,
+				1755B47329F9D2DD00AB8C62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17662D29288DC5E80022124F /* Build configuration list for PBXProject "MyRaceTimer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

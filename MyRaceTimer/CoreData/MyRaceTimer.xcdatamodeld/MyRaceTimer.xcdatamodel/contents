@@ -5,14 +5,14 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="plate" attributeType="String"/>
         <attribute name="timestamp" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Result" inverseName="recordings" inverseEntity="Result"/>
+        <relationship name="recordingSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecordingSet" inverseName="recordings" inverseEntity="RecordingSet"/>
     </entity>
-    <entity name="Result" representedClassName="Result" syncable="YES">
+    <entity name="RecordingSet" representedClassName="RecordingSet" syncable="YES">
         <attribute name="createdDate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="updatedDate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recording" inverseName="result" inverseEntity="Recording"/>
+        <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recording" inverseName="recordingSet" inverseEntity="Recording"/>
     </entity>
 </model>

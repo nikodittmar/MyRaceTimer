@@ -9,16 +9,15 @@ import SwiftUI
 
 @main
 struct MyRaceTimerApp: App {
-    @StateObject var coreData: CoreDataViewModel = CoreDataViewModel()
+    
+    @StateObject var viewModel: ContentViewViewModel = ContentViewViewModel()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(coreData)
+            ContentView(viewModel: viewModel)
                 .onOpenURL(perform: { url in
-                    coreData.importResult(url: url)
+                    viewModel.importResult(url: url)
                 })
-                
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Result+CoreDataClass.swift
+//  RecordingSet+CoreDataClass.swift
 //  MyRaceTimer
 //
 //  Created by niko dittmar on 4/18/23.
@@ -12,8 +12,8 @@ import CoreData
 import SwiftUI
 import CoreTransferable
 
-@objc(Result)
-public class Result: NSManagedObject, Codable {
+@objc(RecordingSet)
+public class RecordingSet: NSManagedObject, Codable {
     enum CodingKeys: CodingKey {
         case name, type, id, createdDate, updatedDate, recordings
     }

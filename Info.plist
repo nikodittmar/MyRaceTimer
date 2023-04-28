@@ -6,12 +6,12 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Result</string>
+			<string>RecordingSet</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.nikodittmar.MyRaceTimer.result</string>
+				<string>com.nikodittmar.MyRaceTimer.recordingset</string>
 			</array>
 		</dict>
 	</array>
@@ -25,16 +25,16 @@
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Result</string>
+			<string>RecordingSet</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>com.nikodittmar.MyRaceTimer.result</string>
+			<string>com.nikodittmar.MyRaceTimer.recordingset</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>result</string>
+					<string>recordingset</string>
 				</array>
 			</dict>
 		</dict>
