@@ -29,7 +29,7 @@ public enum ImportError: Error {
 class DataController {
     static let shared: DataController = DataController()
     
-    private let viewContext: NSManagedObjectContext
+    private let viewContext: NSManagedObjectContext = PersistenceController.shared.viewContext
     
     private let userDefaultsSelectedRecordingSetIdStringKey: String
     
@@ -41,10 +41,8 @@ class DataController {
     
     init(forTesting: Bool = false) {
         if forTesting {
-            self.viewContext = PersistenceController.testing.viewContext
             self.userDefaultsSelectedRecordingSetIdStringKey = "selectedRecordingSetIdStringTest"
         } else {
-            self.viewContext = PersistenceController.shared.viewContext
             self.userDefaultsSelectedRecordingSetIdStringKey = "selectedRecordingSetIdString"
         }
         
@@ -299,6 +297,113 @@ class DataController {
             }
         } else {
             throw ImportError.cannotAccessUrlData
+        }
+    }
+    
+    // Results
+    
+    func getResults() -> [Result] {
+        let fetchRequest = NSFetchRequest<Result>(entityName: "Result")
+        let sortDescriptor = NSSortDescriptor(key: "updatedDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch Results")
+            return []
+        }
+    }
+    
+    func getOverallStandings(result: Result) -> [Racer] {
+        return result.standings
+    }
+    
+    func getStandingsFor(result: Result, stage: Stage) -> [Racer] {
+        return result.standingsFor(stage: stage)
+    }
+    
+    func getStages(result: Result) -> [Stage] {
+        return result.wrappedStages
+    }
+    
+    private func getRacerByPlate(result: Result, plate: String) -> Racer? {
+        for racer in result.wrappedRacers {
+            if racer.wrappedPlate == plate {
+                return racer
+            }
+        }
+        return nil
+    }
+    
+    func createResult(recordingSetPairs: [RecordingSetPair], name: String) -> Result? {
+        let result = Result(context: viewContext)
+        result.id = UUID()
+        result.name = name
+        result.createdDate = Double(Date().timeIntervalSince1970)
+        result.updatedDate = Double(Date().timeIntervalSince1970)
+        
+        do {
+            try viewContext.save()
+            for recordingSetPair in recordingSetPairs {
+                if let stage = createStage(result: result, name: recordingSetPair.name) {
+                    for recordingPair in recordingSetPair.recordingPairs() {
+                        if let racer = getRacerByPlate(result: result, plate: recordingPair.plate) {
+                            createStageResult(racer: racer, stage: stage, startTime: recordingPair.startTime, endTime: recordingPair.endTime, penalty: 0.0)
+                        } else if let racer = createRacer(result: result, plate: recordingPair.plate, name: "") {
+                            createStageResult(racer: racer, stage: stage, startTime: recordingPair.startTime, endTime: recordingPair.endTime, penalty: 0.0)
+                        }
+                    }
+                }
+            }
+            
+            return result
+        } catch {
+            return nil
+        }
+    }
+    
+    private func createRacer(result: Result, plate: String, name: String) -> Racer? {
+        let racer = Racer(context: viewContext)
+        racer.id = UUID()
+        racer.plate = plate
+        racer.name = name
+        racer.result = result
+        
+        do {
+            try viewContext.save()
+            return racer
+        } catch {
+            return nil
+        }
+    }
+    
+    private func createStage(result: Result, name: String) -> Stage? {
+        let stage = Stage(context: viewContext)
+        stage.id = UUID()
+        stage.name = name
+        stage.result = result
+        
+        do {
+            try viewContext.save()
+            return stage
+        } catch {
+            return nil
+        }
+    }
+    
+    private func createStageResult(racer: Racer, stage: Stage, startTime: Double, endTime: Double, penalty: Double) {
+        let stageResult = StageResult(context: viewContext)
+        stageResult.racer = racer
+        stageResult.stage = stage
+        stageResult.id = UUID()
+        stageResult.startTime = startTime
+        stageResult.endTime = endTime
+        stageResult.penalty = penalty
+        
+        do {
+            try viewContext.save()
+        } catch {
         }
     }
 }

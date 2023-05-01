@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor class RecordingSetsSheetViewModel: ObservableObject {
-    let dataController: DataController
+    let dataController: DataController = DataController.shared
     
     @Published var selectedRecordingSetName: String = ""
     @Published var selectedRecordingSetType: RecordingsType = RecordingsType.Start
@@ -18,13 +18,7 @@ import Foundation
     
     @Published var fileToShareURL: [URL] = []
     
-    init(forTesting: Bool = false) {
-        if forTesting {
-            dataController = DataController(forTesting: true)
-        } else {
-            dataController = DataController.shared
-        }
-        
+    init() {
         updateSelectedRecordingNameAndTypeField()
     }
     

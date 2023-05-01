@@ -18,7 +18,9 @@ struct RecordingsList: View {
             List(recordings, id: \.wrappedId) { recording in
                 RecordingsListItem(recording: recording, onTap: { self.selectRecording(recording) }, hasDuplicatePlate: recordings.plates().duplicates().contains(recording.wrappedPlate), index: recordings.firstIndex(of: recording) ?? 0)
                     .listRowBackground(selectedRecording == recording ? Color.accentColor.opacity(0.2) : .clear)
+                    .accessibilityLabel("Recording")
             }
+            .accessibilityLabel("Recordings")
             .listStyle(.inset)
             
             if recordings.isEmpty {
@@ -51,6 +53,7 @@ struct RecordingsListItem: View {
                     .overlay(RoundedRectangle(cornerRadius: 8) .stroke(Color(UIColor.systemGray2), lineWidth: 0.5))
                     .background(Color(UIColor.systemGray6))
                     .cornerRadius(8)
+                    .accessibilityLabel("Plate")
                 if hasDuplicatePlate {
                     Image(systemName: "square.on.square")
                         .foregroundColor(.yellow)

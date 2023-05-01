@@ -9,12 +9,14 @@ import SwiftUI
 import Foundation
 
 @MainActor class ContentViewViewModel: ObservableObject {
-    let dataController: DataController
+    
+    let dataController: DataController = DataController.shared
         
     @Published var recordings: [Recording] = []
     @Published var selectedRecording: Recording? = nil
     
     @Published var presentingRecordingSetsSheet: Bool = false
+    @Published var presentingResultSheet: Bool = false
     
     @Published var presentingSuccessfulImportAlert: Bool = false
     @Published var presentingImportErrorAlert: Bool = false
@@ -26,13 +28,7 @@ import Foundation
     @Published var timeElapsedString: String = "0s"
     @Published var timerIsActive: Bool = false
     
-    init(forTesting: Bool = false) {
-        if forTesting {
-            dataController = DataController(forTesting: true)
-        } else {
-            dataController = DataController.shared
-        }
-        
+    init() {
         updateRecordings()
     }
     
@@ -119,16 +115,22 @@ import Foundation
         return count == 1 ? "\(count) Recording" : "\(count) Recordings"
     }
         
-    func importResult(url: URL) {
+    func importRecordingSet(url: URL) {
         presentingRecordingSetsSheet = false
+        presentingResultSheet = false
+
         
         do {
             try dataController.importRecordingSet(url: url)
             updateRecordings()
             deactivateTimer()
-            presentingSuccessfulImportAlert = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.presentingSuccessfulImportAlert = true
+            }
         } catch {
-            presentingImportErrorAlert = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.presentingImportErrorAlert = true
+            }
         }
     }
 }

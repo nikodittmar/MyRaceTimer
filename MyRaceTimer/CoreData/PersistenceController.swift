@@ -9,8 +9,7 @@ import Foundation
 import CoreData
 
 struct PersistenceController {
-    static let shared = PersistenceController()
-    static let testing = PersistenceController(inMemory: true)
+    static let shared = ProcessInfo.processInfo.arguments.contains("forTesting") ? PersistenceController(inMemory: true) : PersistenceController()
     
     let container: NSPersistentContainer
     

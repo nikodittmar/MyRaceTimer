@@ -17,19 +17,19 @@ struct NumberPad: View {
     var body: some View {
         VStack(spacing: -1) {
             HStack(spacing: -1) {
-                Button { self.onInputDigit(1) } label: { Text("1").NumPadButtonStyle() }
-                Button { self.onInputDigit(2) } label: { Text("2").NumPadButtonStyle() }
-                Button { self.onInputDigit(3) } label: { Text("3").NumPadButtonStyle() }
+                Button { self.onInputDigit(1) } label: { Text("1").NumPadButtonStyle() }.accessibilityLabel("One")
+                Button { self.onInputDigit(2) } label: { Text("2").NumPadButtonStyle() }.accessibilityLabel("Two")
+                Button { self.onInputDigit(3) } label: { Text("3").NumPadButtonStyle() }.accessibilityLabel("Three")
             }
             HStack(spacing: -1) {
-                Button { self.onInputDigit(4) } label: { Text("4").NumPadButtonStyle() }
-                Button { self.onInputDigit(5) } label: { Text("5").NumPadButtonStyle() }
-                Button { self.onInputDigit(6) } label: { Text("6").NumPadButtonStyle() }
+                Button { self.onInputDigit(4) } label: { Text("4").NumPadButtonStyle() }.accessibilityLabel("Four")
+                Button { self.onInputDigit(5) } label: { Text("5").NumPadButtonStyle() }.accessibilityLabel("Five")
+                Button { self.onInputDigit(6) } label: { Text("6").NumPadButtonStyle() }.accessibilityLabel("Six")
             }
             HStack(spacing: -1) {
-                Button { self.onInputDigit(7) } label: { Text("7").NumPadButtonStyle() }
-                Button { self.onInputDigit(8) } label: { Text("8").NumPadButtonStyle() }
-                Button { self.onInputDigit(9) } label: { Text("9").NumPadButtonStyle() }
+                Button { self.onInputDigit(7) } label: { Text("7").NumPadButtonStyle() }.accessibilityLabel("Seven")
+                Button { self.onInputDigit(8) } label: { Text("8").NumPadButtonStyle() }.accessibilityLabel("Eight")
+                Button { self.onInputDigit(9) } label: { Text("9").NumPadButtonStyle() }.accessibilityLabel("Nine")
             }
             HStack(spacing: -1) {
                 Button { presentingDeleteWarning = true } label: { Image(systemName: "trash").NumPadButtonStyle(destructive: true) }
@@ -41,8 +41,9 @@ struct NumberPad: View {
                     }, message: {
                         Text("This cannot be undone.")
                     })
-                Button { self.onInputDigit(0) } label: { Text("0").NumPadButtonStyle() }
-                Button { self.onBackspace() } label: { Image(systemName: "delete.left").NumPadButtonStyle(destructive: false) }
+                    .accessibilityLabel("Trash")
+                Button { self.onInputDigit(0) } label: { Text("0").NumPadButtonStyle() }.accessibilityLabel("Zero")
+                Button { self.onBackspace() } label: { Image(systemName: "delete.left").NumPadButtonStyle(destructive: false) }.accessibilityLabel("Backspace")
             }
         }
     }

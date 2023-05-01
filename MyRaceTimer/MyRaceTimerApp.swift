@@ -16,7 +16,7 @@ struct MyRaceTimerApp: App {
         WindowGroup {
             ContentView(viewModel: viewModel)
                 .onOpenURL(perform: { url in
-                    viewModel.importResult(url: url)
+                    viewModel.importRecordingSet(url: url)
                 })
         }
     }

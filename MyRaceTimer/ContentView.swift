@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 .padding(.top, 8)
                 .padding(.bottom, -1)
-                .accessibilityLabel("Record Time Button")
+                .accessibilityLabel("Record Time")
                 
                 HStack {
                     Text(viewModel.recordingCountLabel())
@@ -77,6 +77,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        viewModel.presentingResultSheet = true
                     } label: {
                         Text("Results")
                     }
@@ -95,6 +96,9 @@ struct ContentView: View {
                 }, deactivateTimer: {
                     viewModel.deactivateTimer()
                 })
+            }
+            .sheet(isPresented: $viewModel.presentingResultSheet) {
+                ResultSheet()
             }
             .alert("Successfully Imported Recording Set!", isPresented: $viewModel.presentingSuccessfulImportAlert, actions: {
                 Button("Ok", role: .cancel, action: {})

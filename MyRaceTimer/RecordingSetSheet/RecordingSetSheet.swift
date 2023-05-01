@@ -16,7 +16,7 @@ struct RecordingSetsSheet: View {
     var deactivateTimer: () -> Void
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Form {
                     Section(header: Text("Current Recording Set")) {
@@ -64,16 +64,6 @@ struct RecordingSetsSheet: View {
                         }
                     }
                     Section {
-                        Button("Share Recording Set") {
-                            viewModel.exportSelectedRecordingSet()
-                        }
-                        .disabled(viewModel.selectedRecordingSetIsEmpty())
-                        Button("Download Recording Set CSV") {
-                            viewModel.exportSelectedRecordingSetCSV()
-                        }
-                        .disabled(viewModel.selectedRecordingSetIsEmpty())
-                    }
-                    Section {
                         Button("Delete Recording Set", role: .destructive) {
                             viewModel.presentingDeleteRecordingSetWarning = true
                         }
@@ -83,6 +73,7 @@ struct RecordingSetsSheet: View {
                         Button("Create New Recording Set") {
                             viewModel.createRecordingSet()
                             self.update()
+                            self.deactivateTimer()
                         }
                         .disabled(viewModel.selectedRecordingSetIsEmpty())
                         Section {
@@ -101,9 +92,9 @@ struct RecordingSetsSheet: View {
                                                     .padding(.top, 2)
                                             } else {
                                                 Text(recordingSet.wrappedName)
-                                                .padding(.top, 2)
-                                                .foregroundColor(.black)
-                                                .lineLimit(1)
+                                                    .padding(.top, 2)
+                                                    .foregroundColor(.black)
+                                                    .lineLimit(1)
                                             }
                                             Text(recordingSet.label)
                                                 .font(.caption)
@@ -132,6 +123,14 @@ struct RecordingSetsSheet: View {
                     Button("Close") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.exportSelectedRecordingSet()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .disabled(viewModel.selectedRecordingSetIsEmpty())
                 }
             }
             .alert("Are you sure you want to delete this Recording Set?", isPresented: $viewModel.presentingDeleteRecordingSetWarning, actions: {

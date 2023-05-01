@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Racer" representedClassName="Racer" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="plate" optional="YES" attributeType="String"/>
+        <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Result" inverseName="racers" inverseEntity="Result"/>
+        <relationship name="stageResults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StageResult" inverseName="racer" inverseEntity="StageResult"/>
+    </entity>
     <entity name="Recording" representedClassName="Recording" syncable="YES">
         <attribute name="createdDate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
@@ -14,5 +21,27 @@
         <attribute name="type" attributeType="String"/>
         <attribute name="updatedDate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recording" inverseName="recordingSet" inverseEntity="Recording"/>
+    </entity>
+    <entity name="Result" representedClassName="Result" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="racers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Racer" inverseName="result" inverseEntity="Racer"/>
+        <relationship name="stages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stage" inverseName="result" inverseEntity="Stage"/>
+    </entity>
+    <entity name="Stage" representedClassName="Stage" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Result" inverseName="stages" inverseEntity="Result"/>
+        <relationship name="stageResults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StageResult" inverseName="stage" inverseEntity="StageResult"/>
+    </entity>
+    <entity name="StageResult" representedClassName="StageResult" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="penalty" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="racer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Racer" inverseName="stageResults" inverseEntity="Racer"/>
+        <relationship name="stage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stage" inverseName="stageResults" inverseEntity="Stage"/>
     </entity>
 </model>
