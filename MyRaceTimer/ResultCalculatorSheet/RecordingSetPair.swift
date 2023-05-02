@@ -83,8 +83,19 @@ public struct RecordingSetPair: Identifiable {
     }
     
     public func recordingsWithNegativeTime() -> [Recording] {
-        
-        return []
+        var recordingsWithNegativeTime: [Recording] = []
+
+        for startRecording in start.wrappedRecordings {
+            for finishRecording in finish.wrappedRecordings {
+                if startRecording.plate == finishRecording.plate {
+                    if (startRecording.timestamp - finishRecording.timestamp) < 0 {
+                        recordingsWithNegativeTime.append(startRecording)
+                        recordingsWithNegativeTime.append(finishRecording)
+                    }
+                }
+            }
+        }
+        return recordingsWithNegativeTime
     }
 }
 

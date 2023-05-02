@@ -35,20 +35,20 @@ struct SelectRecordingSets: View {
                                                 .padding(.top, 2)
                                         } else {
                                             Text(recordingSet.wrappedName)
+                                                .foregroundColor(Color(UIColor.label))
                                                 .padding(.top, 2)
-                                                .foregroundColor(.black)
                                                 .lineLimit(1)
                                         }
                                         Text(recordingSet.label)
+                                            .foregroundColor(Color(UIColor.label))
                                             .font(.caption)
                                             .padding(.bottom, 2)
-                                            .foregroundColor(.black)
                                     }
                                     Spacer()
                                     if recordingSet.warningCount != 0 {
                                         HStack {
                                             Text(String(recordingSet.warningCount))
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                             Image(systemName: "exclamationmark.triangle.fill")
                                                 .foregroundColor(.yellow)
                                         }

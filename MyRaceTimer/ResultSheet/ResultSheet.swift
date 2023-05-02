@@ -33,13 +33,13 @@ struct ResultSheet: View {
                                         } else {
                                             Text(result.wrappedName)
                                                 .padding(.top, 2)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                                 .lineLimit(1)
                                         }
                                         Text(result.label)
                                             .font(.caption)
                                             .padding(.bottom, 2)
-                                            .foregroundColor(.black)
+                                            .foregroundColor(Color(UIColor.label))
                                     }
                                 }
                             }

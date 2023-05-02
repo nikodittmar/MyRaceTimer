@@ -53,8 +53,20 @@ extension Array where Element == Recording {
             $0.timestamp == 0.0
         }
     }
-    
+    func withoutDuplicates() -> [Recording] {
+        var uniqueRecordings: [Recording] = []
+        
+        for recording in self {
+            if !uniqueRecordings.contains(recording) {
+                uniqueRecordings.append(recording)
+            }
+        }
+        
+        return uniqueRecordings
+    }
 }
+
+
 
 extension Array where Element: Equatable {
     func without(_ element: Element) -> [Element] {

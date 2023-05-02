@@ -41,7 +41,7 @@ struct RecordingSetsSheet: View {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .foregroundColor(.yellow)
                                 Text("Duplicate Race Plate Numbers")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(UIColor.label))
                             }
                         }
                         
@@ -50,7 +50,7 @@ struct RecordingSetsSheet: View {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .foregroundColor(.yellow)
                                 Text("Missing Race Plate Numbers")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(UIColor.label))
                             }
                         }
                         
@@ -59,7 +59,7 @@ struct RecordingSetsSheet: View {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .foregroundColor(.yellow)
                                 Text("Missing Timestamps")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(UIColor.label))
                             }
                         }
                     }
@@ -93,19 +93,19 @@ struct RecordingSetsSheet: View {
                                             } else {
                                                 Text(recordingSet.wrappedName)
                                                     .padding(.top, 2)
-                                                    .foregroundColor(.black)
+                                                    .foregroundColor(Color(UIColor.label))
                                                     .lineLimit(1)
                                             }
                                             Text(recordingSet.label)
                                                 .font(.caption)
                                                 .padding(.bottom, 2)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                         }
                                         Spacer()
                                         if recordingSet.warningCount != 0 {
                                             HStack {
                                                 Text(String(recordingSet.warningCount))
-                                                    .foregroundColor(.black)
+                                                    .foregroundColor(Color(UIColor.label))
                                                 Image(systemName: "exclamationmark.triangle.fill")
                                                     .foregroundColor(.yellow)
                                             }

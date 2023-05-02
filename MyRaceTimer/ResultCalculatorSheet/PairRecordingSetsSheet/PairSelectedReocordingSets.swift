@@ -39,19 +39,19 @@ struct PairSelectedRecordingSets: View {
                                         } else {
                                             Text(recordingSet.wrappedName)
                                                 .padding(.top, 2)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                                 .lineLimit(1)
                                         }
                                         Text(recordingSet.label)
                                             .font(.caption)
                                             .padding(.bottom, 2)
-                                            .foregroundColor(.black)
+                                            .foregroundColor(Color(UIColor.label))
                                     }
                                     Spacer()
                                     if recordingSet.warningCount != 0 {
                                         HStack {
                                             Text(String(recordingSet.warningCount))
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                             Image(systemName: "exclamationmark.triangle.fill")
                                                 .foregroundColor(.yellow)
                                         }
@@ -79,19 +79,19 @@ struct PairSelectedRecordingSets: View {
                                             } else {
                                                 Text(recordingSetPair.start.wrappedName)
                                                     .padding(.top, 2)
-                                                    .foregroundColor(.black)
+                                                    .foregroundColor(Color(UIColor.label))
                                                     .lineLimit(1)
                                             }
                                             Text(recordingSetPair.start.label)
                                                 .font(.caption)
                                                 .padding(.bottom, 2)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                         }
                                         Spacer()
                                         if recordingSetPair.start.warningCount != 0 {
                                             HStack {
                                                 Text(String(recordingSetPair.start.warningCount))
-                                                    .foregroundColor(.black)
+                                                    .foregroundColor(Color(UIColor.label))
                                                 Image(systemName: "exclamationmark.triangle.fill")
                                                     .foregroundColor(.yellow)
                                             }
@@ -107,19 +107,19 @@ struct PairSelectedRecordingSets: View {
                                             } else {
                                                 Text(recordingSetPair.finish.wrappedName)
                                                     .padding(.top, 2)
-                                                    .foregroundColor(.black)
+                                                    .foregroundColor(Color(UIColor.label))
                                                     .lineLimit(1)
                                             }
                                             Text(recordingSetPair.finish.label)
                                                 .font(.caption)
                                                 .padding(.bottom, 2)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(UIColor.label))
                                         }
                                         Spacer()
                                         if recordingSetPair.finish.warningCount != 0 {
                                             HStack {
                                                 Text(String(recordingSetPair.finish.warningCount))
-                                                    .foregroundColor(.black)
+                                                    .foregroundColor(Color(UIColor.label))
                                                 Image(systemName: "exclamationmark.triangle.fill")
                                                     .foregroundColor(.yellow)
                                             }

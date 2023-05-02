@@ -49,7 +49,6 @@
 		17BD9BC629FDB74B004EDD27 /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD9BBE29FDB74B004EDD27 /* Result+CoreDataProperties.swift */; };
 		17E860F529A1C6A7004F2C86 /* SelectRecordingSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F429A1C6A7004F2C86 /* SelectRecordingSets.swift */; };
 		17E860F729A1C6B9004F2C86 /* PairSelectedReocordingSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F629A1C6B9004F2C86 /* PairSelectedReocordingSets.swift */; };
-		17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E860F829A1C720004F2C86 /* ResolveIssues.swift */; };
 		17E88C3829F4E1CA009145BD /* CoreDataCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E88C3729F4E1CA009145BD /* CoreDataCodable.swift */; };
 		17FC6645299AB7F000990518 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6644299AB7F000990518 /* NumberPad.swift */; };
 		17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC6646299B11CE00990518 /* RecordingsList.swift */; };
@@ -133,7 +132,6 @@
 		17BD9BBE29FDB74B004EDD27 /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		17E860F429A1C6A7004F2C86 /* SelectRecordingSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecordingSets.swift; sourceTree = "<group>"; };
 		17E860F629A1C6B9004F2C86 /* PairSelectedReocordingSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairSelectedReocordingSets.swift; sourceTree = "<group>"; };
-		17E860F829A1C720004F2C86 /* ResolveIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssues.swift; sourceTree = "<group>"; };
 		17E88C3729F4E1CA009145BD /* CoreDataCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCodable.swift; sourceTree = "<group>"; };
 		17FC6644299AB7F000990518 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		17FC6646299B11CE00990518 /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
@@ -164,14 +162,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		172F144A299D665F00A4513C /* Sheets */ = {
-			isa = PBXGroup;
-			children = (
-				17E860EE29A19E03004F2C86 /* ScoringSheet */,
-			);
-			path = Sheets;
-			sourceTree = "<group>";
-		};
 		172F144B299D667300A4513C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,7 +251,6 @@
 				17857CF229FF3098009A9BD0 /* ResultDetailSheet */,
 				1757CD4E29FC6EAA003F9086 /* ResultSheet */,
 				17857CF929FF3B43009A9BD0 /* ResultCalculatorSheet */,
-				172F144A299D665F00A4513C /* Sheets */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
 				172F144B299D667300A4513C /* CoreData */,
 				17662D35288DC5EA0022124F /* Assets.xcassets */,
@@ -387,38 +376,6 @@
 				17BD9BB829FDB74B004EDD27 /* Racer+CoreDataProperties.swift */,
 			);
 			path = Racer;
-			sourceTree = "<group>";
-		};
-		17E860EE29A19E03004F2C86 /* ScoringSheet */ = {
-			isa = PBXGroup;
-			children = (
-				17E860F329A1C631004F2C86 /* Result Calculator */,
-			);
-			path = ScoringSheet;
-			sourceTree = "<group>";
-		};
-		17E860F329A1C631004F2C86 /* Result Calculator */ = {
-			isa = PBXGroup;
-			children = (
-				17E860FC29A1FE31004F2C86 /* SelectResults */,
-				17E860FD29A28E03004F2C86 /* PairResults */,
-				17E860F829A1C720004F2C86 /* ResolveIssues.swift */,
-			);
-			path = "Result Calculator";
-			sourceTree = "<group>";
-		};
-		17E860FC29A1FE31004F2C86 /* SelectResults */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SelectResults;
-			sourceTree = "<group>";
-		};
-		17E860FD29A28E03004F2C86 /* PairResults */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PairResults;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -565,7 +522,6 @@
 			files = (
 				1707250A289C531700F39B89 /* RecordingSetSheet.swift in Sources */,
 				17857CF829FF3263009A9BD0 /* ResultDetailSheetViewModel.swift in Sources */,
-				17E860F929A1C720004F2C86 /* ResolveIssues.swift in Sources */,
 				17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */,
 				177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */,
 				17BD9BB629FDAE92004EDD27 /* ResultSheet.swift in Sources */,
