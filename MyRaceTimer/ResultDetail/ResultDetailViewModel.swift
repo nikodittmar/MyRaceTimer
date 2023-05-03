@@ -7,7 +7,7 @@
 
 import Foundation
 
-@MainActor class ResultDetailSheetViewModel: ObservableObject {
+@MainActor class ResultDetailViewModel: ObservableObject {
     let dataController: DataController = DataController.shared
     var result: Result
     

@@ -20,4 +20,9 @@ import Foundation
     func updateResults() {
         results = dataController.getResults()
     }
+    
+    func navigateToResult(result: Result) {
+        displayingResultCalculatorSheet = false
+        updateResults()
+    }
 }

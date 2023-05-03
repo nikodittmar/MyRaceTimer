@@ -11,8 +11,7 @@ import Foundation
     @Published var selectedRecordingSets: [RecordingSet]
     @Published var recordingSetPairs: [RecordingSetPair] = []
     @Published var selectedRecordingSetForPairing: RecordingSet? = nil
-    @Published var navigatingToResolveIssues: Bool = false
-    @Published var navigatingToResultName: Bool = false
+    @Published var navigatingToResultNaming: Bool = false
     
     init(selectedRecordingSets: [RecordingSet]) {
         self.selectedRecordingSets = selectedRecordingSets
@@ -68,15 +67,5 @@ import Foundation
         }
         selectedRecordingSets.append(recordingSetPair.start)
         selectedRecordingSets.append(recordingSetPair.finish)
-    }
-    
-    func next() {
-        for recordingSetPair in recordingSetPairs {
-            if !recordingSetPair.errors().isEmpty {
-                navigatingToResolveIssues = true
-                return
-            }
-        }
-        navigatingToResultName = true
     }
 }

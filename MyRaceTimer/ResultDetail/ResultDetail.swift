@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ResultDetailSheet: View {
-    @StateObject var viewModel: ResultDetailSheetViewModel
+struct ResultDetail: View {
+    @StateObject var viewModel: ResultDetailViewModel
     @Environment(\.presentationMode) var presentationMode
     
     init(result: Result) {
-        _viewModel = StateObject(wrappedValue: ResultDetailSheetViewModel(result: result))
+        _viewModel = StateObject(wrappedValue: ResultDetailViewModel(result: result))
     }
     
     var body: some View {
@@ -48,7 +48,7 @@ struct ResultDetailSheet: View {
                 viewModel.deleteResult()
                 presentationMode.wrappedValue.dismiss()
             } label: {
-                Label("Delete Result", systemImage: "")
+                Label("Delete Result", systemImage: "trash")
             }
         }
         .navigationTitle(viewModel.result.wrappedName)

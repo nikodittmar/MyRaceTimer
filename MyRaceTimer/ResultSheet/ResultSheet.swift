@@ -22,7 +22,7 @@ struct ResultSheet: View {
                         Section(header: Text("Results")) {
                             List(viewModel.results, id: \.wrappedId) { result in
                                 NavigationLink {
-                                    ResultDetailSheet(result: result)
+                                    ResultDetail(result: result)
                                 } label: {
                                     VStack(alignment: .leading, spacing: 2) {
                                         if result.wrappedName == "" {
@@ -58,6 +58,7 @@ struct ResultSheet: View {
                 SelectRecordingSets()
             })
             .navigationBarTitle(Text("Recording Sets"), displayMode: .inline)
+            .environmentObject(viewModel)
         }
     }
 }

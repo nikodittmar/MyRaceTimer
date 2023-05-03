@@ -43,7 +43,7 @@ extension Result {
         let set = racers as? Set<Racer> ?? []
         
         return set.sorted {
-            $0.overallTime > $1.overallTime
+            $0.overallTime < $1.overallTime
         }
     }
     
@@ -51,7 +51,7 @@ extension Result {
         let set = racers as? Set<Racer> ?? []
         
         return set.sorted {
-            $0.timeFor(stage: stage) > $1.timeFor(stage: stage)
+            $0.timeFor(stage: stage) < $1.timeFor(stage: stage)
         }
     }
     

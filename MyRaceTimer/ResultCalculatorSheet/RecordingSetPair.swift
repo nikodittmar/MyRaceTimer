@@ -29,60 +29,66 @@ public struct RecordingSetPair: Identifiable {
         return recordingPairs
     }
     
-    public func errors() -> [UUID: RecordingErrors] {
-        var errors: [UUID: RecordingErrors] = [:]
-        let allRecordingsPlates: [String] = (start.wrappedRecordings + finish.wrappedRecordings).plates()
-        var platesWithNegativeTime: [String] = []
+    public func issueCount() -> Int {
+        var count: Int = 0
+        let allRecordings = start.wrappedRecordings + finish.wrappedRecordings
+        for recording in allRecordings {
+            count += issuesFor(recording: recording).count
+        }
         
-        for recording in start.wrappedRecordings {
-            let occurances: Int = recording.wrappedPlate.occurrencesIn(allRecordingsPlates)
-            
-            let missingPlate = recording.wrappedPlate == ""
-            let missingTimestamp = recording.missingTimestamp
-            var multipleMatches = false
-            var noMatches = false
-            var negativeTime = false
-            
-            if occurances > 2 {
-                multipleMatches = true
-            } else if occurances < 2 {
-                noMatches = true
-            } else {
-                for endRecording in finish.wrappedRecordings {
-                    if endRecording.wrappedPlate == recording.wrappedPlate {
-                        if (endRecording.timestamp - recording.timestamp) < 0 {
-                            negativeTime = true
-                            platesWithNegativeTime.append(recording.wrappedPlate)
+        return count
+    }
+    
+    public func issuesFor(recording: Recording) -> [RecordingIssue] {
+        var issues: [RecordingIssue] = []
+        
+        if recording.missingTimestamp {
+            issues.append(RecordingIssue.missingTimestamp)
+        }
+        
+        if recording.wrappedPlate == "" {
+            issues.append(RecordingIssue.missingPlate)
+        } else {
+            if start.wrappedRecordings.contains(recording) {
+                if start.wrappedRecordings.plates().duplicates().contains(recording.wrappedPlate) {
+                    issues.append(RecordingIssue.duplicatePlate)
+                }
+                let finishRecordingPlates: [String] = finish.wrappedRecordings.plates()
+                if recording.wrappedPlate.occurrencesIn(finishRecordingPlates) < 1 {
+                    issues.append(RecordingIssue.noMatches)
+                } else if recording.wrappedPlate.occurrencesIn(finishRecordingPlates) > 1 {
+                    issues.append(RecordingIssue.multipleMatches)
+                } else {
+                    for finishRecording in finish.wrappedRecordings {
+                        if finishRecording.wrappedPlate == recording.wrappedPlate {
+                            if (finishRecording.timestamp - recording.timestamp) < 0 {
+                                issues.append(RecordingIssue.negativeTime)
+                            }
+                        }
+                    }
+                }
+            } else if finish.wrappedRecordings.contains(recording) {
+                if finish.wrappedRecordings.plates().duplicates().contains(recording.wrappedPlate) {
+                    issues.append(RecordingIssue.duplicatePlate)
+                }
+                let startRecordingPlates: [String] = start.wrappedRecordings.plates()
+                if recording.wrappedPlate.occurrencesIn(startRecordingPlates) < 1 {
+                    issues.append(RecordingIssue.noMatches)
+                } else if recording.wrappedPlate.occurrencesIn(startRecordingPlates) > 1 {
+                    issues.append(RecordingIssue.multipleMatches)
+                } else {
+                    for startRecording in start.wrappedRecordings {
+                        if startRecording.wrappedPlate == recording.wrappedPlate {
+                            if (recording.timestamp - startRecording.timestamp) < 0 {
+                                issues.append(RecordingIssue.negativeTime)
+                            }
                         }
                     }
                 }
             }
-            
-            errors[recording.wrappedId] = RecordingErrors(missingPlate: missingPlate, missingTimestamp: missingTimestamp, noMatches: noMatches, multipleMatches: multipleMatches, negativeTime: negativeTime)
         }
-        
-        for recording in finish.wrappedRecordings {
-            let occurances: Int = recording.wrappedPlate.occurrencesIn(allRecordingsPlates)
-            
-            let missingPlate = recording.wrappedPlate == ""
-            let missingTimestamp = recording.missingTimestamp
-            var multipleMatches = false
-            var noMatches = false
-            var negativeTime = false
-            
-            if occurances > 2 {
-                multipleMatches = true
-            } else if occurances < 2 {
-                noMatches = true
-            } else if platesWithNegativeTime.contains(recording.wrappedPlate) {
-                negativeTime = true
-            }
-            errors[recording.wrappedId] = RecordingErrors(missingPlate: missingPlate, missingTimestamp: missingTimestamp, noMatches: noMatches, multipleMatches: multipleMatches, negativeTime: negativeTime)
-        }
-        
-        return errors
+        return issues
     }
-
 }
 
 public struct RecordingPair {
@@ -91,10 +97,11 @@ public struct RecordingPair {
     public var plate: String
 }
 
-public struct RecordingErrors {
-    public var missingPlate: Bool
-    public var missingTimestamp: Bool
-    public var noMatches: Bool
-    public var multipleMatches: Bool
-    public var negativeTime: Bool
+public enum RecordingIssue: String {
+    case duplicatePlate = "Duplicate Plate"
+    case missingPlate = "Missing Plate"
+    case missingTimestamp = "Missing Timestamp"
+    case noMatches = "No Matches"
+    case multipleMatches = "Multiple Matches"
+    case negativeTime = "Negative Time"
 }

@@ -7,52 +7,22 @@
 
 import Foundation
 
-@MainActor class ResolveIssueViewModel: ObservableObject {
+@MainActor class ResolveIssuesSheetViewModel: ObservableObject {
     let dataController: DataController = DataController.shared
 
     @Published var recordingSetPair: RecordingSetPair
     @Published var selectedRecording: Recording?
-    @Published var errors: [UUID: RecordingErrors]
     
     init(recordingSetPair: RecordingSetPair) {
         self.recordingSetPair = recordingSetPair
-        self.errors = recordingSetPair.errors()
     }
     
     func update() {
-        self.errors = recordingSetPair.errors()
+        self.recordingSetPair = recordingSetPair
     }
     
-    func errorCount(_ recording: Recording) -> Int {
-        if let recordingErrors = errors[recording.wrappedId] {
-            var count = 0
-            if recordingErrors.missingPlate {
-                count += 1
-            }
-            if recordingErrors.missingTimestamp {
-                count += 1
-            }
-            if recordingErrors.multipleMatches {
-                count += 1
-            }
-            if recordingErrors.noMatches {
-                count += 1
-            }
-            if recordingErrors.negativeTime {
-                count += 1
-            }
-            return count
-        } else {
-            return 0
-        }
-    }
-    
-    func getErrors(_ recording: Recording) -> RecordingErrors {
-        if let recordingErrors = errors[recording.wrappedId] {
-            return recordingErrors
-        } else {
-            return RecordingErrors(missingPlate: false, missingTimestamp: false, noMatches: false, multipleMatches: false, negativeTime: false)
-        }
+    func issuesFor(_ recording: Recording) -> [RecordingIssue] {
+        return recordingSetPair.issuesFor(recording: recording)
     }
     
     func selectRecording(_ recording: Recording) {

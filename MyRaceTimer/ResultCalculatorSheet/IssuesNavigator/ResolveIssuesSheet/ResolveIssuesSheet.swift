@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ResolveIssue: View {
+struct ResolveIssuesSheet: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: ResolveIssueViewModel
+    @StateObject var viewModel: ResolveIssuesSheetViewModel
     
-    init(recordingSetPair: RecordingSetPair) {
-        _viewModel = StateObject(wrappedValue: ResolveIssueViewModel(recordingSetPair: recordingSetPair))
+    init(recordingSetPair: RecordingSetPair, resultName: String) {
+        _viewModel = StateObject(wrappedValue: ResolveIssuesSheetViewModel(recordingSetPair: recordingSetPair))
     }
     
     var body: some View {
@@ -23,7 +23,7 @@ struct ResolveIssue: View {
                         ForEach(viewModel.recordingSetPair.start.wrappedRecordings, id: \.id) { recording in
                             IssueRecordingListItem(recording: recording, onTap: {
                                 viewModel.selectRecording(recording)
-                            }, selected: viewModel.selectedRecording == recording, errors: viewModel.getErrors(recording), errorCount: viewModel.errorCount(recording))
+                            }, selected: viewModel.selectedRecording == recording, issues: viewModel.issuesFor(recording))
                             .listRowBackground(viewModel.selectedRecording == recording ? Color.accentColor.opacity(0.2) : .clear)
                         }
                     }
@@ -31,11 +31,12 @@ struct ResolveIssue: View {
                         ForEach(viewModel.recordingSetPair.finish.wrappedRecordings, id: \.id) { recording in
                             IssueRecordingListItem(recording: recording, onTap: {
                                 viewModel.selectRecording(recording)
-                            }, selected: viewModel.selectedRecording == recording, errors: viewModel.getErrors(recording), errorCount: viewModel.errorCount(recording))
+                            }, selected: viewModel.selectedRecording == recording, issues: viewModel.issuesFor(recording))
                             .listRowBackground(viewModel.selectedRecording == recording ? Color.accentColor.opacity(0.2) : .clear)
                         }
                     }
                 }
+                .padding(.bottom, -8)
                 .listStyle(.inset)
                 NumberPad(onInputDigit: { (digit: Int) in
                     viewModel.handleAppendPlateDigit(digit: digit)
@@ -63,8 +64,7 @@ struct IssueRecordingListItem: View {
     var recording: Recording
     var onTap: () -> Void
     var selected: Bool
-    var errors: RecordingErrors
-    var errorCount: Int
+    var issues: [RecordingIssue]
     
     var body: some View {
         Button {
@@ -79,8 +79,8 @@ struct IssueRecordingListItem: View {
                         .background(Color(UIColor.systemGray6))
                         .cornerRadius(8)
                         .accessibilityLabel("Plate")
-                    if errorCount > 0 {
-                        Text(errorCount == 1 ? "\(errorCount) Error" : "\(errorCount) Errors")
+                    if issues.count > 0 {
+                        Text(issues.count == 1 ? "\(String(issues.count)) Issue" : "\(String(issues.count)) Issues")
                             .foregroundColor(.yellow)
                             .font(.callout)
                     }
@@ -88,27 +88,17 @@ struct IssueRecordingListItem: View {
                     Text(recording.timestampString).font(.subheadline.monospaced())
                 }
                 if selected {
-                    if errors.missingPlate {
-                        Text("Missing Plate")
-                            .font(.footnote)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            ForEach(issues, id: \.self) { issue in
+                                Text(issue.rawValue.uppercased())
+                                    .font(.footnote.bold())
+                                    .foregroundColor(Color(UIColor.secondaryLabel))
+                                
+                            }
+                        }
+                        Spacer()
                     }
-                    if errors.multipleMatches {
-                        Text("Multiple Matches")
-                            .font(.footnote)
-                    }
-                    if errors.missingPlate {
-                        Text("Missing Plate")
-                            .font(.footnote)
-                    }
-                    if errors.noMatches {
-                        Text("Missing Timestamp")
-                            .font(.footnote)
-                    }
-                    if errors.negativeTime {
-                        Text("Pair Results in Negative Time")
-                            .font(.footnote)
-                    }
-                    
                 }
             }
         }

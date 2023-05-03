@@ -17,51 +17,6 @@ struct PairSelectedRecordingSets: View {
     var body: some View {
         VStack {
             Form {
-                if !viewModel.selectedRecordingSets.isEmpty {
-                    Section(header: Text("Selected Recording Sets")) {
-                        List(viewModel.selectedRecordingSets, id: \.wrappedId) { recordingSet in
-                            Button {
-                                viewModel.selectRecordingSetForPairing(recordingSet)
-                            } label: {
-                                HStack {
-                                    if viewModel.selectedRecordingSetForPairing?.wrappedId == recordingSet.wrappedId {
-                                        Image(systemName: "circle.inset.filled")
-                                    } else {
-                                        Image(systemName: "circle")
-                                    }
-                                    
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        if recordingSet.wrappedName == "" {
-                                            Text("Untitled Stage")
-                                                .foregroundColor(.gray)
-                                                .lineLimit(1)
-                                                .padding(.top, 2)
-                                        } else {
-                                            Text(recordingSet.wrappedName)
-                                                .padding(.top, 2)
-                                                .foregroundColor(Color(UIColor.label))
-                                                .lineLimit(1)
-                                        }
-                                        Text(recordingSet.label)
-                                            .font(.caption)
-                                            .padding(.bottom, 2)
-                                            .foregroundColor(Color(UIColor.label))
-                                    }
-                                    Spacer()
-                                    if recordingSet.warningCount != 0 {
-                                        HStack {
-                                            Text(String(recordingSet.warningCount))
-                                                .foregroundColor(Color(UIColor.label))
-                                            Image(systemName: "exclamationmark.triangle.fill")
-                                                .foregroundColor(.yellow)
-                                        }
-                                    }
-                                }
-                            }
-                            .disabled(viewModel.recordingSetIsDisabled(recordingSet))
-                        }
-                    }
-                }
                 if !viewModel.recordingSetPairs.isEmpty {
                     Section(header: Text("Paired Recording Sets")) {
                         ForEach(viewModel.recordingSetPairs, id: \.id) { recordingSetPair in
@@ -130,9 +85,54 @@ struct PairSelectedRecordingSets: View {
                         }
                     }
                 }
+                if !viewModel.selectedRecordingSets.isEmpty {
+                    Section(header: Text("Selected Recording Sets")) {
+                        List(viewModel.selectedRecordingSets, id: \.wrappedId) { recordingSet in
+                            Button {
+                                viewModel.selectRecordingSetForPairing(recordingSet)
+                            } label: {
+                                HStack {
+                                    if viewModel.selectedRecordingSetForPairing?.wrappedId == recordingSet.wrappedId {
+                                        Image(systemName: "circle.inset.filled")
+                                    } else {
+                                        Image(systemName: "circle")
+                                    }
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        if recordingSet.wrappedName == "" {
+                                            Text("Untitled Stage")
+                                                .foregroundColor(.gray)
+                                                .lineLimit(1)
+                                                .padding(.top, 2)
+                                        } else {
+                                            Text(recordingSet.wrappedName)
+                                                .padding(.top, 2)
+                                                .foregroundColor(Color(UIColor.label))
+                                                .lineLimit(1)
+                                        }
+                                        Text(recordingSet.label)
+                                            .font(.caption)
+                                            .padding(.bottom, 2)
+                                            .foregroundColor(Color(UIColor.label))
+                                    }
+                                    Spacer()
+                                    if recordingSet.warningCount != 0 {
+                                        HStack {
+                                            Text(String(recordingSet.warningCount))
+                                                .foregroundColor(Color(UIColor.label))
+                                            Image(systemName: "exclamationmark.triangle.fill")
+                                                .foregroundColor(.yellow)
+                                        }
+                                    }
+                                }
+                            }
+                            .disabled(viewModel.recordingSetIsDisabled(recordingSet))
+                        }
+                    }
+                }
                 Section {
                     Button {
-                        viewModel.next()
+                        viewModel.navigatingToResultNaming = true
                     } label: {
                         HStack {
                             Text("Next")
@@ -143,14 +143,10 @@ struct PairSelectedRecordingSets: View {
                         
                     }
                     .disabled(!viewModel.selectedRecordingSets.isEmpty)
-                    .navigationDestination(isPresented: $viewModel.navigatingToResolveIssues) {
-                        ResolveIssues(recordingSetPairs: viewModel.recordingSetPairs)
+                    .navigationDestination(isPresented: $viewModel.navigatingToResultNaming) {
+                        NameResult(recordingSetPairs: viewModel.recordingSetPairs)
                     }
                 }
-
-//                .navigationDestination(isPresented: $viewModel.navigatingToResultName) {
-//                    ResultName()
-//                }
             }
         }
         .navigationTitle("Pair Recording Sets")

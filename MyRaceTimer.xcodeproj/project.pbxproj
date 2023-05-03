@@ -25,6 +25,7 @@
 		17662D39288DC5EA0022124F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17662D38288DC5EA0022124F /* Preview Assets.xcassets */; };
 		17715AA429FC321300739174 /* MyRaceTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17715AA329FC321300739174 /* MyRaceTimerUITests.swift */; };
 		17715AA629FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17715AA529FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift */; };
+		1776388A2A0318D900B97D50 /* NameResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177638892A0318D900B97D50 /* NameResultViewModel.swift */; };
 		177BB8C229EF3E920019C38F /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C029EF3E920019C38F /* MyRaceTimer.xcdatamodeld */; };
 		177BB8C429EF3F9A0019C38F /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C329EF3F9A0019C38F /* PersistenceController.swift */; };
 		177BB8CB29EF47010019C38F /* Recording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */; };
@@ -32,14 +33,14 @@
 		177BB8CD29EF47010019C38F /* RecordingSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8C929EF47010019C38F /* RecordingSet+CoreDataClass.swift */; };
 		177BB8CE29EF47010019C38F /* RecordingSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177BB8CA29EF47010019C38F /* RecordingSet+CoreDataProperties.swift */; };
 		17857CF129FF302F009A9BD0 /* ResultSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CF029FF302F009A9BD0 /* ResultSheetViewModel.swift */; };
-		17857CF629FF31E6009A9BD0 /* ResultDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CF529FF31E6009A9BD0 /* ResultDetailSheet.swift */; };
-		17857CF829FF3263009A9BD0 /* ResultDetailSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CF729FF3263009A9BD0 /* ResultDetailSheetViewModel.swift */; };
+		17857CF629FF31E6009A9BD0 /* ResultDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CF529FF31E6009A9BD0 /* ResultDetail.swift */; };
+		17857CF829FF3263009A9BD0 /* ResultDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CF729FF3263009A9BD0 /* ResultDetailViewModel.swift */; };
 		17857CFE29FF6B70009A9BD0 /* PairSelectedRecordingSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CFD29FF6B70009A9BD0 /* PairSelectedRecordingSetsViewModel.swift */; };
-		17857D0029FF8F41009A9BD0 /* ResolveIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CFF29FF8F41009A9BD0 /* ResolveIssuesViewModel.swift */; };
-		17857D0229FF8F56009A9BD0 /* ResolveIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D0129FF8F56009A9BD0 /* ResolveIssues.swift */; };
-		17857D052A01E466009A9BD0 /* ResultName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D042A01E466009A9BD0 /* ResultName.swift */; };
-		17857D082A01E7CA009A9BD0 /* ResolveIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D072A01E7CA009A9BD0 /* ResolveIssue.swift */; };
-		17857D0A2A01E7DE009A9BD0 /* ResolveIssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D092A01E7DE009A9BD0 /* ResolveIssueViewModel.swift */; };
+		17857D0029FF8F41009A9BD0 /* IssuesNavigatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CFF29FF8F41009A9BD0 /* IssuesNavigatorViewModel.swift */; };
+		17857D0229FF8F56009A9BD0 /* IssuesNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D0129FF8F56009A9BD0 /* IssuesNavigator.swift */; };
+		17857D052A01E466009A9BD0 /* NameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D042A01E466009A9BD0 /* NameResult.swift */; };
+		17857D082A01E7CA009A9BD0 /* ResolveIssuesSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D072A01E7CA009A9BD0 /* ResolveIssuesSheet.swift */; };
+		17857D0A2A01E7DE009A9BD0 /* ResolveIssuesSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D092A01E7DE009A9BD0 /* ResolveIssuesSheetViewModel.swift */; };
 		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
 		17BD9BB629FDAE92004EDD27 /* ResultSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD9BB529FDAE92004EDD27 /* ResultSheet.swift */; };
 		17BD9BBF29FDB74B004EDD27 /* Racer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD9BB729FDB74B004EDD27 /* Racer+CoreDataClass.swift */; };
@@ -111,6 +112,7 @@
 		17715AA129FC321300739174 /* MyRaceTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17715AA329FC321300739174 /* MyRaceTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITests.swift; sourceTree = "<group>"; };
 		17715AA529FC321300739174 /* MyRaceTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		177638892A0318D900B97D50 /* NameResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameResultViewModel.swift; sourceTree = "<group>"; };
 		177BB8C129EF3E920019C38F /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
 		177BB8C329EF3F9A0019C38F /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		177BB8C729EF47010019C38F /* Recording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -118,14 +120,14 @@
 		177BB8C929EF47010019C38F /* RecordingSet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingSet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		177BB8CA29EF47010019C38F /* RecordingSet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingSet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		17857CF029FF302F009A9BD0 /* ResultSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheetViewModel.swift; sourceTree = "<group>"; };
-		17857CF529FF31E6009A9BD0 /* ResultDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailSheet.swift; sourceTree = "<group>"; };
-		17857CF729FF3263009A9BD0 /* ResultDetailSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailSheetViewModel.swift; sourceTree = "<group>"; };
+		17857CF529FF31E6009A9BD0 /* ResultDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetail.swift; sourceTree = "<group>"; };
+		17857CF729FF3263009A9BD0 /* ResultDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailViewModel.swift; sourceTree = "<group>"; };
 		17857CFD29FF6B70009A9BD0 /* PairSelectedRecordingSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairSelectedRecordingSetsViewModel.swift; sourceTree = "<group>"; };
-		17857CFF29FF8F41009A9BD0 /* ResolveIssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssuesViewModel.swift; sourceTree = "<group>"; };
-		17857D0129FF8F56009A9BD0 /* ResolveIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssues.swift; sourceTree = "<group>"; };
-		17857D042A01E466009A9BD0 /* ResultName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultName.swift; sourceTree = "<group>"; };
-		17857D072A01E7CA009A9BD0 /* ResolveIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssue.swift; sourceTree = "<group>"; };
-		17857D092A01E7DE009A9BD0 /* ResolveIssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssueViewModel.swift; sourceTree = "<group>"; };
+		17857CFF29FF8F41009A9BD0 /* IssuesNavigatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesNavigatorViewModel.swift; sourceTree = "<group>"; };
+		17857D0129FF8F56009A9BD0 /* IssuesNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesNavigator.swift; sourceTree = "<group>"; };
+		17857D042A01E466009A9BD0 /* NameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameResult.swift; sourceTree = "<group>"; };
+		17857D072A01E7CA009A9BD0 /* ResolveIssuesSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssuesSheet.swift; sourceTree = "<group>"; };
+		17857D092A01E7DE009A9BD0 /* ResolveIssuesSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssuesSheetViewModel.swift; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17BD9BB529FDAE92004EDD27 /* ResultSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheet.swift; sourceTree = "<group>"; };
 		17BD9BB729FDB74B004EDD27 /* Racer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Racer+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -254,7 +256,7 @@
 				17FC6646299B11CE00990518 /* RecordingsList.swift */,
 				1755B40D29F5D8D400AB8C62 /* ActivityViewController.swift */,
 				172F1457299DF83B00A4513C /* RecordingSetSheet */,
-				17857CF229FF3098009A9BD0 /* ResultDetailSheet */,
+				17857CF229FF3098009A9BD0 /* ResultDetail */,
 				1757CD4E29FC6EAA003F9086 /* ResultSheet */,
 				17857CF929FF3B43009A9BD0 /* ResultCalculatorSheet */,
 				17A78A9B289B5D76000AA754 /* Extensions.swift */,
@@ -283,13 +285,13 @@
 			path = MyRaceTimerUITests;
 			sourceTree = "<group>";
 		};
-		17857CF229FF3098009A9BD0 /* ResultDetailSheet */ = {
+		17857CF229FF3098009A9BD0 /* ResultDetail */ = {
 			isa = PBXGroup;
 			children = (
-				17857CF529FF31E6009A9BD0 /* ResultDetailSheet.swift */,
-				17857CF729FF3263009A9BD0 /* ResultDetailSheetViewModel.swift */,
+				17857CF529FF31E6009A9BD0 /* ResultDetail.swift */,
+				17857CF729FF3263009A9BD0 /* ResultDetailViewModel.swift */,
 			);
-			path = ResultDetailSheet;
+			path = ResultDetail;
 			sourceTree = "<group>";
 		};
 		17857CF929FF3B43009A9BD0 /* ResultCalculatorSheet */ = {
@@ -298,8 +300,8 @@
 				1755B41629F6065B00AB8C62 /* RecordingSetPair.swift */,
 				17857CFA29FF3B55009A9BD0 /* SelectRecordingSetsSheet */,
 				17857CFB29FF3B62009A9BD0 /* PairRecordingSetsSheet */,
-				17857D032A01E446009A9BD0 /* ResultName */,
-				17857CFC29FF3B76009A9BD0 /* ResolveIssues */,
+				17857D032A01E446009A9BD0 /* NameResult */,
+				17857CFC29FF3B76009A9BD0 /* IssuesNavigator */,
 			);
 			path = ResultCalculatorSheet;
 			sourceTree = "<group>";
@@ -322,31 +324,32 @@
 			path = PairRecordingSetsSheet;
 			sourceTree = "<group>";
 		};
-		17857CFC29FF3B76009A9BD0 /* ResolveIssues */ = {
+		17857CFC29FF3B76009A9BD0 /* IssuesNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				17857CFF29FF8F41009A9BD0 /* ResolveIssuesViewModel.swift */,
-				17857D0129FF8F56009A9BD0 /* ResolveIssues.swift */,
-				17857D062A01E7BA009A9BD0 /* ResolveIssue */,
+				17857CFF29FF8F41009A9BD0 /* IssuesNavigatorViewModel.swift */,
+				17857D0129FF8F56009A9BD0 /* IssuesNavigator.swift */,
+				17857D062A01E7BA009A9BD0 /* ResolveIssuesSheet */,
 			);
-			path = ResolveIssues;
+			path = IssuesNavigator;
 			sourceTree = "<group>";
 		};
-		17857D032A01E446009A9BD0 /* ResultName */ = {
+		17857D032A01E446009A9BD0 /* NameResult */ = {
 			isa = PBXGroup;
 			children = (
-				17857D042A01E466009A9BD0 /* ResultName.swift */,
+				17857D042A01E466009A9BD0 /* NameResult.swift */,
+				177638892A0318D900B97D50 /* NameResultViewModel.swift */,
 			);
-			path = ResultName;
+			path = NameResult;
 			sourceTree = "<group>";
 		};
-		17857D062A01E7BA009A9BD0 /* ResolveIssue */ = {
+		17857D062A01E7BA009A9BD0 /* ResolveIssuesSheet */ = {
 			isa = PBXGroup;
 			children = (
-				17857D072A01E7CA009A9BD0 /* ResolveIssue.swift */,
-				17857D092A01E7DE009A9BD0 /* ResolveIssueViewModel.swift */,
+				17857D072A01E7CA009A9BD0 /* ResolveIssuesSheet.swift */,
+				17857D092A01E7DE009A9BD0 /* ResolveIssuesSheetViewModel.swift */,
 			);
-			path = ResolveIssue;
+			path = ResolveIssuesSheet;
 			sourceTree = "<group>";
 		};
 		17BD9BC729FDB751004EDD27 /* Recording */ = {
@@ -546,13 +549,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1707250A289C531700F39B89 /* RecordingSetSheet.swift in Sources */,
-				17857D052A01E466009A9BD0 /* ResultName.swift in Sources */,
-				17857CF829FF3263009A9BD0 /* ResultDetailSheetViewModel.swift in Sources */,
+				17857D052A01E466009A9BD0 /* NameResult.swift in Sources */,
+				17857CF829FF3263009A9BD0 /* ResultDetailViewModel.swift in Sources */,
 				17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */,
 				177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */,
 				17BD9BB629FDAE92004EDD27 /* ResultSheet.swift in Sources */,
 				17662D34288DC5E80022124F /* ContentView.swift in Sources */,
 				172F1448299D660100A4513C /* ContentViewViewModel.swift in Sources */,
+				1776388A2A0318D900B97D50 /* NameResultViewModel.swift in Sources */,
 				17FC6645299AB7F000990518 /* NumberPad.swift in Sources */,
 				17662D32288DC5E80022124F /* MyRaceTimerApp.swift in Sources */,
 				177BB8CD29EF47010019C38F /* RecordingSet+CoreDataClass.swift in Sources */,
@@ -571,18 +575,18 @@
 				1755B41729F6065B00AB8C62 /* RecordingSetPair.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				1755B40E29F5D8D400AB8C62 /* ActivityViewController.swift in Sources */,
-				17857D0A2A01E7DE009A9BD0 /* ResolveIssueViewModel.swift in Sources */,
-				17857CF629FF31E6009A9BD0 /* ResultDetailSheet.swift in Sources */,
+				17857D0A2A01E7DE009A9BD0 /* ResolveIssuesSheetViewModel.swift in Sources */,
+				17857CF629FF31E6009A9BD0 /* ResultDetail.swift in Sources */,
 				172F1456299D934300A4513C /* RecordingSetSheetViewModel.swift in Sources */,
 				17BD9BBF29FDB74B004EDD27 /* Racer+CoreDataClass.swift in Sources */,
 				17857CF129FF302F009A9BD0 /* ResultSheetViewModel.swift in Sources */,
-				17857D0029FF8F41009A9BD0 /* ResolveIssuesViewModel.swift in Sources */,
+				17857D0029FF8F41009A9BD0 /* IssuesNavigatorViewModel.swift in Sources */,
 				17BD9BC229FDB74B004EDD27 /* Stage+CoreDataProperties.swift in Sources */,
 				17E860F529A1C6A7004F2C86 /* SelectRecordingSets.swift in Sources */,
-				17857D0229FF8F56009A9BD0 /* ResolveIssues.swift in Sources */,
+				17857D0229FF8F56009A9BD0 /* IssuesNavigator.swift in Sources */,
 				17BD9BC429FDB74B004EDD27 /* StageResult+CoreDataProperties.swift in Sources */,
 				17E860F729A1C6B9004F2C86 /* PairSelectedReocordingSets.swift in Sources */,
-				17857D082A01E7CA009A9BD0 /* ResolveIssue.swift in Sources */,
+				17857D082A01E7CA009A9BD0 /* ResolveIssuesSheet.swift in Sources */,
 				17BD9BC029FDB74B004EDD27 /* Racer+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
