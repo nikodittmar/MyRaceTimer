@@ -132,7 +132,7 @@ struct PairSelectedRecordingSets: View {
                 }
                 Section {
                     Button {
-                        
+                        viewModel.next()
                     } label: {
                         HStack {
                             Text("Next")
@@ -140,9 +140,17 @@ struct PairSelectedRecordingSets: View {
                             Image(systemName: "chevron.right")
                                 .foregroundColor(Color(UIColor.systemGray))
                         }
+                        
                     }
                     .disabled(!viewModel.selectedRecordingSets.isEmpty)
+                    .navigationDestination(isPresented: $viewModel.navigatingToResolveIssues) {
+                        ResolveIssues(recordingSetPairs: viewModel.recordingSetPairs)
+                    }
                 }
+
+//                .navigationDestination(isPresented: $viewModel.navigatingToResultName) {
+//                    ResultName()
+//                }
             }
         }
         .navigationTitle("Pair Recording Sets")

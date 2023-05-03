@@ -5,7 +5,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="plate" optional="YES" attributeType="String"/>
         <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Result" inverseName="racers" inverseEntity="Result"/>
-        <relationship name="stageResults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StageResult" inverseName="racer" inverseEntity="StageResult"/>
+        <relationship name="stageResults" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StageResult" inverseName="racer" inverseEntity="StageResult"/>
     </entity>
     <entity name="Recording" representedClassName="Recording" syncable="YES">
         <attribute name="createdDate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -27,14 +27,14 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="racers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Racer" inverseName="result" inverseEntity="Racer"/>
-        <relationship name="stages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stage" inverseName="result" inverseEntity="Stage"/>
+        <relationship name="racers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Racer" inverseName="result" inverseEntity="Racer"/>
+        <relationship name="stages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Stage" inverseName="result" inverseEntity="Stage"/>
     </entity>
     <entity name="Stage" representedClassName="Stage" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="result" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Result" inverseName="stages" inverseEntity="Result"/>
-        <relationship name="stageResults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StageResult" inverseName="stage" inverseEntity="StageResult"/>
+        <relationship name="stageResults" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StageResult" inverseName="stage" inverseEntity="StageResult"/>
     </entity>
     <entity name="StageResult" representedClassName="StageResult" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

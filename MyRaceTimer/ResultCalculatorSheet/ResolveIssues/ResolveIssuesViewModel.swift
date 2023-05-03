@@ -7,42 +7,29 @@
 
 import Foundation
 
-struct ProblematicRecordingSet {
-    var name: String
-    var recordingsWithIssues: [Recording]
-    var recordingsWithNegativeTime: [Recording]
-    var recordingsMissingTimestamps: [Recording]
-    var recordingsMissingPlates: [Recording]
-    var recordingsWithNoMatches: [Recording]
-    var recordingsWithMultipleMatches: [Recording]
-    
-    init(recordingSetPair: RecordingSetPair) {
-        let recordingsWithNegativeTime: [Recording] = recordingSetPair.recordingsWithNegativeTime()
-        let recordingsMissingTimestamps: [Recording] = recordingSetPair.recordingsWithMissingTimestamps()
-        let recordingsMissingPlates: [Recording] = recordingSetPair.recordingsWithNoPlates()
-        let recordingsWithNoMatches: [Recording] = recordingSetPair.recordingsWithNoMatches()
-        let recordingsWithMultipleMatches: [Recording] = recordingSetPair.recordingsWithMultipleMatches()
-        
-        var recordingsWithIssues = recordingsWithNegativeTime + recordingsMissingTimestamps + recordingsMissingPlates + recordingsWithNoMatches + recordingsWithMultipleMatches
-        
-        self.recordingsWithIssues = recordingsWithIssues.withoutDuplicates()
-        self.name = recordingSetPair.name
-        self.recordingsWithNegativeTime = recordingsWithNegativeTime
-        self.recordingsMissingTimestamps = recordingsMissingTimestamps
-        self.recordingsMissingPlates = recordingsMissingPlates
-        self.recordingsWithNoMatches = recordingsWithNoMatches
-        self.recordingsWithMultipleMatches = recordingsWithMultipleMatches
-    }
-}
-
-
 @MainActor class ResolveIssuesViewModel: ObservableObject {
-    var recordingPairs: [RecordingPair]
-    var problematicRecordingSets: [ProblematicRecordingSet] = []
     
-    init(recordingPairs: [RecordingPair]) {
-        self.recordingPairs = recordingPairs
+    var recordingSetPairs: [RecordingSetPair]
+    @Published var recordingSetErrorCounts: [UUID: Int]
+    @Published var selectedRecordingSetPair: RecordingSetPair? = nil
+    
+    init(recordingSetPairs: [RecordingSetPair]) {
+        self.recordingSetPairs = recordingSetPairs
         
+        var errorCounts: [UUID: Int] = [:]
         
+        for recordingSetPair in recordingSetPairs {
+            errorCounts[recordingSetPair.id] = recordingSetPair.errors().count
+        }
+        
+        self.recordingSetErrorCounts = errorCounts
+    }
+     
+    func errorCount(recordingSetPair: RecordingSetPair) -> Int {
+        if let count = recordingSetErrorCounts[recordingSetPair.id] {
+            return count
+        } else {
+            return 0
+        }
     }
 }

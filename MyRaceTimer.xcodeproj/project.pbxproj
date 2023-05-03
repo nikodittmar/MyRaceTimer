@@ -37,6 +37,9 @@
 		17857CFE29FF6B70009A9BD0 /* PairSelectedRecordingSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CFD29FF6B70009A9BD0 /* PairSelectedRecordingSetsViewModel.swift */; };
 		17857D0029FF8F41009A9BD0 /* ResolveIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857CFF29FF8F41009A9BD0 /* ResolveIssuesViewModel.swift */; };
 		17857D0229FF8F56009A9BD0 /* ResolveIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D0129FF8F56009A9BD0 /* ResolveIssues.swift */; };
+		17857D052A01E466009A9BD0 /* ResultName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D042A01E466009A9BD0 /* ResultName.swift */; };
+		17857D082A01E7CA009A9BD0 /* ResolveIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D072A01E7CA009A9BD0 /* ResolveIssue.swift */; };
+		17857D0A2A01E7DE009A9BD0 /* ResolveIssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17857D092A01E7DE009A9BD0 /* ResolveIssueViewModel.swift */; };
 		17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A78A9B289B5D76000AA754 /* Extensions.swift */; };
 		17BD9BB629FDAE92004EDD27 /* ResultSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD9BB529FDAE92004EDD27 /* ResultSheet.swift */; };
 		17BD9BBF29FDB74B004EDD27 /* Racer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD9BB729FDB74B004EDD27 /* Racer+CoreDataClass.swift */; };
@@ -120,6 +123,9 @@
 		17857CFD29FF6B70009A9BD0 /* PairSelectedRecordingSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairSelectedRecordingSetsViewModel.swift; sourceTree = "<group>"; };
 		17857CFF29FF8F41009A9BD0 /* ResolveIssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssuesViewModel.swift; sourceTree = "<group>"; };
 		17857D0129FF8F56009A9BD0 /* ResolveIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssues.swift; sourceTree = "<group>"; };
+		17857D042A01E466009A9BD0 /* ResultName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultName.swift; sourceTree = "<group>"; };
+		17857D072A01E7CA009A9BD0 /* ResolveIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssue.swift; sourceTree = "<group>"; };
+		17857D092A01E7DE009A9BD0 /* ResolveIssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveIssueViewModel.swift; sourceTree = "<group>"; };
 		17A78A9B289B5D76000AA754 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17BD9BB529FDAE92004EDD27 /* ResultSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheet.swift; sourceTree = "<group>"; };
 		17BD9BB729FDB74B004EDD27 /* Racer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Racer+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				1755B41629F6065B00AB8C62 /* RecordingSetPair.swift */,
 				17857CFA29FF3B55009A9BD0 /* SelectRecordingSetsSheet */,
 				17857CFB29FF3B62009A9BD0 /* PairRecordingSetsSheet */,
+				17857D032A01E446009A9BD0 /* ResultName */,
 				17857CFC29FF3B76009A9BD0 /* ResolveIssues */,
 			);
 			path = ResultCalculatorSheet;
@@ -320,8 +327,26 @@
 			children = (
 				17857CFF29FF8F41009A9BD0 /* ResolveIssuesViewModel.swift */,
 				17857D0129FF8F56009A9BD0 /* ResolveIssues.swift */,
+				17857D062A01E7BA009A9BD0 /* ResolveIssue */,
 			);
 			path = ResolveIssues;
+			sourceTree = "<group>";
+		};
+		17857D032A01E446009A9BD0 /* ResultName */ = {
+			isa = PBXGroup;
+			children = (
+				17857D042A01E466009A9BD0 /* ResultName.swift */,
+			);
+			path = ResultName;
+			sourceTree = "<group>";
+		};
+		17857D062A01E7BA009A9BD0 /* ResolveIssue */ = {
+			isa = PBXGroup;
+			children = (
+				17857D072A01E7CA009A9BD0 /* ResolveIssue.swift */,
+				17857D092A01E7DE009A9BD0 /* ResolveIssueViewModel.swift */,
+			);
+			path = ResolveIssue;
 			sourceTree = "<group>";
 		};
 		17BD9BC729FDB751004EDD27 /* Recording */ = {
@@ -521,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1707250A289C531700F39B89 /* RecordingSetSheet.swift in Sources */,
+				17857D052A01E466009A9BD0 /* ResultName.swift in Sources */,
 				17857CF829FF3263009A9BD0 /* ResultDetailSheetViewModel.swift in Sources */,
 				17FC6647299B11CE00990518 /* RecordingsList.swift in Sources */,
 				177BB8CC29EF47010019C38F /* Recording+CoreDataProperties.swift in Sources */,
@@ -545,6 +571,7 @@
 				1755B41729F6065B00AB8C62 /* RecordingSetPair.swift in Sources */,
 				17A78A9C289B5D76000AA754 /* Extensions.swift in Sources */,
 				1755B40E29F5D8D400AB8C62 /* ActivityViewController.swift in Sources */,
+				17857D0A2A01E7DE009A9BD0 /* ResolveIssueViewModel.swift in Sources */,
 				17857CF629FF31E6009A9BD0 /* ResultDetailSheet.swift in Sources */,
 				172F1456299D934300A4513C /* RecordingSetSheetViewModel.swift in Sources */,
 				17BD9BBF29FDB74B004EDD27 /* Racer+CoreDataClass.swift in Sources */,
@@ -555,6 +582,7 @@
 				17857D0229FF8F56009A9BD0 /* ResolveIssues.swift in Sources */,
 				17BD9BC429FDB74B004EDD27 /* StageResult+CoreDataProperties.swift in Sources */,
 				17E860F729A1C6B9004F2C86 /* PairSelectedReocordingSets.swift in Sources */,
+				17857D082A01E7CA009A9BD0 /* ResolveIssue.swift in Sources */,
 				17BD9BC029FDB74B004EDD27 /* Racer+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

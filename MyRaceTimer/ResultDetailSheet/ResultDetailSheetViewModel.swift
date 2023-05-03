@@ -8,6 +8,7 @@
 import Foundation
 
 @MainActor class ResultDetailSheetViewModel: ObservableObject {
+    let dataController: DataController = DataController.shared
     var result: Result
     
     @Published var selectedStage: Stage? = nil
@@ -70,5 +71,9 @@ import Foundation
             let penalty = racer.overallPenalties
             return "+\(String(penalty))s"
         }
+    }
+    
+    func deleteResult() {
+        dataController.deleteResult(result: result)
     }
 }

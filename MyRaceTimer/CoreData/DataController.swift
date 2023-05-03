@@ -315,6 +315,17 @@ class DataController {
         }
     }
     
+    func deleteResult(result: Result) {
+        viewContext.delete(result)
+        
+        do {
+            try viewContext.save()
+        } catch {
+            viewContext.rollback()
+            print("Unable to delete result")
+        }
+    }
+    
     func getOverallStandings(result: Result) -> [Racer] {
         return result.standings
     }
