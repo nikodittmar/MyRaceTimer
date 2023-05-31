@@ -27,7 +27,7 @@ Even for small events with few racers, the amount of calculations and steps requ
 
 Luckily, MyRaceTimer combines the best of both worlds for chip and manual timing. As an iPhone app, MyRaceTimer has the same computational accuracy of chip timing. Also, because the recordings are not on paper and are “born digital”, the app can automatically calculate the race results with perfect precision solving the issue of manual timing. Finally, because everyone has a phone, MyRaceTimer eliminates the need for any specialized and expensive equipment. 
 
-| ![MyRaceTimerComparison](https://github.com/nikodittmar/MyRaceTimer/assets/77522904/e387303e-b043-4a3a-915d-3277dda2a8d2) | 
+| ![MyRaceTimerComparison](https://github.com/nikodittmar/MyRaceTimer/assets/77522904/0bc4c48c-e190-4330-8d9d-6d4bfb00f277) | 
 |:--:| 
 | *MyRaceTimer compared to Chip Timing and Manual Timing* |
 
